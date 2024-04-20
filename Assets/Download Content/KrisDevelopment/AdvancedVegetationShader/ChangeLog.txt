@@ -1,0 +1,41 @@
+Change log v1.1 - Disabled Dynamic Batching to eliminate shadow ghosting.
+
+Change log v1.2 - Added back-face culling mode options  (off, front, back)
+
+Change log v1.3 - Added GPU instancing.
+- Added AlphaToMask option to help with aliasing (however, A2C does not work well with directional shadows)
+
+Change log v1.4 (2021)
+- Shader optimizations
+- Scriptable Rendering Pipeline support.
+- Character interactions support
+
+Change Log v1.5
+- HDRP compatability fixes
+
+Change Log v1.5.1
+- BRP example fixes.
+- Interaction code fixes.
+
+Change Log v1.6
+- Added simple horizontal (planar) noise
+- Shader Code Refactoring
+- Unit test added
+
+Change Log v1.6.1
+- Improved horizontal (planar) noise
+
+Change Log v1.7
+- Added 'Uniform Normal' option in BRP shader
+- Added Grass example
+
+Change Log v1.8
+- Added 'Uniform Normal' option in SRP shader
+
+Change Log v1.9
+- Added micro noise option in SRP
+- Added stem properties
+
+Change Log v1.9.1:
+- URP shadergraph bug fix
+
