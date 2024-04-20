@@ -1,0 +1,14 @@
+{
+  "prompt_text": "toon style dark rock",
+  "patch": {
+    "ext": "png",
+    "dtype": "uint8",
+    "width": 512,
+    "height": 512,
+    "url": "https://static.withpoly.com/v3-voronoi/textures/patches/3c97e7ea-0f22-4035-9f84-e1fefef1041c.png",
+    "patch_id": "ZRQgz8ouZZ"
+  },
+  "seamless_prompt_text": "toon style dark rock",
+  "upscale_prompt_text": "toon style dark rock",
+  "is_seamless": false
+}

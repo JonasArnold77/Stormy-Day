@@ -1,0 +1,22 @@
+{
+  "prompt_text": "rocky beach toon style",
+  "patch": {
+    "ext": "png",
+    "dtype": "uint8",
+    "width": 512,
+    "height": 512,
+    "url": "https://static.withpoly.com/v3-voronoi/textures/patches/5bfae006-7caf-4f6e-a8f1-010f3f791a2e.png",
+    "patch_id": "XPjt4DjjhJ"
+  },
+  "seamless_prompt_text": "rocky beach toon style",
+  "seamless_patch_scale": 0.8,
+  "upscale_prompt_text": "rocky beach toon style",
+  "upscale_resolution": 1024,
+  "is_seamless": true,
+  "pbr_mode": "general",
+  "pbr_generate_color": true,
+  "pbr_generate_normal": true,
+  "pbr_generate_height": true,
+  "pbr_generate_ao": true,
+  "pbr_generate_roughness": true
+}

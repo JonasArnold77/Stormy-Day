@@ -1,0 +1,22 @@
+{
+  "prompt_text": "gravel path",
+  "patch": {
+    "ext": "png",
+    "dtype": "uint8",
+    "width": 512,
+    "height": 512,
+    "url": "https://static.withpoly.com/v3-voronoi/textures/patches/d56658cc-1a50-4064-8d73-2ebfeae58fbb.png",
+    "patch_id": "nYprfWWkJL"
+  },
+  "seamless_prompt_text": "gravel path",
+  "seamless_patch_scale": 0.8,
+  "upscale_prompt_text": "gravel path",
+  "upscale_resolution": 1024,
+  "is_seamless": true,
+  "pbr_mode": "organic",
+  "pbr_generate_color": true,
+  "pbr_generate_normal": true,
+  "pbr_generate_height": true,
+  "pbr_generate_ao": true,
+  "pbr_generate_roughness": true
+}
