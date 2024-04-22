@@ -1,3 +1,4 @@
+using StarterAssets;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +24,14 @@ public class Attack : MonoBehaviour
     public Vector3 EndPoint;
     public bool HitDone;
 
+    public Transform playerTransform; // Der Transform des Spielers
+    public float detectionDistance = 10f; // Die Entfernung, in der nach Gegnern gesucht wird
+    public LayerMask enemyLayerMask; // Die LayerMask für Gegner
+
+    public bool isDoingAttack;
+    public Transform ActualEnemy;
+    public Transform Player;
+
     public static Attack Instance;
 
     public void Awake()
@@ -44,6 +53,123 @@ public class Attack : MonoBehaviour
         {
             StartCoroutine(CalculateCombo());
         }
+
+        if (isDoingAttack)
+        {
+            LookAt(ActualEnemy);
+        }
+
+        GetEnemiesInFieldOfView();
+    }
+
+    public IEnumerator AimOnNextEnemy()
+    {
+        var allEnemies = FindObjectsOfType<EnemyAnimation>().Select(e => e.transform).Where(e => Vector3.Distance(playerTransform.position,e.position)<5);
+        Transform pivotEnemy = allEnemies.FirstOrDefault();
+
+        if (GetEnemiesInFieldOfView().Count > 0)
+        {
+            foreach (var e in GetEnemiesInFieldOfView())
+            {
+                if (Vector3.Distance(transform.position, e.position) < Vector3.Distance(transform.position, pivotEnemy.position))
+                {
+                    pivotEnemy = e;
+                }
+            }
+
+            //FindObjectOfType<ThirdPersonController>().enabled = false;
+
+            isDoingAttack = true;
+
+            ActualEnemy = pivotEnemy;
+
+            while (CheckIfPossibleToAttack() == true)
+            {
+                //LookAt(pivotEnemy);
+                yield return new WaitForEndOfFrame();
+            }
+
+            yield return new WaitForSeconds(1f);
+
+            isDoingAttack = false;
+
+            //FindObjectOfType<ThirdPersonController>().enabled = true;
+        }
+        else 
+        {
+            foreach (var e in allEnemies)
+            {
+                if (Vector3.Distance(transform.position, e.position) < Vector3.Distance(transform.position, pivotEnemy.position))
+                {
+                    pivotEnemy = e;
+                }
+            }
+
+            //FindObjectOfType<ThirdPersonController>().enabled = false;
+
+            isDoingAttack = true;
+
+            ActualEnemy = pivotEnemy;
+
+            while (CheckIfPossibleToAttack() == true)
+            {
+                //LookAt(pivotEnemy);
+                yield return new WaitForEndOfFrame();
+            }
+
+            yield return new WaitForSeconds(1f);
+
+            isDoingAttack = false;
+
+            //FindObjectOfType<ThirdPersonController>().enabled = true;
+        }
+    }
+
+    List<Transform> GetEnemiesInFieldOfView()
+    {
+        List<Transform> enemiesInFieldOfView = new List<Transform>();
+
+        // Alle Collider im DetectionDistance Bereich abrufen
+        Collider[] colliders = Physics.OverlapSphere(transform.position, detectionDistance, enemyLayerMask);
+
+        foreach (var collider in colliders)
+        {
+            // Richtungsvektor vom Spieler zum Ziel (Gegner)
+            Vector3 directionToEnemy = (collider.transform.position - transform.position).normalized;
+
+            // Blickrichtung des Spielers
+            Vector3 forwardDirection = playerTransform.forward;
+
+            // Winkel zwischen Blickrichtung des Spielers und Richtungsvektor zum Ziel
+            float angleToEnemy = Vector3.Angle(forwardDirection, directionToEnemy);
+
+            // Prüfen, ob der Winkel im zulässigen Bereich liegt (-45 Grad nach links und 45 Grad nach rechts)
+            if (angleToEnemy <= 45f && angleToEnemy >= -45f)
+            {
+                enemiesInFieldOfView.Add(collider.transform);
+            }
+        }
+
+        if (enemiesInFieldOfView.Count > 0)
+        {
+            Debug.Log("Is In Sight");
+            //LookAt(enemiesInFieldOfView.FirstOrDefault());
+        }
+
+        return enemiesInFieldOfView;
+    }
+
+    private void LookAt(Transform targetPoint)
+    {
+        // Calculate the direction from the player to the target point
+        Vector3 directionToTarget = targetPoint.position - playerTransform.transform.position;
+
+        // Keep the y-axis rotation constant
+        directionToTarget.y = 0;
+
+        // Rotate the player to look at the target point
+        Quaternion targetRotation = Quaternion.LookRotation(directionToTarget);
+        playerTransform.transform.rotation = targetRotation;
     }
 
     public IEnumerator CalculateCombo()
@@ -61,6 +187,8 @@ public class Attack : MonoBehaviour
             _WaitForResettingCoroutineÍnstance = StartCoroutine(WaitForResettingCoroutine(EControls.LightHit));
             yield return StartCoroutine(PlayerAnimation.Instance.PlayNextAttack(EControls.LightHit));
 
+            StartCoroutine(AimOnNextEnemy());
+
             ComboManager.Instance.CheckForSuperCombo(EControls.LightHit);
         }
 
@@ -75,6 +203,8 @@ public class Attack : MonoBehaviour
             //have to be before attack coroutine
             _WaitForResettingCoroutineÍnstance = StartCoroutine(WaitForResettingCoroutine(EControls.HardHit));
             yield return StartCoroutine(PlayerAnimation.Instance.PlayNextAttack(EControls.HardHit));
+
+            StartCoroutine(AimOnNextEnemy());
 
             ComboManager.Instance.CheckForSuperCombo(EControls.HardHit);
         }
