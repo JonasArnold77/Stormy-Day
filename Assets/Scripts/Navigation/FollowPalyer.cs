@@ -15,11 +15,11 @@ public class FollowPalyer : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
-    // Update is called once per frame
-    //void Update()
-    //{
-    //    agent.destination = GetRandomTargetPos(10,20);   
-    //}
+
+    void Update()
+    {
+        agent.destination = player.position;   
+    }
 
 
     Vector3 GetRandomTargetPos(float minRadius, float maxRadius)

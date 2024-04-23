@@ -7,7 +7,7 @@ public class PlayerAnimation : MonoBehaviour
 {
 
     private Animator _Animator;
-    private bool _IsPlayingAttack;
+    private bool _IsPlayingAttack = true;
 
     private Coroutine _IsPlayingAttackCoroutine;
 
@@ -41,10 +41,10 @@ public class PlayerAnimation : MonoBehaviour
 
     public IEnumerator PlayNextAttack(EControls control)
     {
-        if (CheckIfAttackIsPlaying())
-        {
+        //if (CheckIfAttackIsPlaying())
+        //{
             yield return new WaitUntil(() => !_IsPlayingAttack);
-        }
+        //}
         var combo = ComboManager.Instance.Combos.Where(c => c.InputType == control && c.WeaponType == WeaponManager.Instance.ActualWeaponType).FirstOrDefault();
         _Animator.Play(combo.ComboList[combo.Counter].name);
         combo.IncreaseCounter();
@@ -54,6 +54,11 @@ public class PlayerAnimation : MonoBehaviour
         AnimatorStateInfo animState = _Animator.GetCurrentAnimatorStateInfo(layer);
         if (animState.IsTag("Attack"))
         {
+            if (animState.normalizedTime > animState.length * 0.7f)
+            {
+                _IsPlayingAttack = false;
+                return false;
+            }
             _IsPlayingAttack = true;
             return true;
         }

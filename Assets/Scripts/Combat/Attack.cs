@@ -298,7 +298,7 @@ public class Attack : MonoBehaviour
         AnimatorStateInfo animState = _Animator.GetCurrentAnimatorStateInfo(layer);
         if (animState.IsTag("Attack"))
         {
-            if(animState.normalizedTime > animState.length * 0.6f)
+            if(animState.normalizedTime > animState.length * 0.0f)
             {
                 _IsPlayingAttack = false;
                 return false;
