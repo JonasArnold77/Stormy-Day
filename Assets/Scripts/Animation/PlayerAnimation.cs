@@ -1,3 +1,4 @@
+using StarterAssets;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,6 +38,7 @@ public class PlayerAnimation : MonoBehaviour
         }
 
         CheckIfAttackIsPlaying();
+        StopPlayerWhileDoingAttack();
     }
 
     public IEnumerator PlayNextAttack(EControls control)
@@ -47,8 +49,11 @@ public class PlayerAnimation : MonoBehaviour
         //}
         var combo = ComboManager.Instance.Combos.Where(c => c.InputType == control && c.WeaponType == WeaponManager.Instance.ActualWeaponType).FirstOrDefault();
         _Animator.Play(combo.ComboList[combo.Counter].name);
+        
         combo.IncreaseCounter();
     }
+
+    //Wait for either animation ended or animation is at 70 percent
     public bool CheckIfAttackIsPlaying(int layer = 1)
     {
         AnimatorStateInfo animState = _Animator.GetCurrentAnimatorStateInfo(layer);
@@ -66,6 +71,22 @@ public class PlayerAnimation : MonoBehaviour
         {
             _IsPlayingAttack = false;
             return false;
+        }
+    }
+
+    public void StopPlayerWhileDoingAttack()
+    {
+        // Überprüfe, ob die gewünschte Animation abgespielt wird
+        if (_Animator.GetCurrentAnimatorStateInfo(1).IsTag("Attack"))
+        {
+            FindObjectOfType<ThirdPersonController>().MoveSpeed = 0;
+            // Wenn die Animation abgespielt wird, überprüfe, ob sie abgeschlossen ist
+            if (_Animator.GetCurrentAnimatorStateInfo(1).normalizedTime >= 1.0f)
+            {
+                FindObjectOfType<ThirdPersonController>().MoveSpeed = 6;
+                // Animation ist abgeschlossen
+                Debug.Log("Zielanimation abgeschlossen!");
+            }
         }
     }
 }
