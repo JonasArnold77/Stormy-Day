@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Sword : MonoBehaviour
 {
-
+    public EHitEffect hitEffect;
     public Transform TipOfTheSword;
     private Vector3 hitStartPosition;
     private Vector3 hitEndPosition;
@@ -39,9 +39,9 @@ public class Sword : MonoBehaviour
     {
         if (collision.gameObject.tag == "Enemy")
         {
-            hitStartPosition = WeaponManager.Instance.ActualWeapon.TipOfTheSword.position;
+            //hitStartPosition = WeaponManager.Instance.ActualWeapon.TipOfTheSword.position;
             collision.gameObject.GetComponent<EnemyAnimation>().StartPointOfHit = collision.contacts[0].point;
-            collision.gameObject.GetComponent<EnemyAnimation>().PlayingHitAnimation();
+            collision.gameObject.GetComponent<EnemyAnimation>().PlayingHitAnimation(FindObjectOfType<Attack>().actualEffect);
             //StartCoroutine(collision.gameObject.GetComponent<EnemyAnimation>().KillExecution());
         } 
     }
@@ -50,7 +50,7 @@ public class Sword : MonoBehaviour
     {
         if (collision.gameObject.tag == "Enemy")
         {
-            hitEndPosition = WeaponManager.Instance.ActualWeapon.TipOfTheSword.position;
+            //hitEndPosition = WeaponManager.Instance.ActualWeapon.TipOfTheSword.position;
             //collision.gameObject.GetComponent<EnemyAnimation>().EndPointOfHit = collision.contacts.LastOrDefault().point;
             //collision.gameObject.GetComponent<EnemyAnimation>().GetHitDirection(collision.gameObject.transform.forward);
             

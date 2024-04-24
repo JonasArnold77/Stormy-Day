@@ -39,6 +39,7 @@ public class PlayerAnimation : MonoBehaviour
 
         CheckIfAttackIsPlaying();
         StopPlayerWhileDoingAttack();
+
     }
 
     public IEnumerator PlayNextAttack(EControls control)
@@ -59,11 +60,11 @@ public class PlayerAnimation : MonoBehaviour
         AnimatorStateInfo animState = _Animator.GetCurrentAnimatorStateInfo(layer);
         if (animState.IsTag("Attack"))
         {
-            if (animState.normalizedTime > animState.length * 0.7f)
-            {
-                _IsPlayingAttack = false;
-                return false;
-            }
+            //if (animState.normalizedTime > animState.length * 0.9f)
+            //{
+            //    _IsPlayingAttack = false;
+            //    return false;
+            //}
             _IsPlayingAttack = true;
             return true;
         }
@@ -81,9 +82,10 @@ public class PlayerAnimation : MonoBehaviour
         {
             FindObjectOfType<ThirdPersonController>().MoveSpeed = 0;
             // Wenn die Animation abgespielt wird, überprüfe, ob sie abgeschlossen ist
-            if (_Animator.GetCurrentAnimatorStateInfo(1).normalizedTime >= 1.0f)
+            if (_Animator.GetCurrentAnimatorStateInfo(1).normalizedTime >= 0.9f)
             {
                 FindObjectOfType<ThirdPersonController>().MoveSpeed = 6;
+
                 // Animation ist abgeschlossen
                 Debug.Log("Zielanimation abgeschlossen!");
             }

@@ -1,4 +1,5 @@
 using StarterAssets;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,7 +33,17 @@ public class Attack : MonoBehaviour
     public Transform ActualEnemy;
     public Transform Player;
 
+    public EHitEffect actualEffect;
+
+    [Serializable]
+    public struct TypeAndEffect
+    {
+        public EHitEffect effect;
+        public EHitType type;
+    }
+
     public static Attack Instance;
+
 
     public void Awake()
     {
@@ -41,7 +52,7 @@ public class Attack : MonoBehaviour
 
     private void Start()
     {
-        InventoryManager.Instance.ActualWeapon.GetComponent<Collider>().enabled = false;
+        //InventoryManager.Instance.ActualWeapon.GetComponent<Collider>().enabled = false;
         _Animator = GetComponent<Animator>();
 
 
@@ -54,7 +65,7 @@ public class Attack : MonoBehaviour
             StartCoroutine(CalculateCombo());
         }
 
-        if (isDoingAttack)
+        if (isDoingAttack && ActualEnemy != null)
         {
             LookAt(ActualEnemy);
         }
@@ -64,10 +75,10 @@ public class Attack : MonoBehaviour
 
     public IEnumerator AimOnNextEnemy()
     {
-        var allEnemies = FindObjectsOfType<EnemyAnimation>().Select(e => e.transform).Where(e => Vector3.Distance(playerTransform.position,e.position)<5);
+        var allEnemies = FindObjectsOfType<EnemyAnimation>().Select(e => e.transform).Where(e => Vector3.Distance(playerTransform.position,e.position)<5).ToList();
         Transform pivotEnemy = allEnemies.FirstOrDefault();
 
-        if (GetEnemiesInFieldOfView().Count > 0)
+        if (GetEnemiesInFieldOfView().Count > 0 && allEnemies.Count>0)
         {
             foreach (var e in GetEnemiesInFieldOfView())
             {
@@ -95,7 +106,7 @@ public class Attack : MonoBehaviour
 
             //FindObjectOfType<ThirdPersonController>().enabled = true;
         }
-        else 
+        else if(allEnemies.Count > 0)
         {
             foreach (var e in allEnemies)
             {
@@ -220,16 +231,21 @@ public class Attack : MonoBehaviour
         _WaitForResettingCoroutineIsActive = false;
     }
 
-
-    public void SetColliderActive()
+    public void SetEffect(EHitEffect effect)
     {
-        InventoryManager.Instance.ActualWeapon.GetComponent<Collider>().enabled = true;
+        actualEffect = effect;
+    }
+
+    public void SetColliderActive(EHitType type)
+    {
+        //WeaponManager.Instance.GetWeaponComponent(typeandEffect.type).GetComponent<Sword>().hitEffect = typeandEffect.effect;
+        WeaponManager.Instance.GetWeaponComponent(type).GetComponent<Collider>().enabled = true;
         IsInAttackingTimeWindow = true;
     }
 
-    public void SetColliderInactive()
+    public void SetColliderInactive(EHitType type)
     {
-        InventoryManager.Instance.ActualWeapon.GetComponent<Collider>().enabled = false;
+        WeaponManager.Instance.GetWeaponComponent(type).GetComponent<Collider>().enabled = false;
         IsInAttackingTimeWindow = false;
     }
 

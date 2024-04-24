@@ -78,14 +78,22 @@ public class EnemyAnimation : MonoBehaviour
 
     }
 
-    public void PlayingHitAnimation()
+    public void PlayingHitAnimation(EHitEffect effect)
     {
-       if (_Animator.GetBool("Hit"))
+        if(effect == EHitEffect.HeadHit)
         {
-            _Animator.SetBool("InterruptHit", true);
-        }
+            if (_Animator.GetBool("Hit"))
+            {
+                _Animator.SetBool("InterruptHit", true);
+            }
 
-        _Animator.SetBool("Hit", true);
+            _Animator.SetBool("Hit", true);
+        }
+        else if (effect == EHitEffect.Push)
+        {
+            _Animator.SetBool("Push", true);
+        }
+       
 
         
        
