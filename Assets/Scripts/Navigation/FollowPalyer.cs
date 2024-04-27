@@ -21,6 +21,15 @@ public class FollowPalyer : MonoBehaviour
         agent.destination = player.position;   
     }
 
+    public void Stop()
+    {
+        agent.isStopped = true;
+    }
+
+    public void Begin()
+    {
+        agent.isStopped = false;
+    }
 
     Vector3 GetRandomTargetPos(float minRadius, float maxRadius)
     {

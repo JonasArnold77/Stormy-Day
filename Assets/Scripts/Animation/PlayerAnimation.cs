@@ -12,6 +12,8 @@ public class PlayerAnimation : MonoBehaviour
 
     private Coroutine _IsPlayingAttackCoroutine;
 
+    
+
     public static PlayerAnimation Instance;
 
     private void Awake()
@@ -24,6 +26,8 @@ public class PlayerAnimation : MonoBehaviour
     {
         _Animator = GetComponent<Animator>();
     }
+
+   
 
     // Update is called once per frame
     void Update()
@@ -82,7 +86,7 @@ public class PlayerAnimation : MonoBehaviour
         {
             FindObjectOfType<ThirdPersonController>().MoveSpeed = 0;
             // Wenn die Animation abgespielt wird, überprüfe, ob sie abgeschlossen ist
-            if (_Animator.GetCurrentAnimatorStateInfo(1).normalizedTime >= 0.9f)
+            if (_Animator.GetCurrentAnimatorStateInfo(1).normalizedTime >= 0.7f)
             {
                 FindObjectOfType<ThirdPersonController>().MoveSpeed = 6;
 

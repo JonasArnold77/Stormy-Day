@@ -12,5 +12,6 @@ public enum EHitType
     LeftKnee,
     RightElbow,
     LeftElbow,
-    Head
+    Head,
+    Sword
 }

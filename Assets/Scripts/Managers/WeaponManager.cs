@@ -16,6 +16,7 @@ public class WeaponManager : MonoBehaviour
     public Transform LeftKnee;
     public Transform RightElbow;
     public Transform LeftElbow;
+    public Transform Sword;
     public Transform Head;
 
 
@@ -40,6 +41,7 @@ public class WeaponManager : MonoBehaviour
         RightElbow.GetComponent<Collider>().enabled = false;
         LeftElbow.GetComponent<Collider>().enabled = false;
         Head.GetComponent<Collider>().enabled = false;
+        Sword.GetComponent<Collider>().enabled = false;
     }
 
     public Transform GetWeaponComponent(EHitType type)
@@ -79,6 +81,10 @@ public class WeaponManager : MonoBehaviour
         else if (type == EHitType.Head)
         {
             return Head;
+        }
+        else if (type == EHitType.Sword)
+        {
+            return Sword;
         }
         return null;
     }

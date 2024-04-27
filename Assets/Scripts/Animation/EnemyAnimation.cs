@@ -27,6 +27,8 @@ public class EnemyAnimation : MonoBehaviour
 
     private LineRenderer lineRenderer;
 
+    private Coroutine WalkingCoroutine;
+
     bool running;
 
     public Transform bouncy;
@@ -58,6 +60,35 @@ public class EnemyAnimation : MonoBehaviour
         if (running)
         {
             bouncy.position = Hips.position;
+        }
+
+        AnimatorClipInfo[] currentClipInfo = _Animator.GetCurrentAnimatorClipInfo(0);
+
+        if (_Animator.GetCurrentAnimatorStateInfo(0).IsName("StandUp 1") &&
+            _Animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 0.9f)
+        {
+            GetComponent<FollowPalyer>().Begin();
+        }
+    }
+
+    public void StartWalking()
+    {
+        WalkingCoroutine = StartCoroutine(WalkingRoutine());
+        GetComponent<FollowPalyer>().Stop();
+    }
+
+    public void StopWalking()
+    {
+        StopCoroutine(WalkingCoroutine);
+        
+    }
+
+    private IEnumerator WalkingRoutine()
+    {
+        while (true)
+        {
+            transform.position = Vector3.Lerp(transform.position, transform.position - transform.forward, 0.09f);
+            yield return new WaitForEndOfFrame();
         }
     }
 

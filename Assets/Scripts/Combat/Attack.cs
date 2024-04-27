@@ -33,6 +33,8 @@ public class Attack : MonoBehaviour
     public Transform ActualEnemy;
     public Transform Player;
 
+    private Coroutine WalkingCoroutine;
+
     public EHitEffect actualEffect;
 
     [Serializable]
@@ -234,6 +236,37 @@ public class Attack : MonoBehaviour
     public void SetEffect(EHitEffect effect)
     {
         actualEffect = effect;
+    }
+
+    public void StartWalking()
+    {
+        WalkingCoroutine = StartCoroutine(WalkingRoutine());
+    }
+
+    public void StopWalking()
+    {
+        StopCoroutine(WalkingCoroutine);
+    }
+
+    private IEnumerator WalkingRoutine()
+    {
+        if (ActualEnemy != null)
+        {
+            while (true)
+            {
+                playerTransform.position = Vector3.Lerp(playerTransform.position, ActualEnemy.position, 0.04f);
+                yield return new WaitForEndOfFrame();
+            }
+        }
+        else
+        {
+            while (true)
+            {
+                playerTransform.position = Vector3.Lerp(playerTransform.position, playerTransform.position + transform.forward, 0.04f);
+                yield return new WaitForEndOfFrame();
+            }
+        }
+        
     }
 
     public void SetColliderActive(EHitType type)
