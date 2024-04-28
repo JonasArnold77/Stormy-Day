@@ -6,7 +6,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/AttackItem", order = 1)]
 public class AttackItem : ScriptableObject
 {
-    public Animation _Animation;
+    public AnimationClip _Animation;
     public EControls Control;
     public EHitEffect Effect;
     public EHitType Type;

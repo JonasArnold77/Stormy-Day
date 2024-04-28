@@ -31,6 +31,13 @@ public class FollowPalyer : MonoBehaviour
         agent.isStopped = false;
     }
 
+    public IEnumerator StopForTime(float time)
+    {
+        Stop();
+        yield return new WaitForSeconds(time);
+        Begin();
+    }
+
     Vector3 GetRandomTargetPos(float minRadius, float maxRadius)
     {
         Vector2 rndPos = new Vector2(3,3);

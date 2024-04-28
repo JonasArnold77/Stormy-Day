@@ -37,6 +37,9 @@ public class Attack : MonoBehaviour
 
     public EHitEffect actualEffect;
 
+    public float DashDistance;
+
+
     [Serializable]
     public struct TypeAndEffect
     {
@@ -73,6 +76,45 @@ public class Attack : MonoBehaviour
         }
 
         GetEnemiesInFieldOfView();
+    }
+
+    public void DashForwardWhileAttack(float duration)
+    {
+        StartCoroutine(Dash(duration));
+    }
+
+    IEnumerator Dash(float distance)
+    {
+        float distanceTraveled = 0f;
+
+        Vector3 direction = new Vector3();
+
+        if(ActualEnemy != null)
+        {
+            direction = ActualEnemy.position - playerTransform.position;
+
+            if(Vector3.Distance(ActualEnemy.position, playerTransform.position) < DashDistance)
+            {
+                //yield break;
+            }
+        }
+        else
+        {
+            direction = playerTransform.forward;
+        }
+
+        direction = direction.normalized;
+
+        while (distanceTraveled < DashDistance)
+        {
+            // Bewege das Objekt in der gegebenen Richtung mit der gegebenen Geschwindigkeit
+            playerTransform.Translate(direction * 10f * Time.deltaTime, Space.World);
+
+            // Aktualisiere die zurückgelegte Distanz
+            distanceTraveled += 10f * Time.deltaTime;
+
+            yield return null;
+        }
     }
 
     public IEnumerator AimOnNextEnemy()

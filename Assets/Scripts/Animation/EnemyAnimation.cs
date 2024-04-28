@@ -1,3 +1,4 @@
+using StarterAssets;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -128,6 +129,26 @@ public class EnemyAnimation : MonoBehaviour
 
         
        
+    }
+
+    public IEnumerator Dash(float distance)
+    {
+        float distanceTraveled = 0f;
+
+        var direction = transform.position - FindObjectOfType<ThirdPersonController>().transform.position ;
+
+        direction = direction.normalized;
+
+        while (distanceTraveled < distance)
+        {
+            // Bewege das Objekt in der gegebenen Richtung mit der gegebenen Geschwindigkeit
+            transform.Translate(direction * 10f * Time.deltaTime, Space.World);
+
+            // Aktualisiere die zurückgelegte Distanz
+            distanceTraveled += 10f * Time.deltaTime;
+
+            yield return null;
+        }
     }
 
     public IEnumerator KillExecution()
