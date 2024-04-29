@@ -84,8 +84,7 @@ MonoBehaviour:
     m_Value: 0.935
   m_Mask:
     m_OverrideState: 1
-    m_Value: {fileID: 3933885310180405072, guid: 29abccf77cd3eb64fbd757643a6d4b4c,
-      type: 2}
+    m_Value: {fileID: 3933885310180405072, guid: 29abccf77cd3eb64fbd757643a6d4b4c, type: 2}
 --- !u!114 &-5934383253081845481
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -1044,7 +1043,7 @@ MonoBehaviour:
   active: 1
   m_Radius:
     m_OverrideState: 1
-    m_Value: 0.01
+    m_Value: 0.032
   m_Radial:
     m_OverrideState: 1
     m_Value: 0

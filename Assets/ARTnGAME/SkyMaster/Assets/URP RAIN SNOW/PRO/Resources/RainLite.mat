@@ -51,7 +51,7 @@ Material:
     - Outline_Normals_Sensitivity: 0
     - _Blur: 5
     - _BottomThreshold: 0.89
-    - _CameraRainPower: 0.33
+    - _CameraRainPower: 0
     - _Distortion: 42
     - _Lux_RainBrightness: 1
     - _Lux_RainIntensity: 6
@@ -64,11 +64,11 @@ Material:
     - _SnowTexScale: -0.23
     - _TileNumCausticRotMin: 1
     - _TopThreshold: -0.87
-    - _Weight: 1
+    - _Weight: 0.3672
     - _erasePower: 1
     - _maskPower: 1
-    - _rainContrast: 1
-    - _rainPower: 26.4
+    - _rainContrast: 0.1
+    - _rainPower: 1.28
     - _snowBrightness: 0.43
     - _snowBumpPower: 2.12
     - _snowBumpScale: 1.38
