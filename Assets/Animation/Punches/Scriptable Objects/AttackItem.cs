@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 
 [CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/AttackItem", order = 1)]
 public class AttackItem : ScriptableObject
@@ -14,4 +14,5 @@ public class AttackItem : ScriptableObject
     public int Damage;
     public string Name;
     public string Description;
+    public Sprite Image;
 }
