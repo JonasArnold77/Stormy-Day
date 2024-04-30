@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class SkillUIItem : MonoBehaviour
 {
     public AttackItem _AttackItem;
+    public Image Image;
     public bool IsInPool;
 
     private void Start()
@@ -14,6 +15,11 @@ public class SkillUIItem : MonoBehaviour
         if (!IsInPool)
         {
             GetComponent<Button>().onClick.AddListener(() => OpenAttackPool(EHitType.Sword));
+        }
+
+        if(_AttackItem == null)
+        {
+
         }
     }
     
@@ -30,7 +36,8 @@ public class SkillUIItem : MonoBehaviour
     public void SetAttackItem(AttackItem item)
     {
         _AttackItem = item;
-        GetComponent<Image>().sprite = _AttackItem.Image;
+        Image.sprite = _AttackItem.Image;
         GetComponentInChildren<TMP_Text>().text = _AttackItem.name;
+
     }
 }

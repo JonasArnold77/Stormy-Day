@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8dca22b303aabf94592c818dc85b3eac, type: 3}
-  m_Name: Sword Swing
+  m_Name: Spinning Sword 3
   m_EditorClassIdentifier: 
-  _Animation: {fileID: 7400000, guid: b20de0d679864454eb269331e3a270db, type: 2}
+  _Animation: {fileID: 7400000, guid: 9b7d96b623008a14ba4f74c08fe78dce, type: 2}
   Control: 1
   Effect: 0
   Type: 9
   WeaponType: 0
   StatusEffect: 5
   Damage: 10
-  Name: Swing Attack
+  Name: Spinning Attack
   Description: A normal Sword Attack
-  Image: {fileID: 21300000, guid: e5ec30c0d0f787f47b9cace9af25501c, type: 3}
-  Level: 2
+  Image: {fileID: 21300000, guid: d8dc8265462018d4286bc73e1e30ffeb, type: 3}
+  Level: 1

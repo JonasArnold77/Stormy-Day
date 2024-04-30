@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -35,7 +36,8 @@ public class AttackPoolMenu : MonoBehaviour
             if(s.Type == type)
             {
                 var item = Instantiate(AttackPoolItem, Content);
-                item.GetComponentInChildren<TMP_Text>().text = s.name;
+                item.GetComponentInChildren<TMP_Text>().text = s.Name;
+                //item.GetComponent<Image>().sprite = s.Image;
                 item.GetComponent<Button>().onClick.AddListener(() => SetComboAttackItem(s));
             }
         }
@@ -55,13 +57,13 @@ public class AttackPoolMenu : MonoBehaviour
         List<T> scriptableObjects = new List<T>();
 
         // Suche nach allen Scriptable Objects im Projekt
-        T[] allScriptableObjects = Resources.FindObjectsOfTypeAll<T>();
+        string[] guids = AssetDatabase.FindAssets("t:" + typeof(T).Name);
 
-        // Überprüfe jedes gefundene Scriptable Object
-        foreach (T scriptableObject in allScriptableObjects)
+        foreach (string guid in guids)
         {
-            // Füge das Scriptable Object zur Liste hinzu, wenn es den gewünschten Typ hat
-            if (scriptableObject.GetType() == typeof(T))
+            string path = AssetDatabase.GUIDToAssetPath(guid);
+            T scriptableObject = AssetDatabase.LoadAssetAtPath<T>(path);
+            if (scriptableObject != null)
             {
                 scriptableObjects.Add(scriptableObject);
             }

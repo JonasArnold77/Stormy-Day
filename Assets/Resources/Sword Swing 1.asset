@@ -17,7 +17,9 @@ MonoBehaviour:
   Effect: 0
   Type: 9
   WeaponType: 0
+  StatusEffect: 0
   Damage: 10
-  Name: Swing Attack 2
+  Name: Fire Sword Attack
   Description: A normal Sword Attack
-  Image: {fileID: 0}
+  Image: {fileID: 21300000, guid: 86b9cf2eae27db74e9046ab2e7b69f87, type: 3}
+  Level: 2
