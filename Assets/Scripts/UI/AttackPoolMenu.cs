@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEditor;
 using UnityEngine;
@@ -50,6 +51,13 @@ public class AttackPoolMenu : MonoBehaviour
         GetComponent<CanvasGroup>().blocksRaycasts = false;
         FindObjectOfType<ComboPanel>().GetComponent<CanvasGroup>().blocksRaycasts = true;
         FindObjectOfType<ComboPanel>().GetComponent<CanvasGroup>().alpha = 1;
+
+        ComboManager.Instance.Combos.FirstOrDefault().ComboList.Clear();
+
+        foreach (var a in FindObjectOfType<ComboPanel>().AtackItemPanel)
+        {
+            ComboManager.Instance.Combos.FirstOrDefault().ComboList.Add(a.GetComponent<SkillUIItem>()._AttackItem);
+        }
     }
 
     public List<T> GetScriptableObjectsOfType<T>() where T : ScriptableObject

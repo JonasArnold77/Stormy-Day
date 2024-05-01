@@ -12,7 +12,7 @@ public class PlayerAnimation : MonoBehaviour
 
     private Coroutine _IsPlayingAttackCoroutine;
 
-    
+    public AttackItem ActualAttackItem;
 
     public static PlayerAnimation Instance;
 
@@ -53,9 +53,35 @@ public class PlayerAnimation : MonoBehaviour
             yield return new WaitUntil(() => !_IsPlayingAttack);
         //}
         var combo = ComboManager.Instance.Combos.Where(c => c.InputType == control && c.WeaponType == WeaponManager.Instance.ActualWeaponType).FirstOrDefault();
-        _Animator.Play(combo.ComboList[combo.Counter].name);
-        
-        combo.IncreaseCounter();
+        if (combo.ComboList != null && combo.ComboList.Count > 0)
+        {
+            _Animator.Play(combo.ComboList[combo.Counter]._Animation.name);
+
+            StartCoroutine(WaitForEndOfAnimation(combo.ComboList[combo.Counter]));
+
+            combo.IncreaseCounter();
+        }
+    }
+
+    public IEnumerator WaitForEndOfAnimation(AttackItem item)
+    {
+        ActualAttackItem = item;
+
+        GetComponent<StatusEffects>().ActivateEffect(item.StatusEffect, item.Type);
+
+        while (!AnimationFinished(item._Animation.name))
+        {
+            yield return null;
+        }
+        GetComponent<StatusEffects>().DeactivateEffect();
+        ActualAttackItem = null;
+    }
+
+    bool AnimationFinished(string animationName)
+    {
+        // Prüfe, ob die angegebene Animation abgeschlossen ist
+        AnimatorStateInfo stateInfo = _Animator.GetCurrentAnimatorStateInfo(1);
+        return stateInfo.IsName(animationName) && stateInfo.normalizedTime >= 1;
     }
 
     //Wait for either animation ended or animation is at 70 percent

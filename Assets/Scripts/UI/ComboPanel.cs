@@ -38,5 +38,7 @@ public class ComboPanel : MonoBehaviour
         //newPanel.GetComponent<RectTransform>().anchoredPosition = lastPanel.GetComponent<RectTransform>().anchoredPosition;
 
         AtackItemPanel.Add(newPanel);
+
+        
     }
 }

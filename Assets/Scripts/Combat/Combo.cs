@@ -6,7 +6,7 @@ using UnityEngine;
 [Serializable]
 public class Combo
 {
-    public List<AnimationClip> ComboList;
+    public List<AttackItem> ComboList;
     public int Counter;
     public EControls InputType;
     public EWeaponType WeaponType;

@@ -227,8 +227,24 @@ public class Attack : MonoBehaviour
         playerTransform.transform.rotation = targetRotation;
     }
 
+    public bool CheckIfMenuIsOpen()
+    {
+        var allCanvasGroups = FindObjectsOfType<CanvasGroup>();
+
+        if(allCanvasGroups.Where(cg => cg.alpha == 1).ToList().Count > 0)
+        {
+            return true;
+        }
+        return false;
+    }
+
     public IEnumerator CalculateCombo()
     {
+        if (CheckIfMenuIsOpen())
+        {
+            yield break;
+        }
+
         _ComboCoroutineIsRunning = true;
         if (Input.GetKeyDown((KeyCode)InputManager.Instance.GetInputActionFromControlInput(EControls.LightHit)) && !CheckIfPossibleToAttack())
         {

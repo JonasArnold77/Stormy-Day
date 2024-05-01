@@ -9,6 +9,10 @@ public class Sword : MonoBehaviour
     public Transform TipOfTheSword;
     private Vector3 hitStartPosition;
     private Vector3 hitEndPosition;
+
+    public GameObject FireEffect;
+    public GameObject IceEffect;
+
     private enum HitDirection { Front, Back, Right, Left }
 
     private void Start()
@@ -44,6 +48,8 @@ public class Sword : MonoBehaviour
             collision.gameObject.GetComponent<EnemyAnimation>().PlayingHitAnimation(FindObjectOfType<Attack>().actualEffect);
             StartCoroutine(collision.gameObject.GetComponent<EnemyAnimation>().Dash(2));
             StartCoroutine(collision.gameObject.GetComponent<FollowPalyer>().StopForTime(0.5f));
+
+            Debug.Log("Status Effetk:" + FindObjectOfType<PlayerAnimation>().ActualAttackItem.StatusEffect.ToString());
 
             //StartCoroutine(collision.gameObject.GetComponent<EnemyAnimation>().KillExecution());
         } 

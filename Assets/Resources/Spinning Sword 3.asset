@@ -17,7 +17,7 @@ MonoBehaviour:
   Effect: 0
   Type: 9
   WeaponType: 0
-  StatusEffect: 5
+  StatusEffect: 1
   Damage: 10
   Name: Spinning Attack
   Description: A normal Sword Attack
