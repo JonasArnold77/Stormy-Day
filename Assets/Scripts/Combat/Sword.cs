@@ -49,7 +49,11 @@ public class Sword : MonoBehaviour
             StartCoroutine(collision.gameObject.GetComponent<EnemyAnimation>().Dash(2));
             StartCoroutine(collision.gameObject.GetComponent<FollowPalyer>().StopForTime(0.5f));
 
+            collision.gameObject.GetComponent<EnemyAnimation>().ActivateEffect(FindObjectOfType<StatusEffects>().ActualHitEffect);
+
             Debug.Log("Status Effetk:" + FindObjectOfType<PlayerAnimation>().ActualAttackItem.StatusEffect.ToString());
+
+
 
             //StartCoroutine(collision.gameObject.GetComponent<EnemyAnimation>().KillExecution());
         } 

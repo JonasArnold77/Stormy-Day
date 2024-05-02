@@ -67,13 +67,13 @@ public class PlayerAnimation : MonoBehaviour
     {
         ActualAttackItem = item;
 
-        GetComponent<StatusEffects>().ActivateEffect(item.StatusEffect, item.Type);
+        //GetComponent<StatusEffects>().ActivateEffect(item.StatusEffect, item.Type);
 
         while (!AnimationFinished(item._Animation.name))
         {
             yield return null;
         }
-        GetComponent<StatusEffects>().DeactivateEffect();
+        //GetComponent<StatusEffects>().DeactivateEffect();
         ActualAttackItem = null;
     }
 

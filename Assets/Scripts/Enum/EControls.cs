@@ -6,5 +6,8 @@ public enum EControls
 {
     HardHit,
     LightHit,
-    Mage
+    Mage,
+    Effect1,
+    Effect2,
+    Effect3
 }

@@ -1,3 +1,4 @@
+using Magio;
 using StarterAssets;
 using System.Collections;
 using System.Collections.Generic;
@@ -31,6 +32,7 @@ public class EnemyAnimation : MonoBehaviour
     private Coroutine WalkingCoroutine;
 
     bool running;
+    public MagioObjectMaster MagioEffect;
 
     public Transform bouncy;
     public Transform Hips;
@@ -43,8 +45,8 @@ public class EnemyAnimation : MonoBehaviour
         setRigidbodyState(true);
 
         lineRenderer = gameObject.AddComponent<LineRenderer>();
-
-
+        MagioEffect = GetComponentInChildren<MagioObjectMaster>();
+        MagioEffect.magioObjects.ToList().ForEach(o => o.enabled = false);
     }
 
     //private void Update()
@@ -129,6 +131,28 @@ public class EnemyAnimation : MonoBehaviour
 
         
        
+    }
+
+    public void ActivateEffect(EStatusEffects effect)
+    {
+        if (effect == EStatusEffects.Fire)
+        {
+            StartCoroutine(EffectCoroutine(1));
+        }
+        else if (effect == EStatusEffects.Ice)
+        {
+            StartCoroutine(EffectCoroutine(0));
+        }
+    }
+
+    public IEnumerator EffectCoroutine(int index)
+    {
+        MagioEffect.magioObjects[index].enabled = true;
+
+        yield return new WaitForSeconds(4);
+
+        MagioEffect.magioObjects[index].enabled = false;
+
     }
 
     public IEnumerator Dash(float distance)

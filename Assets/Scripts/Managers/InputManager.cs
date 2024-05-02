@@ -27,6 +27,18 @@ public class InputManager : MonoBehaviour
         {
             return KeyCode.F;
         }
+        if (control == EControls.Effect1)
+        {
+            return KeyCode.Alpha1;
+        }
+        if (control == EControls.Effect2)
+        {
+            return KeyCode.Alpha2;
+        }
+        if (control == EControls.Effect3)
+        {
+            return KeyCode.Alpha3;
+        }
         return null;
     }
 
