@@ -34,8 +34,15 @@ public class EnemyAnimation : MonoBehaviour
     bool running;
     public MagioObjectMaster MagioEffect;
 
+    public Rigidbody _Rigidbody;
+    private Vector3 previousPosition;
+
     public Transform bouncy;
     public Transform Hips;
+
+    public NavMeshAgent Agent;
+
+    private string lastAnimationTag;
 
     private void Start()
     {
@@ -44,9 +51,16 @@ public class EnemyAnimation : MonoBehaviour
 
         setRigidbodyState(true);
 
+
+        previousPosition = transform.position;
+
+        Agent = GetComponent<NavMeshAgent>();
+
         lineRenderer = gameObject.AddComponent<LineRenderer>();
         MagioEffect = GetComponentInChildren<MagioObjectMaster>();
         MagioEffect.magioObjects.ToList().ForEach(o => o.enabled = false);
+
+        _Rigidbody = GetComponent<Rigidbody>();
     }
 
     //private void Update()
@@ -65,6 +79,8 @@ public class EnemyAnimation : MonoBehaviour
             bouncy.position = Hips.position;
         }
 
+        
+
         AnimatorClipInfo[] currentClipInfo = _Animator.GetCurrentAnimatorClipInfo(0);
 
         if (_Animator.GetCurrentAnimatorStateInfo(0).IsName("StandUp 1") &&
@@ -72,6 +88,82 @@ public class EnemyAnimation : MonoBehaviour
         {
             GetComponent<FollowPalyer>().Begin();
         }
+
+
+        if (Vector3.Distance(transform.position, FindObjectOfType<ThirdPersonController>().transform.position) < 4) 
+        {
+            _Animator.SetBool("Walk", false);
+            _Animator.SetBool("Attack1", true);
+        }
+        else
+        {
+            CheckIfWalking();
+        }
+    }
+
+    public void SetSpeed(float speed)
+    {
+        Agent.speed = speed;
+    }
+
+    public IEnumerator WaitForEndOfAnimation(AttackItem item)
+    {
+        while (!AnimationFinished(item._Animation.name))
+        {
+            yield return null;
+        }
+    }
+
+    bool AnimationFinished(string animationName)
+    {
+        // Prüfe, ob die angegebene Animation abgeschlossen ist
+        AnimatorStateInfo stateInfo = _Animator.GetCurrentAnimatorStateInfo(1);
+        return stateInfo.IsTag("Attack") && stateInfo.normalizedTime >= 1;
+    }
+
+    private void CheckIfWalking()
+    {
+        // Check if the object is moving by comparing its current position with the previous position
+        if (transform.position != previousPosition)
+        {
+            _Animator.SetBool("Walk", true);
+        }
+        else
+        {
+            _Animator.SetBool("Walk", false);
+        }
+
+        // Update the previous position for the next frame
+        previousPosition = transform.position;
+    }
+
+    private IEnumerator WaitForAnimation(string tag)
+    {
+        while (true)
+        {
+            string currentTag = GetAnimationTag(_Animator.GetCurrentAnimatorStateInfo(0).fullPathHash);
+            if (currentTag != lastAnimationTag && currentTag != tag)
+            {
+                // Animation with a different tag than the specified one started
+                
+                lastAnimationTag = currentTag;
+                yield break;
+            }
+            yield return null;
+        }
+    }
+
+    private string GetAnimationTag(int fullPathHash)
+    {
+        AnimatorStateInfo stateInfo = _Animator.GetCurrentAnimatorStateInfo(0);
+        foreach (AnimatorControllerParameter parameter in _Animator.parameters)
+        {
+            if (parameter.type == AnimatorControllerParameterType.Trigger && Animator.StringToHash(parameter.name) == fullPathHash)
+            {
+                return parameter.name;
+            }
+        }
+        return "";
     }
 
     public void StartWalking()
