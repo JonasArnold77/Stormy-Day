@@ -61,6 +61,8 @@ public class EnemyAnimation : MonoBehaviour
         MagioEffect.magioObjects.ToList().ForEach(o => o.enabled = false);
 
         _Rigidbody = GetComponent<Rigidbody>();
+
+        StartCoroutine(DoAttack());
     }
 
     //private void Update()
@@ -79,7 +81,15 @@ public class EnemyAnimation : MonoBehaviour
             bouncy.position = Hips.position;
         }
 
-        
+        if (_Animator.GetCurrentAnimatorStateInfo(0).IsTag("Walking"))
+        {
+            Agent.speed = 3;
+        }
+
+        if (!_Animator.GetCurrentAnimatorStateInfo(0).IsTag("Attack"))
+        {
+            GetComponent<EnemyAttack>().IsDoingAttack = false;
+        }
 
         AnimatorClipInfo[] currentClipInfo = _Animator.GetCurrentAnimatorClipInfo(0);
 
@@ -90,20 +100,23 @@ public class EnemyAnimation : MonoBehaviour
         }
 
 
-        if (Vector3.Distance(transform.position, FindObjectOfType<ThirdPersonController>().transform.position) < 4) 
-        {
-            _Animator.SetBool("Walk", false);
-            _Animator.SetBool("Attack1", true);
-        }
-        else
+        if (Vector3.Distance(transform.position, FindObjectOfType<ThirdPersonController>().transform.position) > 4) 
         {
             CheckIfWalking();
         }
     }
 
-    public void SetSpeed(float speed)
+    public IEnumerator DoAttack()
     {
-        Agent.speed = speed;
+        if (Vector3.Distance(transform.position, FindObjectOfType<ThirdPersonController>().transform.position) < 4 && !FindObjectsOfType<EnemyAttack>().ToList().Any(ea => ea.IsDoingAttack))
+        {
+            yield return new WaitForSeconds(Random.Range(0.4f,1.2f));
+            _Animator.SetBool("Walk", false);
+            _Animator.SetBool("Attack1", true);
+        }
+        yield return new WaitForEndOfFrame();
+
+        StartCoroutine(DoAttack());
     }
 
     public IEnumerator WaitForEndOfAnimation(AttackItem item)
@@ -155,14 +168,14 @@ public class EnemyAnimation : MonoBehaviour
 
     private string GetAnimationTag(int fullPathHash)
     {
-        AnimatorStateInfo stateInfo = _Animator.GetCurrentAnimatorStateInfo(0);
-        foreach (AnimatorControllerParameter parameter in _Animator.parameters)
-        {
-            if (parameter.type == AnimatorControllerParameterType.Trigger && Animator.StringToHash(parameter.name) == fullPathHash)
-            {
-                return parameter.name;
-            }
-        }
+        //AnimatorStateInfo stateInfo = _Animator.GetCurrentAnimatorStateInfo(0);
+        //foreach (AnimatorControllerParameter parameter in _Animator.parameters)
+        //{
+        //    if (Animator.StringToHash(parameter.name) == fullPathHash)
+        //    {
+        //        return parameter.name;
+        //    }
+        //}
         return "";
     }
 
@@ -208,12 +221,15 @@ public class EnemyAnimation : MonoBehaviour
     {
         if(effect == EHitEffect.HeadHit)
         {
-            if (_Animator.GetBool("Hit"))
+            if (_Animator.GetBool("Hit") || _Animator.GetCurrentAnimatorStateInfo(0).IsTag("Attack") || _Animator.GetCurrentAnimatorStateInfo(0).IsTag("Walking"))
             {
                 _Animator.SetBool("InterruptHit", true);
             }
 
             _Animator.SetBool("Hit", true);
+
+
+           
         }
         else if (effect == EHitEffect.Push)
         {

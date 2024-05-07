@@ -119,7 +119,7 @@ public class Attack : MonoBehaviour
 
     public IEnumerator AimOnNextEnemy()
     {
-        var allEnemies = FindObjectsOfType<EnemyAnimation>().Select(e => e.transform).Where(e => Vector3.Distance(playerTransform.position,e.position)<5).ToList();
+        var allEnemies = FindObjectsOfType<EnemyAnimation>().Select(e => e.transform).Where(e => Vector3.Distance(playerTransform.position,e.position)<8).ToList();
         Transform pivotEnemy = allEnemies.FirstOrDefault();
 
         if (GetEnemiesInFieldOfView().Count > 0 && allEnemies.Count>0)

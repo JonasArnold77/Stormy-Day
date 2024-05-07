@@ -43,19 +43,19 @@ public class EnemySword : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            //hitStartPosition = WeaponManager.Instance.ActualWeapon.TipOfTheSword.position;
-            collision.gameObject.GetComponent<EnemyAnimation>().StartPointOfHit = collision.contacts[0].point;
-            collision.gameObject.GetComponent<EnemyAnimation>().PlayingHitAnimation(FindObjectOfType<Attack>().actualEffect);
-            StartCoroutine(collision.gameObject.GetComponent<EnemyAnimation>().Dash(2));
-            StartCoroutine(collision.gameObject.GetComponent<FollowPalyer>().StopForTime(0.5f));
+            ////hitStartPosition = WeaponManager.Instance.ActualWeapon.TipOfTheSword.position;
+            //collision.gameObject.GetComponent<EnemyAnimation>().StartPointOfHit = collision.contacts[0].point;
+            //collision.gameObject.GetComponent<EnemyAnimation>().PlayingHitAnimation(FindObjectOfType<Attack>().actualEffect);
+            //StartCoroutine(collision.gameObject.GetComponent<EnemyAnimation>().Dash(2));
+            //StartCoroutine(collision.gameObject.GetComponent<FollowPalyer>().StopForTime(0.5f));
 
-            collision.gameObject.GetComponent<EnemyAnimation>().ActivateEffect(FindObjectOfType<StatusEffects>().ActualHitEffect);
+            //collision.gameObject.GetComponent<EnemyAnimation>().ActivateEffect(FindObjectOfType<StatusEffects>().ActualHitEffect);
 
-            Debug.Log("Status Effetk:" + FindObjectOfType<PlayerAnimation>().ActualAttackItem.StatusEffect.ToString());
+            //Debug.Log("Status Effetk:" + FindObjectOfType<PlayerAnimation>().ActualAttackItem.StatusEffect.ToString());
 
 
 
-            //StartCoroutine(collision.gameObject.GetComponent<EnemyAnimation>().KillExecution());
+            ////StartCoroutine(collision.gameObject.GetComponent<EnemyAnimation>().KillExecution());
         }
     }
 

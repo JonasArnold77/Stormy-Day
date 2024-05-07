@@ -39,6 +39,10 @@ public class InputManager : MonoBehaviour
         {
             return KeyCode.Alpha3;
         }
+        if (control == EControls.Dash)
+        {
+            return KeyCode.LeftControl;
+        }
         return null;
     }
 

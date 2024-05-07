@@ -9,5 +9,6 @@ public enum EControls
     Mage,
     Effect1,
     Effect2,
-    Effect3
+    Effect3,
+    Dash
 }

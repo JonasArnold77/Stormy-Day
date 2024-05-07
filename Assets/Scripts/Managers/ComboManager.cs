@@ -9,6 +9,8 @@ public class ComboManager : MonoBehaviour
     public static ComboManager Instance;
     public List<AnimationClip> _FirstCombo = new List<AnimationClip>();
 
+    public AnimationClip DashClip;
+
     public List<Combo> Combos;
     public List<SuperCombo> SuperCombos;
 

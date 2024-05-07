@@ -1,18 +1,34 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyAttack : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public bool IsDoingAttack;
+    private NavMeshAgent Agent;
+
+    private void Start()
+    {
+        Agent = GetComponent<NavMeshAgent>();
+    }
+
+    private void Update()
     {
         
     }
-
-    // Update is called once per frame
-    void Update()
+    public void SetIsDoingAttackTrue()
     {
-        
+        IsDoingAttack = true;
+    }
+
+    public void SetIsDoingAttackFalse()
+    {
+        IsDoingAttack = false;
+    }
+
+    public void SetSpeed(float speed)
+    {
+        Agent.speed = speed;
     }
 }
