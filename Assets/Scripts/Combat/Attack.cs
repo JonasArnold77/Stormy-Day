@@ -37,6 +37,8 @@ public class Attack : MonoBehaviour
 
     public EHitEffect actualEffect;
 
+    public HitDirection ActualHitDirection;
+
     public float DashDistance;
 
 
@@ -76,6 +78,11 @@ public class Attack : MonoBehaviour
         }
 
         GetEnemiesInFieldOfView();
+    }
+
+    public void SetHitDirection(HitDirection hitDirection)
+    {
+        ActualHitDirection = hitDirection;
     }
 
     public void DashForwardWhileAttack(float duration)
