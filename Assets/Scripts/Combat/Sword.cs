@@ -99,7 +99,7 @@ public class Sword : MonoBehaviour
         {
             case HitDirection.RightToLeft:
                 directionVector = enemyPos.position - playerPos.position;
-                directionVector = Quaternion.Euler(0, -90, 0) * directionVector.normalized;
+                directionVector = Quaternion.Euler(0, Random.Range(-105,-75), 0) * directionVector.normalized;
                 break;
             case HitDirection.LeftToRight:
                 directionVector = enemyPos.position - playerPos.position;
