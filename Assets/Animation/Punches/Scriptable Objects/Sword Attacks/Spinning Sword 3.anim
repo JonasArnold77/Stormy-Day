@@ -123352,6 +123352,13 @@ AnimationClip:
     floatParameter: 0
     intParameter: 9
     messageOptions: 0
+  - time: 0.6666667
+    functionName: SetHitDirection
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 1
+    messageOptions: 0
   - time: 0.8666667
     functionName: SetColliderInactive
     data: 
@@ -123359,7 +123366,21 @@ AnimationClip:
     floatParameter: 0
     intParameter: 9
     messageOptions: 0
-  - time: 1.2333333
+  - time: 0.8666667
+    functionName: SetHitDirection
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 1.1666666
+    functionName: SetHitDirection
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 2
+    messageOptions: 0
+  - time: 1.1666666
     functionName: SetColliderActive
     data: 
     objectReferenceParameter: {fileID: 0}
@@ -123373,12 +123394,19 @@ AnimationClip:
     floatParameter: 0
     intParameter: 9
     messageOptions: 0
-  - time: 2.4666667
+  - time: 2.4333334
     functionName: SetColliderActive
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 9
+    messageOptions: 0
+  - time: 2.4333334
+    functionName: SetHitDirection
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 3
     messageOptions: 0
   - time: 2.9
     functionName: SetColliderInactive

@@ -21,7 +21,6 @@ public class EnemyAnimation : MonoBehaviour
 
     private Animator _Animator;
 
-
     public Vector3 StartPointOfHit;
     public Vector3 EndPointOfHit;
 

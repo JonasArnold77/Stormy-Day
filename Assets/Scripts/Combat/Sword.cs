@@ -102,10 +102,12 @@ public class Sword : MonoBehaviour
                 directionVector = Quaternion.Euler(0, -90, 0) * directionVector.normalized;
                 break;
             case HitDirection.LeftToRight:
-                directionVector = playerPos.position - enemyPos.position;
+                directionVector = enemyPos.position - playerPos.position;
+                directionVector = Quaternion.Euler(0, 90, 0) * directionVector.normalized;
                 break;
             case HitDirection.TopToBottom:
-                directionVector = new Vector3(0, playerPos.position.y - enemyPos.position.y, 0);
+                var playerToEnemy = enemyPos.position - playerPos.position;
+                directionVector = Vector3.Cross(playerToEnemy, Vector3.up);
                 break;
             case HitDirection.BottomToTop:
                 directionVector = new Vector3(0, enemyPos.position.y - playerPos.position.y, 0);
@@ -161,7 +163,12 @@ public class Sword : MonoBehaviour
         var distanceToEnemy = Vector3.Distance(playertransform.position, enemytransform.position);
         var directionToEnemy = (enemytransform.position - playertransform.position);
 
-        objectToMove.position = new Vector3(objectToMove.position.x, playertransform.position.y, objectToMove.position.z)  + new Vector3(directionToEnemy.x,0, directionToEnemy.z);
+        //objectToMove.position = new Vector3(objectToMove.position.x, playertransform.position.y, objectToMove.position.z)  + new Vector3(directionToEnemy.x,0, directionToEnemy.z);
+
+        var hips = enemytransform.GetComponent<EnemyAnimation>().Hips;
+
+        objectToMove.transform.parent = null;
+        objectToMove.position = new Vector3(hips.position.x, hips.position.y, hips.position.z);
 
         objectToMove.position = objectToMove.position - direction*4;
 

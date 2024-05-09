@@ -25964,7 +25964,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 875650207}
   m_HandleRect: {fileID: 875650206}
   m_Direction: 0
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -56216,7 +56216,7 @@ TrailRenderer:
   m_PreviewTimeScale: 1
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 0.8
+    widthMultiplier: 0.3
     widthCurve:
       serializedVersion: 2
       m_Curve:
