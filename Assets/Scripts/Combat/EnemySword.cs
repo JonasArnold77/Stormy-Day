@@ -17,7 +17,7 @@ public class EnemySword : MonoBehaviour
 
     private void Start()
     {
-        TipOfTheSword = gameObject.transform.GetChild(0);
+        //TipOfTheSword = gameObject.transform.GetChild(0);
     }
 
     //private void OnTriggerEnter(Collider other)

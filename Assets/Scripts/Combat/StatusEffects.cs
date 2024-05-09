@@ -62,11 +62,19 @@ public class StatusEffects : MonoBehaviour
         DeactivateEffect();
     }
 
+    //public IEnumerator DoBloodEffectForSeconds()
+    //{
+    //    WeaponManager.Instance.ActualWeapon.EnemyBloodEffect.SetActive(true);
+    //    yield return new WaitForSeconds(0.2f);
+    //    WeaponManager.Instance.ActualWeapon.EnemyBloodEffect.SetActive(false);
+    //}
+
     public void DeactivateEffect()
     {
         EffectIsActive = false;
         ActualHitEffect = EStatusEffects.None;
         WeaponManager.Instance.ActualWeapon.FireEffect.SetActive(false);
         WeaponManager.Instance.ActualWeapon.IceEffect.SetActive(false);
+        //WeaponManager.Instance.ActualWeapon.EnemyBloodEffect.SetActive(false);
     }
 }
