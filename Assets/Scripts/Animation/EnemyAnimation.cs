@@ -43,6 +43,8 @@ public class EnemyAnimation : MonoBehaviour
 
     private string lastAnimationTag;
 
+    public ParticleSystem ScratchParticleSystem;
+
     private void Start()
     {
         _Animator = GetComponent<Animator>();

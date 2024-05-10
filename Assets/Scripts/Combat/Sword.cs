@@ -20,6 +20,8 @@ public class Sword : MonoBehaviour
 
     public GameObject BloodEffectObject;
 
+    public AudioSource SliceSFX;
+
     
 
     private HitDirection ActualDirection;
@@ -29,6 +31,7 @@ public class Sword : MonoBehaviour
         //TipOfTheSword = gameObject.transform.GetChild(0);
         BloodEffectObject.SetActive(true);
         BloodEffectObject.GetComponentInChildren<TrailRenderer>().emitting = false;
+        SliceSFX = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -73,12 +76,16 @@ public class Sword : MonoBehaviour
 
             BloodEffectObject = Instantiate(PrefabManager.Instance.DarkBloodEffect, position: collision.contacts[0].point, Quaternion.identity);
 
-            
+            SliceSFX.Stop();
+            SliceSFX.Play();
+
             collision.gameObject.GetComponent<EnemyAnimation>().ActivateEffect(FindObjectOfType<StatusEffects>().ActualHitEffect);
+
+            collision.gameObject.GetComponent<EnemyAnimation>().ScratchParticleSystem.Play();
 
             //StartCoroutine(DoBloodEffectCoroutine(collision.transform));
 
-            StartCoroutine(MoveObject(BloodEffectObject.transform, GetDirectionVector(FindObjectOfType<ThirdPersonController>().transform, collision.transform, FindObjectOfType<Attack>().ActualHitDirection), 8f, collision.transform));
+            //StartCoroutine(MoveObject(BloodEffectObject.transform, GetDirectionVector(FindObjectOfType<ThirdPersonController>().transform, collision.transform, FindObjectOfType<Attack>().ActualHitDirection), 8f, collision.transform));
 
 
             //StartCoroutine(MoveObject(-velocity));
@@ -153,9 +160,11 @@ public class Sword : MonoBehaviour
         }
     }
 
-    public IEnumerator MoveObject(Transform objectToMove, Vector3 direction, float distance, Transform enemytransform)
+    public IEnumerator MoveObject(Transform objectToMoveParent, Vector3 direction, float distance, Transform enemytransform)
     {
-        objectToMove.GetComponentInChildren<TrailRenderer>().emitting = true;
+        var objectToMove = objectToMoveParent.GetComponentInChildren<TrailRenderer>().transform;
+
+        objectToMove.GetComponent<TrailRenderer>().emitting = true;
 
         direction = new Vector3(direction.x,0, direction.z);
 
@@ -166,6 +175,9 @@ public class Sword : MonoBehaviour
         //objectToMove.position = new Vector3(objectToMove.position.x, playertransform.position.y, objectToMove.position.z)  + new Vector3(directionToEnemy.x,0, directionToEnemy.z);
 
         var hips = enemytransform.GetComponent<EnemyAnimation>().Hips;
+
+        objectToMoveParent.transform.parent = null;
+        objectToMoveParent.position = new Vector3(hips.position.x, hips.position.y, hips.position.z);
 
         objectToMove.transform.parent = null;
         objectToMove.position = new Vector3(hips.position.x, hips.position.y, hips.position.z);
@@ -183,8 +195,9 @@ public class Sword : MonoBehaviour
         // Loop until the object reaches the target position
         while (Vector3.Distance(objectToMove.position, targetPosition) > 0.01f)
         {
+            var actualPos = new Vector3(objectToMove.position.x, objectToMove.position.y, hips.position.z);
             // Move the object towards the target position
-            objectToMove.position = Vector3.MoveTowards(objectToMove.position, targetPosition, 40 * Time.deltaTime);
+            objectToMove.position = Vector3.MoveTowards(actualPos, targetPosition, 40 * Time.deltaTime);
 
             // Yield until the next frame
             yield return null;

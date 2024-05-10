@@ -24,7 +24,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 1
-  controlID: 14785
+  controlID: 39135
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -148,7 +148,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 50}
   m_MaxSize: {x: 24288, y: 8096}
   vertical: 0
-  controlID: 14786
+  controlID: 39136
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -211,10 +211,10 @@ MonoBehaviour:
     m_OverlaysVisible: 1
   m_SceneHierarchy:
     m_TreeViewState:
-      scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 42d9fdff
-      m_LastClickedID: 0
-      m_ExpandedIDs: 20e6fdffd4ebfdffdaebfdff7cedfdff82edfdff8604feff8c04feff9c85feff9ae6ffffcce6ffff00f3ffff50f3ffff56f3fffffcf6ffff04f7ffff5ef7ffff64f7ffff58faffff489400008094000066950000169800001e9800005a990000689900008c9a0000669b0000fe9b0000da9c0000de9c0000e09c0000e89c0000ec9c0000f29c0000fa9c0000049d00006c9e0000829e0000009f0000109f0000169f00004e9f0000649f00007a9f00002aa000009aa00000b6a0000084a1000094a10000b2a1000016a2000052a20000bea20000fca2000002a3000026a300009aa30000aea30000c0a30000d4a3000048a40000c0a40000e0a4000096a50000c2a5000006a6000020a6000036a6000050a600007401050010040500
+      scrollPos: {x: 0, y: 354}
+      m_SelectedIDs: fa60fcff
+      m_LastClickedID: -237318
+      m_ExpandedIDs: 7e82fdff8282fdff20e6fdffd4ebfdffdaebfdff7cedfdff82edfdff8604feff8c04feff9c85feff9ae6ffffcce6ffff00f3ffff50f3ffff56f3fffffcf6ffff04f7ffff5ef7ffff64f7ffff58faffff489400008094000066950000169800001e9800005a990000689900008c9a0000669b0000fe9b0000da9c0000de9c0000e09c0000e89c0000ec9c0000f29c0000fa9c0000049d00006c9e0000829e0000009f0000109f0000169f00004e9f0000649f00007a9f00002aa000009aa00000b6a0000084a1000094a10000b2a1000016a2000052a20000bea20000fca2000002a3000026a300009aa30000aea30000c0a30000d4a3000048a40000c0a40000e0a4000096a50000c2a5000006a6000020a6000036a6000050a600007cfa0400e000050074010500c2010500140305001004050094040500840505001e060500320605002008050094080500ae080500581c0600f62606008a270600d82706002a290600262a0600aa2a06009a2b0600342c0600482c0600362e0600aa2e0600c42e0600
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -547,7 +547,7 @@ MonoBehaviour:
       floating: 0
       collapsed: 0
       displayed: 0
-      snapOffset: {x: -232, y: -266.40002}
+      snapOffset: {x: -232, y: -324.00003}
       snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 3
       id: Scene View/Particles
@@ -683,9 +683,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 389.77878, y: -144.50616, z: 207.97224}
+    m_Target: {x: 389.6264, y: 139.61656, z: -157.97438}
     speed: 2
-    m_Value: {x: 389.77878, y: -144.50616, z: 207.97224}
+    m_Value: {x: 389.6264, y: 139.61656, z: -157.97438}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -731,13 +731,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.32478175, y: -0.019983578, z: 0.01404226, w: -0.94654316}
+    m_Target: {x: 0.40838686, y: 0.024955284, z: -0.019723963, w: 0.91336983}
     speed: 2
-    m_Value: {x: -0.3244536, y: -0.019963387, z: 0.014028072, w: -0.9455868}
+    m_Value: {x: -0.40838686, y: -0.024955284, z: 0.019723965, w: -0.91336983}
   m_Size:
-    m_Target: 240.57967
+    m_Target: 9.131125
     speed: 2
-    m_Value: 240.57967
+    m_Value: 9.131125
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -985,7 +985,7 @@ MonoBehaviour:
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
   m_LastInspectedObjectInstanceID: -1
-  m_LastVerticalScrollValue: 0
+  m_LastVerticalScrollValue: 893
   m_GlobalObjectId: 
   m_InspectorMode: 0
   m_LockTracker:
@@ -1063,7 +1063,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts/Animation
+    - Assets/Sound
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0
@@ -1071,16 +1071,16 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scripts/Animation
+  - Assets/Sound
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Github\Stormy-Day
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 436.59998}
-    m_SelectedIDs: 4a010200
-    m_LastClickedID: 131402
-    m_ExpandedIDs: 000000008c0002008e0002000001020000ca9a3bffffff7f
+    scrollPos: {x: 0, y: 591}
+    m_SelectedIDs: 2ab10600
+    m_LastClickedID: 438570
+    m_ExpandedIDs: 000000008c0002008e00020000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1133,8 +1133,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 42d9fdff
-    m_LastClickedInstanceID: -140990
+    m_SelectedInstanceIDs: fa60fcff
+    m_LastClickedInstanceID: -237318
     m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: c623000064680000846b00007a62000086240000946300009c630000a46300005860000000000000bc6d0000ba7b00009ed7000068a90100f492000098af01009af902001c63000010630000146a000022e90000f0620000d26900004c6c000044a401000c7b0000d8620000b45b0300045f03001c750400288c000012d60000587f00000879040012bf040048cd0500b685000068e0050090f00500be510600f83e08007ccd08006ee708004caa0900c6540b00f6d00b000275000018ec0f0012ed0f000cee0f0006ef0f0000f00f00ce650300c69d0000124303000e430300d6b20700
     m_RenameOverlay:
