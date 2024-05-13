@@ -47,7 +47,7 @@ PlayerSettings:
   defaultScreenWidthWeb: 960
   defaultScreenHeightWeb: 600
   m_StereoRenderingPath: 0
-  m_ActiveColorSpace: 0
+  m_ActiveColorSpace: 1
   unsupportedMSAAFallback: 0
   m_SpriteBatchVertexThreshold: 300
   m_MTRendering: 1
@@ -158,7 +158,7 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
-    Standalone: com.DefaultCompany.WorldOfLynx
+    Standalone: com.DefaultCompany.World-Of-Lynx
   buildNumber:
     Standalone: 0
     VisionOS: 0
@@ -842,7 +842,7 @@ PlayerSettings:
     PS5: UNITY_POST_PROCESSING_STACK_V2
     QNX: UNITY_POST_PROCESSING_STACK_V2
     Stadia: UNITY_POST_PROCESSING_STACK_V2
-    Standalone: UNITY_POST_PROCESSING_STACK_V2;STARTER_ASSETS_PACKAGES_CHECKED;VOL_FX;USE_PHYSICS2D;USE_NEW_INPUT;MAGIO;FMCOLOR_URP
+    Standalone: UNITY_POST_PROCESSING_STACK_V2;STARTER_ASSETS_PACKAGES_CHECKED;VOL_FX;USE_PHYSICS2D;USE_NEW_INPUT;MAGIO;__MICROSPLAT__;FMCOLOR_URP
     VisionOS: UNITY_POST_PROCESSING_STACK_V2
     WebGL: UNITY_POST_PROCESSING_STACK_V2;USE_PHYSICS2D;VOL_FX
     Windows Store Apps: UNITY_POST_PROCESSING_STACK_V2

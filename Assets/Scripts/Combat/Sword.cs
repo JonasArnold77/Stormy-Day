@@ -22,6 +22,7 @@ public class Sword : MonoBehaviour
 
     public AudioSource SliceSFX;
 
+    public int Damage;
     
 
     private HitDirection ActualDirection;
@@ -78,6 +79,12 @@ public class Sword : MonoBehaviour
 
             SliceSFX.Stop();
             SliceSFX.Play();
+            collision.gameObject.GetComponent<EnemyHealth>().Health -= Damage;
+
+            if(collision.gameObject.GetComponent<EnemyHealth>().Health <= 0)
+            {
+                StartCoroutine(collision.gameObject.GetComponent<EnemyAnimation>().KillExecution());
+            }
 
             collision.gameObject.GetComponent<EnemyAnimation>().ActivateEffect(FindObjectOfType<StatusEffects>().ActualHitEffect);
 

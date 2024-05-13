@@ -246,11 +246,11 @@ public class EnemyAnimation : MonoBehaviour
     {
         if (effect == EStatusEffects.Fire)
         {
-            StartCoroutine(EffectCoroutine(1));
+            StartCoroutine(EffectCoroutine(0));
         }
         else if (effect == EStatusEffects.Ice)
         {
-            StartCoroutine(EffectCoroutine(0));
+            StartCoroutine(EffectCoroutine(1));
         }
     }
 
@@ -302,6 +302,8 @@ public class EnemyAnimation : MonoBehaviour
 
         var x = GetComponent<Rigidbody>();
         x.isKinematic = false;
+
+        GetComponentsInChildren<Transform>().ToList().ForEach(co => co.tag = "Dead");
 
         foreach (Rigidbody rigidbody in rigidbodies)
         {
