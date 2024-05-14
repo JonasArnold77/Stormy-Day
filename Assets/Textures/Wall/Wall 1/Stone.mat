@@ -115,7 +115,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 506342489dded084e85d65ebd1dacd9c, type: 3}
+        m_Texture: {fileID: 2800000, guid: a19838e9e0ed15b4ca52694e43baee13, type: 3}
         m_Scale: {x: 3, y: 3}
         m_Offset: {x: 0, y: 0}
     - _MaskGloss:
@@ -139,8 +139,8 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalMap:
-        m_Texture: {fileID: 2800000, guid: b6bc893fe67ee654880bc763115495be, type: 3}
-        m_Scale: {x: 1, y: 1}
+        m_Texture: {fileID: 2800000, guid: 406f5112d06f425498c2a033fbe3da03, type: 3}
+        m_Scale: {x: 3, y: 3}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
         m_Texture: {fileID: 2800000, guid: c1b593334284fd941aa693000dd9b253, type: 3}
@@ -278,7 +278,7 @@ Material:
     - _N_F_STIAL: 0
     - _N_F_STIS: 0
     - _NoisyOutlineIntensity: 0
-    - _NormalMapIntensity: 1
+    - _NormalMapIntensity: 8.43
     - _OcclusionStrength: 0.278
     - _Opacity: 1
     - _Oper: 0
