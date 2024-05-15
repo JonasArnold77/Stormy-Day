@@ -1,0 +1,124 @@
+fileFormatVersion: 2
+guid: 58705963f6a85734e9ae266891ba3e91
+timeCreated: 1553702998
+licenseType: Store
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: flower_Magnolia_ping
+    100004: flower_Magnolia_ping_MeshPart0
+    100006: flower_Magnolia_ping_MeshPart1
+    100008: flower_Magnolia_ping_MeshPart2
+    100010: flower_Magnolia_white_
+    100012: flower_Magnolia_white__MeshPart0
+    100014: flower_Magnolia_white__MeshPart1
+    100016: flower_Magnolia_white__MeshPart2
+    100018: flower_Magnolia_yellow
+    100020: flower_Magnolia_yellow_MeshPart0
+    100022: flower_Magnolia_yellow_MeshPart1
+    100024: flower_Magnolia_yellow_MeshPart2
+    400000: //RootNode
+    400002: flower_Magnolia_ping
+    400004: flower_Magnolia_ping_MeshPart0
+    400006: flower_Magnolia_ping_MeshPart1
+    400008: flower_Magnolia_ping_MeshPart2
+    400010: flower_Magnolia_white_
+    400012: flower_Magnolia_white__MeshPart0
+    400014: flower_Magnolia_white__MeshPart1
+    400016: flower_Magnolia_white__MeshPart2
+    400018: flower_Magnolia_yellow
+    400020: flower_Magnolia_yellow_MeshPart0
+    400022: flower_Magnolia_yellow_MeshPart1
+    400024: flower_Magnolia_yellow_MeshPart2
+    2300000: flower_Magnolia_ping_MeshPart0
+    2300002: flower_Magnolia_ping_MeshPart1
+    2300004: flower_Magnolia_ping_MeshPart2
+    2300006: flower_Magnolia_white__MeshPart0
+    2300008: flower_Magnolia_white__MeshPart1
+    2300010: flower_Magnolia_white__MeshPart2
+    2300012: flower_Magnolia_yellow_MeshPart0
+    2300014: flower_Magnolia_yellow_MeshPart1
+    2300016: flower_Magnolia_yellow_MeshPart2
+    3300000: flower_Magnolia_ping_MeshPart0
+    3300002: flower_Magnolia_ping_MeshPart1
+    3300004: flower_Magnolia_ping_MeshPart2
+    3300006: flower_Magnolia_white__MeshPart0
+    3300008: flower_Magnolia_white__MeshPart1
+    3300010: flower_Magnolia_white__MeshPart2
+    3300012: flower_Magnolia_yellow_MeshPart0
+    3300014: flower_Magnolia_yellow_MeshPart1
+    3300016: flower_Magnolia_yellow_MeshPart2
+    4300000: flower_Magnolia_ping_MeshPart0
+    4300002: flower_Magnolia_ping_MeshPart1
+    4300004: flower_Magnolia_ping_MeshPart2
+    4300006: flower_Magnolia_white__MeshPart0
+    4300008: flower_Magnolia_white__MeshPart1
+    4300010: flower_Magnolia_white__MeshPart2
+    4300012: flower_Magnolia_yellow_MeshPart0
+    4300014: flower_Magnolia_yellow_MeshPart1
+    4300016: flower_Magnolia_yellow_MeshPart2
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
