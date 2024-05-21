@@ -97,12 +97,12 @@ Material:
     - _FadeAmplitude: 28
     - _FadeDistance: 16
     - _FadeDistanceEnd: 1
-    - _FadeDistanceStart: 11.28
+    - _FadeDistanceStart: 20
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
     - _GrassCut: 0
-    - _GrassSaturation: 5.18
+    - _GrassSaturation: 5.34
     - _GrassShading: 0
     - _GrassThinness: 0.59
     - _GrassThinnessIntersection: 0.85
@@ -112,7 +112,7 @@ Material:
     - _Mode: 0
     - _NearCameraSmoosh: 0.5
     - _NoisePower: 1.97
-    - _NumberOfStacks: 9.3
+    - _NumberOfStacks: 14.2
     - _OcclusionStrength: 1
     - _OffsetValue: 0.01
     - _Parallax: 0.02
@@ -152,10 +152,10 @@ Material:
     m_Colors:
     - _Color: {r: 0.6301887, g: 0.6301887, b: 0.6301887, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _GroundColor: {r: 0.078431375, g: 0.87058824, b: 0.83499664, a: 1}
+    - _GroundColor: {r: 0.78113204, g: 0.78113204, b: 0.78113204, a: 1}
     - _OffsetVector: {r: 0, g: 0, b: 0, a: 0}
     - _PJShadowColor: {r: 0, g: 0, b: 0, a: 1}
-    - _ProjectedShadowColor: {r: 0.4509804, g: 0.23375352, b: 0.04313725, a: 1}
+    - _ProjectedShadowColor: {r: 0.85660374, g: 0.85660374, b: 0.85660374, a: 1}
     - _RimColor: {r: 0.3075471, g: 0.8640766, b: 1, a: 1}
-    - _SelfShadowColor: {r: 0.19215687, g: 0.59161407, b: 0.7372549, a: 1}
+    - _SelfShadowColor: {r: 0.23300107, g: 0.5466153, b: 0.6603774, a: 1}
   m_BuildTextureStacks: []
