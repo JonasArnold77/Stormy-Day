@@ -45,6 +45,8 @@ public class EnemyAnimation : MonoBehaviour
 
     public ParticleSystem ScratchParticleSystem;
 
+    public bool IsBoss = false;
+
     private void Start()
     {
         _Animator = GetComponent<Animator>();
@@ -109,9 +111,9 @@ public class EnemyAnimation : MonoBehaviour
 
     public IEnumerator DoAttack()
     {
-        if (Vector3.Distance(transform.position, FindObjectOfType<ThirdPersonController>().transform.position) < 4 && !FindObjectsOfType<EnemyAttack>().ToList().Any(ea => ea.IsDoingAttack))
+        if (Vector3.Distance(transform.position, FindObjectOfType<ThirdPersonController>().transform.position) < 25 && !FindObjectsOfType<EnemyAttack>().ToList().Any(ea => ea.IsDoingAttack))
         {
-            yield return new WaitForSeconds(Random.Range(0.4f,1.2f));
+            yield return new WaitForSeconds(Random.Range(1f, 3f));
             _Animator.SetBool("Walk", false);
             _Animator.SetBool("Attack1", true);
         }
@@ -220,26 +222,23 @@ public class EnemyAnimation : MonoBehaviour
 
     public void PlayingHitAnimation(EHitEffect effect)
     {
-        if(effect == EHitEffect.HeadHit)
+        if (!IsBoss)
         {
-            if (_Animator.GetBool("Hit") || _Animator.GetCurrentAnimatorStateInfo(0).IsTag("Attack") || _Animator.GetCurrentAnimatorStateInfo(0).IsTag("Walking"))
+            if (effect == EHitEffect.HeadHit)
             {
-                _Animator.SetBool("InterruptHit", true);
+                if (_Animator.GetBool("Hit") || _Animator.GetCurrentAnimatorStateInfo(0).IsTag("Attack") || _Animator.GetCurrentAnimatorStateInfo(0).IsTag("Walking"))
+                {
+                    _Animator.SetBool("InterruptHit", true);
+                }
+
+                _Animator.SetBool("Hit", true);
+            }
+            else if (effect == EHitEffect.Push)
+            {
+                _Animator.SetBool("Push", true);
             }
 
-            _Animator.SetBool("Hit", true);
-
-
-           
         }
-        else if (effect == EHitEffect.Push)
-        {
-            _Animator.SetBool("Push", true);
-        }
-       
-
-        
-       
     }
 
     public void ActivateEffect(EStatusEffects effect)

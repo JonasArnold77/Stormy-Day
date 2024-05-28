@@ -36,11 +36,13 @@ public class Defence : MonoBehaviour
     {
         StopCoroutine(DashCoroutine);
         FindObjectOfType<ThirdPersonController>().MoveSpeed = 6f;
+        FindObjectOfType<ThirdPersonController>().enabled = true;
     }
 
     public IEnumerator Dash(float speed)
     {
         FindObjectOfType<ThirdPersonController>().MoveSpeed = 0f;
+        FindObjectOfType<ThirdPersonController>().enabled = false;
 
         // Calculate dash distance based on speed and time
         float dashDistance = speed * Time.deltaTime;
