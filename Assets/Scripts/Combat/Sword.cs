@@ -77,6 +77,8 @@ public class Sword : MonoBehaviour
 
             BloodEffectObject = Instantiate(PrefabManager.Instance.DarkBloodEffect, position: collision.contacts[0].point, Quaternion.identity);
 
+            SliceSFX.pitch = Random.Range(0.9f, 1.1f);
+
             SliceSFX.Stop();
             SliceSFX.Play();
             collision.gameObject.GetComponent<EnemyHealth>().Health -= Damage;
