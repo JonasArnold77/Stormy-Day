@@ -12,6 +12,10 @@ public class Defence : MonoBehaviour
 
     public Coroutine DashCoroutine;
 
+    public bool IsDoingDash;
+
+    public bool IsInterupted;
+
     private void Start()
     {
         _Animator = GetComponent<Animator>();
@@ -25,6 +29,46 @@ public class Defence : MonoBehaviour
             //MoveToLastFramePosition(ComboManager.Instance.DashClip.name);
         }
 
+        CheckIfDash("Dash");
+    }
+
+    public bool CheckIfDash(string tag, int layer = 1)
+    {
+        AnimatorStateInfo animState = _Animator.GetCurrentAnimatorStateInfo(layer);
+        if (animState.IsTag(tag))
+        {
+            //if (animState.normalizedTime > animState.length * 0.9f)
+            //{
+            //    _IsPlayingAttack = false;
+            //    return false;
+            //}
+            IsDoingDash = true;
+            IsInterupted = false;
+            return true;
+        }
+        else if(!IsInterupted)
+        {
+            IsInterupted = true;
+            IsDoingDash = false;
+            StopDash();
+            return false;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+
+
+    public void SetDashTrue() 
+    {
+        IsDoingDash = true;
+    }
+
+    public void SetDashFalse()
+    {
+        IsDoingDash = false;
     }
 
     public void InitDash(float speed)
@@ -56,6 +100,10 @@ public class Defence : MonoBehaviour
         // Perform the dash
         while (PlayerTransform.position != targetPos)
         {
+            if (IsInterupted)
+            {
+                yield break;
+            }
             // Move towards the target position
             PlayerTransform.position = Vector3.MoveTowards(PlayerTransform.position, targetPos, speed * Time.deltaTime);
             yield return null;

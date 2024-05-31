@@ -41,6 +41,8 @@ public class Sword : MonoBehaviour
         //previous = TipOfTheSword.position;
 
         //Debug.Log("Velo: " + velocity);
+
+        
     }
 
 
@@ -79,6 +81,10 @@ public class Sword : MonoBehaviour
 
             SliceSFX.pitch = Random.Range(0.9f, 1.1f);
 
+            //StartCoroutine(Camera.main.GetComponent<CameraShake>().Shake(0.2f,0.3f));
+
+
+
             SliceSFX.Stop();
             SliceSFX.Play();
             collision.gameObject.GetComponent<EnemyHealth>().Health -= Damage;
@@ -91,6 +97,8 @@ public class Sword : MonoBehaviour
             collision.gameObject.GetComponent<EnemyAnimation>().ActivateEffect(FindObjectOfType<StatusEffects>().ActualHitEffect);
 
             collision.gameObject.GetComponent<EnemyAnimation>().ScratchParticleSystem.Play();
+
+            //StartCoroutine(StopTimeCoroutine(0.1f));
 
             //StartCoroutine(DoBloodEffectCoroutine(collision.transform));
 
@@ -105,6 +113,23 @@ public class Sword : MonoBehaviour
 
     //StartCoroutine(collision.gameObject.GetComponent<EnemyAnimation>().KillExecution());
         } 
+    }
+
+    private IEnumerator StopTimeCoroutine(float duration)
+    {
+        // Set time scale to 0 to stop time
+        Time.timeScale = 0f;
+
+        // Wait for the given duration (scaled by Time.unscaledDeltaTime)
+        float elapsed = 0f;
+        while (elapsed < duration)
+        {
+            elapsed += Time.unscaledDeltaTime;
+            yield return null;
+        }
+
+        // Restore time scale to 1 to resume time
+        Time.timeScale = 1f;
     }
 
     public Vector3 GetDirectionVector(Transform playerPos, Transform enemyPos, HitDirection direction)

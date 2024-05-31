@@ -13,5 +13,6 @@ public enum EHitType
     RightElbow,
     LeftElbow,
     Head,
+    Ground,
     Sword
 }

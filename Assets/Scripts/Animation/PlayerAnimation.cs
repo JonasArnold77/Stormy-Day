@@ -63,6 +63,11 @@ public class PlayerAnimation : MonoBehaviour
         }
     }
 
+    public void PlayHitAnimation()
+    {
+        _Animator.Play("Hit 2");
+    }
+
     public IEnumerator WaitForEndOfAnimation(AttackItem item)
     {
         ActualAttackItem = item;

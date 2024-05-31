@@ -15,7 +15,7 @@ MonoBehaviour:
   _Animation: {fileID: 7400000, guid: 9b7d96b623008a14ba4f74c08fe78dce, type: 2}
   Control: 1
   Effect: 0
-  Type: 9
+  Type: 10
   WeaponType: 0
   StatusEffect: 1
   Damage: 10

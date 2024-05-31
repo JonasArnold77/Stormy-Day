@@ -59857,6 +59857,27 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
+  - time: 0.43333334
+    functionName: SetAnimatorSpeed
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0.4
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.6333333
+    functionName: ResetAnimatorSpeed
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.93333334
+    functionName: DeactivateAllWeaponColliders
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 1.6666666
     functionName: SetSpeed
     data: 

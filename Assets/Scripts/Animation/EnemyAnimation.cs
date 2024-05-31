@@ -47,6 +47,8 @@ public class EnemyAnimation : MonoBehaviour
 
     public bool IsBoss = false;
 
+    public List<string> AttackNames = new List<string>();
+
     private void Start()
     {
         _Animator = GetComponent<Animator>();
@@ -54,6 +56,7 @@ public class EnemyAnimation : MonoBehaviour
 
         setRigidbodyState(true);
 
+        SetIsTriggerOnAllBones(true);
 
         previousPosition = transform.position;
 
@@ -91,7 +94,7 @@ public class EnemyAnimation : MonoBehaviour
 
         if (!_Animator.GetCurrentAnimatorStateInfo(0).IsTag("Attack"))
         {
-            GetComponent<EnemyAttack>().IsDoingAttack = false;
+            //GetComponent<EnemyAttack>().IsDoingAttack = false;
         }
 
         AnimatorClipInfo[] currentClipInfo = _Animator.GetCurrentAnimatorClipInfo(0);
@@ -103,7 +106,7 @@ public class EnemyAnimation : MonoBehaviour
         }
 
 
-        if (Vector3.Distance(transform.position, FindObjectOfType<ThirdPersonController>().transform.position) > 4) 
+        if (Vector3.Distance(transform.position, FindObjectOfType<ThirdPersonController>().transform.position) > 4 && GetComponent<EnemyAttack>().IsDoingAttack == false) 
         {
             CheckIfWalking();
         }
@@ -111,11 +114,20 @@ public class EnemyAnimation : MonoBehaviour
 
     public IEnumerator DoAttack()
     {
-        if (Vector3.Distance(transform.position, FindObjectOfType<ThirdPersonController>().transform.position) < 25 && !FindObjectsOfType<EnemyAttack>().ToList().Any(ea => ea.IsDoingAttack))
+        var distance = Vector3.Distance(transform.position, FindObjectOfType<ThirdPersonController>().transform.position);
+        var check = !FindObjectsOfType<EnemyAttack>().ToList().Any(ea => ea.IsDoingAttack);
+
+        var enemiesss = FindObjectsOfType<EnemyAttack>().ToList();
+
+        if (Vector3.Distance(transform.position, FindObjectOfType<ThirdPersonController>().transform.position) < 25 && !GetComponent<EnemyAttack>().IsDoingAttack /*&& !FindObjectsOfType<EnemyAttack>().ToList().Any(ea => ea.IsDoingAttack)*/)
         {
+            GetComponent<EnemyAttack>().IsDoingAttack = true;
             yield return new WaitForSeconds(Random.Range(1f, 3f));
             _Animator.SetBool("Walk", false);
-            _Animator.SetBool("Attack1", true);
+
+            var attackName = AttackNames[Random.Range(0, AttackNames.Count)];
+
+            _Animator.SetBool(attackName, true);
         }
         yield return new WaitForEndOfFrame();
 
@@ -263,6 +275,26 @@ public class EnemyAnimation : MonoBehaviour
 
     }
 
+    public void SetIsTriggerOnAllBones(bool value) 
+    {
+        Rigidbody[] rigidbodies = GetComponentsInChildren<Rigidbody>();
+
+        foreach (Rigidbody rigidbody in rigidbodies)
+        {
+            if (NotAffectedBones.Contains(rigidbody) || rigidbody.Equals(GetComponent<Rigidbody>()))
+            {
+                rigidbody.GetComponent<Collider>().isTrigger = false;
+            }
+            else
+            {
+                rigidbody.GetComponent<Collider>().isTrigger = value;
+                //rigidbody.AddForce(-transform.up * 75, ForceMode.Impulse);
+                //rigidbody.AddTorque(new Vector3(1, 1, 1) * 1000, ForceMode.Impulse);
+
+            }
+        }
+    }
+
     public IEnumerator Dash(float distance)
     {
         float distanceTraveled = 0f;
@@ -281,6 +313,16 @@ public class EnemyAnimation : MonoBehaviour
 
             yield return null;
         }
+    }
+
+    public void SetAnimatorSpeed(float speed)
+    {
+        _Animator.speed = speed;
+    }
+
+    public void ResetAnimatorSpeed()
+    {
+        _Animator.speed = 1;
     }
 
     public IEnumerator KillExecution()
@@ -303,6 +345,8 @@ public class EnemyAnimation : MonoBehaviour
         x.isKinematic = false;
 
         GetComponentsInChildren<Transform>().ToList().ForEach(co => co.tag = "Dead");
+
+        SetIsTriggerOnAllBones(false);
 
         foreach (Rigidbody rigidbody in rigidbodies)
         {

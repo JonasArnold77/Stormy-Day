@@ -108,7 +108,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _AlphaBoost: 10
+    - _AlphaBoost: 100
     - _AlphaClip: 0
     - _AlphaToMask: 0
     - _Blend: 0
@@ -124,7 +124,7 @@ Material:
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
     - _Disolve: 0
-    - _DisolveSmooth: 1
+    - _DisolveSmooth: 14.59
     - _Disolve_Distortion: 0
     - _Disolve_Mask: 1
     - _Disolve_Offset_with_UV_g: 0
@@ -150,7 +150,7 @@ Material:
     - _Offset_Rotate: 0
     - _Offset_Strength: 0
     - _Parallax: 0.005
-    - _Power: 5
+    - _Power: 100
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
@@ -177,7 +177,7 @@ Material:
     - _Color_Tex_Remap: {r: 0, g: 1, b: 0, a: 0}
     - _Disolve_Remap: {r: 0, g: 1, b: 0, a: 0}
     - _Disolve_Scroll: {r: 0, g: 0, b: 0, a: 0}
-    - _Distort_Scroll: {r: 2, g: 0, b: 0, a: 0}
+    - _Distort_Scroll: {r: 10, g: 0, b: 0, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Fresnel_Remap: {r: 0, g: 1, b: 0, a: 0}
     - _Mask1_Remap: {r: -0.03, g: 3.94, b: 0, a: 0}

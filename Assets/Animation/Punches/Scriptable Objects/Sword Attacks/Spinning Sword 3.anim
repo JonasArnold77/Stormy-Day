@@ -123350,7 +123350,7 @@ AnimationClip:
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
-    intParameter: 9
+    intParameter: 10
     messageOptions: 0
   - time: 0.6666667
     functionName: SetHitDirection
@@ -123364,7 +123364,7 @@ AnimationClip:
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
-    intParameter: 9
+    intParameter: 10
     messageOptions: 0
   - time: 0.8666667
     functionName: SetHitDirection
@@ -123392,14 +123392,14 @@ AnimationClip:
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
-    intParameter: 9
+    intParameter: 10
     messageOptions: 0
   - time: 2.4333334
     functionName: SetColliderActive
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
-    intParameter: 9
+    intParameter: 10
     messageOptions: 0
   - time: 2.4333334
     functionName: SetHitDirection
@@ -123413,5 +123413,5 @@ AnimationClip:
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
-    intParameter: 9
+    intParameter: 10
     messageOptions: 0
