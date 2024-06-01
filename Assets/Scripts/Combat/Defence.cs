@@ -10,12 +10,15 @@ public class Defence : MonoBehaviour
 
     public Animator _Animator;
 
+    public Transform playerTransform; // Der Transform des Spielers
+
     public Coroutine DashCoroutine;
 
     public bool IsDoingDash;
 
     public bool IsInterupted;
 
+    public bool InterruptAim;
     private void Start()
     {
         _Animator = GetComponent<Animator>();
@@ -81,6 +84,8 @@ public class Defence : MonoBehaviour
         StopCoroutine(DashCoroutine);
         FindObjectOfType<ThirdPersonController>().MoveSpeed = 6f;
         FindObjectOfType<ThirdPersonController>().enabled = true;
+
+        InterruptAim = false;
     }
 
     public IEnumerator Dash(float speed)
@@ -88,14 +93,25 @@ public class Defence : MonoBehaviour
         FindObjectOfType<ThirdPersonController>().MoveSpeed = 0f;
         FindObjectOfType<ThirdPersonController>().enabled = false;
 
+        InterruptAim = true;
+
+
         // Calculate dash distance based on speed and time
         float dashDistance = speed * Time.deltaTime;
 
         // Save the current position
         Vector3 startPos = PlayerTransform.position;
 
+        // Erstellen des Richtungsvektors
+        float moveHorizontal = Input.GetAxis("Horizontal");
+        float moveVertical = Input.GetAxis("Vertical");
+        Vector3 direction = new Vector3(moveHorizontal, 0.0f, moveVertical);
+        direction.Normalize();
+
         // Calculate target position based on forward direction and dash distance
-        Vector3 targetPos = PlayerTransform.position + PlayerTransform.forward *100;
+        Vector3 targetPos = PlayerTransform.position + direction * 100;
+
+        LookAt(targetPos);
 
         // Perform the dash
         while (PlayerTransform.position != targetPos)
@@ -104,12 +120,29 @@ public class Defence : MonoBehaviour
             {
                 yield break;
             }
+
+            LookAt(targetPos);
+
             // Move towards the target position
             PlayerTransform.position = Vector3.MoveTowards(PlayerTransform.position, targetPos, speed * Time.deltaTime);
             yield return null;
         }
 
+
         // Ensure that the object ends exactly at the target position
         PlayerTransform.position = targetPos;
+    }
+
+    private void LookAt(Vector3 targetPoint)
+    {
+        // Calculate the direction from the player to the target point
+        Vector3 directionToTarget = targetPoint - playerTransform.transform.position;
+
+        // Keep the y-axis rotation constant
+        directionToTarget.y = 0;
+
+        // Rotate the player to look at the target point
+        Quaternion targetRotation = Quaternion.LookRotation(directionToTarget);
+        playerTransform.transform.rotation = targetRotation;
     }
 }

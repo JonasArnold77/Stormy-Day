@@ -109442,6 +109442,8 @@ MonoBehaviour:
   actualEffect: 0
   ActualHitDirection: 0
   DashDistance: 2
+  AimIndex: 0
+  FixedAim: 0
 --- !u!4 &874726802191223630
 Transform:
   m_ObjectHideFlags: 0
@@ -114101,6 +114103,8 @@ MonoBehaviour:
   actualEffect: 0
   ActualHitDirection: 0
   DashDistance: 0
+  AimIndex: 0
+  FixedAim: 0
 --- !u!4 &3116893354262371232
 Transform:
   m_ObjectHideFlags: 0
@@ -118999,8 +119003,10 @@ MonoBehaviour:
   HipBoneTransform: {fileID: 7801272105217774381}
   PlayerTransform: {fileID: 5115171670022644958}
   _Animator: {fileID: 0}
+  playerTransform: {fileID: 5115171670022644958}
   IsDoingDash: 0
   IsInterupted: 0
+  InterruptAim: 0
 --- !u!114 &5468943802821415069
 MonoBehaviour:
   m_ObjectHideFlags: 0

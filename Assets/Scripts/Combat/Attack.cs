@@ -41,6 +41,8 @@ public class Attack : MonoBehaviour
 
     public float DashDistance;
 
+    public int AimIndex;
+    public bool FixedAim;
 
     [Serializable]
     public struct TypeAndEffect
@@ -72,12 +74,22 @@ public class Attack : MonoBehaviour
             StartCoroutine(CalculateCombo());
         }
 
-        if (isDoingAttack && ActualEnemy != null)
+        if (isDoingAttack && ActualEnemy != null && !FixedAim)
         {
             LookAt(ActualEnemy);
         }
 
-        GetEnemiesInFieldOfView();
+        if (FixedAim && ActualEnemy != null && !GetComponent<Defence>().InterruptAim)
+        {
+            LookAt(ActualEnemy);
+        }
+
+        SelectEnemies();
+
+        if (!FixedAim)
+        {
+            GetEnemiesInFieldOfView();
+        }
     }
 
     public void SetHitDirection(HitDirection hitDirection)
@@ -122,6 +134,83 @@ public class Attack : MonoBehaviour
 
             yield return null;
         }
+    }
+
+    // Funktion zum Sortieren von GameObjects nach Distanz
+    public List<GameObject> SortObjectsByDistance(List<GameObject> objects, Vector3 referencePoint)
+    {
+        // Erstellen einer Liste von Tupeln, die die Objekte und ihre Distanzen speichern
+        List<(GameObject obj, float distance)> objectsWithDistances = new List<(GameObject, float)>();
+
+        // Berechnung der Distanzen und Hinzufügen zu der Liste
+        foreach (var obj in objects)
+        {
+            float distance = Vector3.Distance(obj.transform.position, referencePoint);
+            objectsWithDistances.Add((obj, distance));
+        }
+
+        // Sortieren der Liste nach Distanz
+        objectsWithDistances = objectsWithDistances.OrderBy(tuple => tuple.distance).ToList();
+
+        // Extrahieren der sortierten GameObjects in eine neue Liste
+        List<GameObject> sortedObjects = objectsWithDistances.Select(tuple => tuple.obj).ToList();
+
+        // Rückgabe der sortierten Liste
+        return sortedObjects;
+    }
+
+    public void SelectEnemies()
+    {
+        var allEnemies = FindObjectsOfType<EnemyAnimation>().Select(e => e.transform).Where(e => Vector3.Distance(playerTransform.position, e.position) < 15).ToList().Select(s => s.gameObject).ToList();
+        var sortedListOfEnemies = SortObjectsByDistance(allEnemies, transform.position);
+
+        if (Input.GetKeyDown(KeyCode.F) && sortedListOfEnemies.Count > 0)
+        {
+            ActualEnemy = sortedListOfEnemies[AimIndex].transform;  
+            FixedAim = true;
+
+            if(AimIndex< sortedListOfEnemies.Count)
+            {
+                AimIndex++;
+            }
+            else
+            {
+                AimIndex = 0;
+            } 
+        }else if (Input.GetKeyDown(KeyCode.G))
+        {
+            FixedAim = false;
+        }
+
+
+        
+        //Transform pivotEnemy = allEnemies.FirstOrDefault();
+
+        //if (GetEnemiesInFieldOfView().Count > 0 && allEnemies.Count > 0)
+        //{
+        //    foreach (var e in GetEnemiesInFieldOfView())
+        //    {
+        //        if (Vector3.Distance(transform.position, e.position) < Vector3.Distance(transform.position, pivotEnemy.position))
+        //        {
+        //            pivotEnemy = e;
+        //        }
+        //    }
+
+        //    ActualEnemy = pivotEnemy;
+        //}
+        //else if (allEnemies.Count > 0)
+        //{
+        //    foreach (var e in allEnemies)
+        //    {
+        //        if (Vector3.Distance(transform.position, e.position) < Vector3.Distance(transform.position, pivotEnemy.position))
+        //        {
+        //            pivotEnemy = e;
+        //        }
+        //    }
+        //    ActualEnemy = pivotEnemy;
+
+        //    yield return new WaitForSeconds(3f);
+        //}
     }
 
     public IEnumerator AimOnNextEnemy()
