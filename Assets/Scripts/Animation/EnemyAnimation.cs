@@ -122,7 +122,7 @@ public class EnemyAnimation : MonoBehaviour
         if (Vector3.Distance(transform.position, FindObjectOfType<ThirdPersonController>().transform.position) < 25 && !GetComponent<EnemyAttack>().IsDoingAttack /*&& !FindObjectsOfType<EnemyAttack>().ToList().Any(ea => ea.IsDoingAttack)*/)
         {
             GetComponent<EnemyAttack>().IsDoingAttack = true;
-            yield return new WaitForSeconds(Random.Range(1f, 3f));
+            yield return new WaitForSeconds(Random.Range(3f, 4f));
             _Animator.SetBool("Walk", false);
 
             var attackName = AttackNames[Random.Range(0, AttackNames.Count)];

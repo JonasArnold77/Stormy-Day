@@ -74284,14 +74284,14 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.53333336
+  - time: 0.23333333
     functionName: InitDash
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 10
     intParameter: 0
     messageOptions: 0
-  - time: 1.5666667
+  - time: 1.0666667
     functionName: StopDash
     data: 
     objectReferenceParameter: {fileID: 0}

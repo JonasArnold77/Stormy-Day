@@ -9,6 +9,8 @@ public class EnemyWeapon : MonoBehaviour
 
     public AudioSource SliceSFX;
 
+    public int Damage;
+
     private void Start()
     {
         SliceSFX = GetComponent<AudioSource>();
@@ -28,6 +30,8 @@ public class EnemyWeapon : MonoBehaviour
                 //StartCoroutine(Camera.main.GetComponent<CameraShake>().Shake(0.2f,0.3f));
                 SliceSFX.Stop();
                 SliceSFX.Play();
+
+                FindObjectOfType<PlayerStatus>().ChangeHealth(-Damage);
 
                 StartCoroutine(PlayerHitStun());
             } 

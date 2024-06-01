@@ -151,7 +151,7 @@ public class Attack : MonoBehaviour
                 yield return new WaitForEndOfFrame();
             }
 
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(3f);
 
             isDoingAttack = false;
 
@@ -179,7 +179,7 @@ public class Attack : MonoBehaviour
                 yield return new WaitForEndOfFrame();
             }
 
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(3f);
 
             isDoingAttack = false;
 

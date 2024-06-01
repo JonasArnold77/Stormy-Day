@@ -19,6 +19,7 @@ MonoBehaviour:
   WeaponType: 0
   StatusEffect: 1
   Damage: 10
+  EnduranceCost: 10
   Name: Spinning Attack
   Description: A normal Sword Attack
   Image: {fileID: 21300000, guid: d8dc8265462018d4286bc73e1e30ffeb, type: 3}

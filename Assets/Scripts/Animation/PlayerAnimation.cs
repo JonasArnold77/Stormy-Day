@@ -72,6 +72,8 @@ public class PlayerAnimation : MonoBehaviour
     {
         ActualAttackItem = item;
 
+        GetComponent<PlayerStatus>().ChangeEndurance(-item.EnduranceCost);
+
         //GetComponent<StatusEffects>().ActivateEffect(item.StatusEffect, item.Type);
 
         while (!AnimationFinished(item._Animation.name))
