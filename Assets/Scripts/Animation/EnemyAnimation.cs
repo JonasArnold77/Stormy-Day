@@ -257,16 +257,22 @@ public class EnemyAnimation : MonoBehaviour
     {
         if (effect == EStatusEffects.Fire)
         {
-            StartCoroutine(EffectCoroutine(0));
+            //StartCoroutine(EffectCoroutine(0));
+            
+
+            GetComponent<EnemyStatusEffect>().IncreaseFireAmount(10);
         }
         else if (effect == EStatusEffects.Ice)
         {
-            StartCoroutine(EffectCoroutine(1));
+            MagioEffect.magioObjects.Where(m => m.effectClass == EffectClass.Ice).FirstOrDefault().enabled = true;
+            MagioEffect.magioObjects.Where(m => m.effectClass == EffectClass.Flame).FirstOrDefault().enabled = false;
+            //StartCoroutine(EffectCoroutine(1));
         }
     }
 
     public IEnumerator EffectCoroutine(int index)
     {
+        MagioEffect.magioObjects.Where(m => m.effectClass == EffectClass.Flame);
         MagioEffect.magioObjects[index].enabled = true;
 
         yield return new WaitForSeconds(4);

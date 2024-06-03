@@ -18,7 +18,10 @@ public class FollowPalyer : MonoBehaviour
 
     void Update()
     {
-        agent.destination = player.position;   
+        //if (Vector3.Distance(player.position, transform.position) < 15)
+        //{
+            agent.destination = player.position;
+        //}
     }
 
     public void Stop()
