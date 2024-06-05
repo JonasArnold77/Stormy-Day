@@ -198,7 +198,7 @@ Material:
     - _OutlineExtrudeMethod: 0
     - _OutlineWidth: 0.5
     - _OutlineWidthAffectedByViewDistance: 0
-    - _OutlineZPostionInCamera: 0
+    - _OutlineZPostionInCamera: -4.74
     - _OverallShadowColorPower: 1
     - _PSGLOTEX: 0
     - _PTexturePower: 1
