@@ -43,6 +43,10 @@ public class InputManager : MonoBehaviour
         {
             return KeyCode.LeftControl;
         }
+        if (control == EControls.Collect)
+        {
+            return KeyCode.E;
+        }
         return null;
     }
 

@@ -49,6 +49,7 @@ public class EnemyAnimation : MonoBehaviour
 
     public List<string> AttackNames = new List<string>();
 
+
     private void Start()
     {
         _Animator = GetComponent<Animator>();

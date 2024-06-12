@@ -10,5 +10,6 @@ public enum EControls
     Effect1,
     Effect2,
     Effect3,
-    Dash
+    Dash,
+    Collect
 }
