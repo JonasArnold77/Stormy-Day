@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ArmorLootObject : MonoBehaviour
+public class ArmorLootObject : LootObject
 {
-    public string Name;
+    public string ArmorName;
     public GameObject Armor;
 
     private void Start()
     {
-        Name = Armor.name;
+        ArmorName = Armor.name;
     }
 }

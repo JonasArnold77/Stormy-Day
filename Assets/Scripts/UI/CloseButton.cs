@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class CloseButton : MonoBehaviour
 {
-    public CanvasGroup TargetWindow;
+    public List<CanvasGroup> TargetWindows = new List<CanvasGroup>();
 
     private void Start()
     {
@@ -14,7 +14,10 @@ public class CloseButton : MonoBehaviour
 
     private void CloseWindow()
     {
-        TargetWindow.alpha = 0;
-        TargetWindow.blocksRaycasts = false;
+        foreach(var t in TargetWindows)
+        {
+            t.alpha = 0;
+            t.blocksRaycasts = false;
+        }
     }
 }

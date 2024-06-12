@@ -22,6 +22,8 @@ public class SkillUIItem : MonoBehaviour
 
         }
     }
+
+
     
     private void OpenAttackPool(EHitType type)
     {

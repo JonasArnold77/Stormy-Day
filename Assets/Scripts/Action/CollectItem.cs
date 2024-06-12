@@ -33,9 +33,17 @@ public class CollectItem : MonoBehaviour
 
             if (Input.GetKeyDown((KeyCode)InputManager.Instance.GetInputActionFromControlInput(EControls.Collect)))
             {
-                InventoryManager.Instance.AllSkills.Add(pivotElement.GetComponent<AbilityLootObject>()._AttackItem);
-                ListOfCollectableItems.Remove(pivotElement);
-                Destroy(pivotElement);
+                if (pivotElement.GetComponent<AbilityLootObject>())
+                {
+                    InventoryManager.Instance.AllSkills.Add(pivotElement.GetComponent<AbilityLootObject>()._AttackItem);
+                    ListOfCollectableItems.Remove(pivotElement);
+                    Destroy(pivotElement);
+                }else if (pivotElement.GetComponent<ArmorLootObject>())
+                {
+                    InventoryManager.Instance.AllArmors.Add(pivotElement.GetComponent<ArmorLootObject>().ArmorName);
+                    ListOfCollectableItems.Remove(pivotElement);
+                    Destroy(pivotElement);
+                }
             }
 
             KeySuggestionMenu.Instance.SetVisiabilityState(true);
@@ -48,7 +56,7 @@ public class CollectItem : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<AbilityLootObject>() && !ListOfCollectableItems.Contains(other.gameObject))
+        if ((other.GetComponent<AbilityLootObject>() || other.GetComponent<ArmorLootObject>()) && !ListOfCollectableItems.Contains(other.gameObject))
         {
             ListOfCollectableItems.Add(other.gameObject);
         }

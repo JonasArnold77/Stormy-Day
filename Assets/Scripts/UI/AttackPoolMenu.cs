@@ -24,7 +24,8 @@ public class AttackPoolMenu : MonoBehaviour
     {
         GetComponent<CanvasGroup>().alpha = 1;
         GetComponent<CanvasGroup>().blocksRaycasts = true;
-        List<AttackItem> myScriptableObjects = GetScriptableObjectsOfType<AttackItem>();
+        List<AttackItem> myScriptableObjects = InventoryManager.Instance.AllSkills;
+        //List<AttackItem> myScriptableObjects = GetScriptableObjectsOfType<AttackItem>();
 
         foreach (Transform child in Content)
         {
@@ -49,6 +50,9 @@ public class AttackPoolMenu : MonoBehaviour
         AttackComboItem.SetAttackItem(item);
         GetComponent<CanvasGroup>().alpha = 0;
         GetComponent<CanvasGroup>().blocksRaycasts = false;
+
+        FindObjectOfType<MainMenu>().GetComponent<CanvasGroup>().blocksRaycasts = true;
+        FindObjectOfType<MainMenu>().GetComponent<CanvasGroup>().alpha = 1;
         FindObjectOfType<ComboPanel>().GetComponent<CanvasGroup>().blocksRaycasts = true;
         FindObjectOfType<ComboPanel>().GetComponent<CanvasGroup>().alpha = 1;
 
