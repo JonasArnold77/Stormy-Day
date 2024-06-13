@@ -15,15 +15,20 @@ public class AttackPoolMenu : MonoBehaviour
 
     public Button CloseButton;
 
+    public static AttackPoolMenu Instance;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+
     public void Start()
     {
-
+       
     }
 
     public void InitializeMenu(EHitType type)
     {
-        GetComponent<CanvasGroup>().alpha = 1;
-        GetComponent<CanvasGroup>().blocksRaycasts = true;
         List<AttackItem> myScriptableObjects = InventoryManager.Instance.AllSkills;
         //List<AttackItem> myScriptableObjects = GetScriptableObjectsOfType<AttackItem>();
 
@@ -48,13 +53,10 @@ public class AttackPoolMenu : MonoBehaviour
     public void SetComboAttackItem(AttackItem item)
     {
         AttackComboItem.SetAttackItem(item);
-        GetComponent<CanvasGroup>().alpha = 0;
-        GetComponent<CanvasGroup>().blocksRaycasts = false;
+        gameObject.SetActive(false);
 
-        FindObjectOfType<MainMenu>().GetComponent<CanvasGroup>().blocksRaycasts = true;
-        FindObjectOfType<MainMenu>().GetComponent<CanvasGroup>().alpha = 1;
-        FindObjectOfType<ComboPanel>().GetComponent<CanvasGroup>().blocksRaycasts = true;
-        FindObjectOfType<ComboPanel>().GetComponent<CanvasGroup>().alpha = 1;
+        UIManager.Instance._MainMenu.gameObject.SetActive(true);
+        UIManager.Instance._ComboPanel.gameObject.SetActive(true);
 
         ComboManager.Instance.Combos.FirstOrDefault().ComboList.Clear();
 

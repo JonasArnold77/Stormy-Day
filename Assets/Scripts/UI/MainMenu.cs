@@ -5,25 +5,17 @@ using UnityEngine;
 public class MainMenu : MonoBehaviour
 {
     private CanvasGroup _canvasGroup;
+    public static MainMenu Instance;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+
     void Start()
     {
         _canvasGroup = GetComponent<CanvasGroup>();
     }
 
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            if (_canvasGroup.alpha == 1)
-            {
-                _canvasGroup.alpha = 0;
-                _canvasGroup.blocksRaycasts = false;
-            }
-            else
-            {
-                _canvasGroup.alpha = 1;
-                _canvasGroup.blocksRaycasts = true;
-            }
-        }
-    }
+    
 }

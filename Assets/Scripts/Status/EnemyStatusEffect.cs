@@ -30,8 +30,8 @@ public class EnemyStatusEffect : MonoBehaviour
 
     public IEnumerator OpenPanelForSeconds()
     {
-        EnemyStatusPanel.Instance.gameObject.SetActive(true);
+        UIManager.Instance._EnemyStatusPanel.gameObject.SetActive(true);
         yield return new WaitForSeconds(4);
-        EnemyStatusPanel.Instance.gameObject.SetActive(false);
+        UIManager.Instance._EnemyStatusPanel.gameObject.SetActive(false);
     }
 }

@@ -27,12 +27,10 @@ public class SkillUIItem : MonoBehaviour
     
     private void OpenAttackPool(EHitType type)
     {
-        FindObjectOfType<AttackPoolMenu>().GetComponent<CanvasGroup>().alpha = 1;
-        FindObjectOfType<AttackPoolMenu>().GetComponent<CanvasGroup>().blocksRaycasts = true;
-        FindObjectOfType<ComboPanel>().GetComponent<CanvasGroup>().alpha = 0;
-        FindObjectOfType<ComboPanel>().GetComponent<CanvasGroup>().blocksRaycasts = false;
-        FindObjectOfType<AttackPoolMenu>().InitializeMenu(type);
-        FindObjectOfType<AttackPoolMenu>().AttackComboItem = this;
+        UIManager.Instance._AttackPoolMenu.gameObject.SetActive(true);
+        UIManager.Instance._ComboPanel.gameObject.SetActive(false);
+        UIManager.Instance._AttackPoolMenu.InitializeMenu(type);
+        UIManager.Instance._AttackPoolMenu.AttackComboItem = this;
     }
 
     public void SetAttackItem(AttackItem item)

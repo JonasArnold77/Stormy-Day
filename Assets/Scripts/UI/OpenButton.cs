@@ -5,19 +5,18 @@ using UnityEngine.UI;
 
 public class OpenButton : MonoBehaviour
 {
-    public List<CanvasGroup> TargetWindows = new List<CanvasGroup>();
+    public List<GameObject> TargetWindows = new List<GameObject>();
 
     private void Start()
     {
-        GetComponent<Button>().onClick.AddListener(() => CloseWindow());
+        GetComponent<Button>().onClick.AddListener(() => OpenWindow());
     }
 
-    private void CloseWindow()
+    private void OpenWindow()
     {
         foreach (var t in TargetWindows)
         {
-            t.alpha = 1;
-            t.blocksRaycasts = true;
+            t.SetActive(true);
         }
     }
 }

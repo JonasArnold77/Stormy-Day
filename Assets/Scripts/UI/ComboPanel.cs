@@ -11,6 +11,13 @@ public class ComboPanel : MonoBehaviour
 
     public float distanceBetweenPanels;
 
+    public static ComboPanel Instance;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+
     // Start is called before the first frame update
     void Start()
     {

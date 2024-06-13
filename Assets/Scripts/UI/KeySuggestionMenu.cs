@@ -17,15 +17,6 @@ public class KeySuggestionMenu : MonoBehaviour
     
     public void SetVisiabilityState(bool state)
     {
-        if (state)
-        {
-            _canvasGroup.alpha = 1;
-            _canvasGroup.blocksRaycasts = true;
-        }
-        else
-        {
-            _canvasGroup.alpha = 0;
-            _canvasGroup.blocksRaycasts = false;
-        }
+        gameObject.SetActive(state);
     }
 }
