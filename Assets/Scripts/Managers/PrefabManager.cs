@@ -5,6 +5,7 @@ using UnityEngine;
 public class PrefabManager : MonoBehaviour
 {
     public GameObject DarkBloodEffect;
+    public RectTransform ArmorUiItem;
 
     public static PrefabManager Instance;
 
