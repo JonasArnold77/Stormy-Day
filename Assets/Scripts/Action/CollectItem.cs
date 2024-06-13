@@ -40,7 +40,7 @@ public class CollectItem : MonoBehaviour
                     Destroy(pivotElement);
                 }else if (pivotElement.GetComponent<ArmorLootObject>())
                 {
-                    InventoryManager.Instance.AllArmors.Add(pivotElement.GetComponent<ArmorLootObject>().ArmorName);
+                    InventoryManager.Instance.AllArmors.Add(pivotElement.GetComponent<ArmorLootObject>());
                     ListOfCollectableItems.Remove(pivotElement);
                     Destroy(pivotElement);
                 }
