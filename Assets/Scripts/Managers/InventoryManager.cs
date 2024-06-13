@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class InventoryManager : MonoBehaviour
 {
@@ -26,7 +27,18 @@ public class InventoryManager : MonoBehaviour
     public void SetArmor(ArmorLootObject armorObject)
     {
         Equipment.Instance.ArmorParts.Where(a => a.ArmorType == armorObject.ArmorType).ToList().ForEach(a1 => a1.gameObject.SetActive(false));
-        Equipment.Instance.ArmorParts.Where(a => a.gameObject.name == armorObject.ArmorName).FirstOrDefault().gameObject.SetActive(true);
-    }
+        //Equipment.Instance.ArmorParts.Where(a => a.ArmorType == armorObject.ArmorType).ToList().ForEach(a1 => a1.IsEquipped = false);
 
+        if(!Equipment.Instance.ArmorParts.Where(a => a.gameObject.name == armorObject.ArmorName).FirstOrDefault().IsEquipped)
+        {
+            Equipment.Instance.ArmorParts.Where(a => a.gameObject.name == armorObject.ArmorName).FirstOrDefault().gameObject.SetActive(true);
+            Equipment.Instance.ArmorParts.Where(a => a.gameObject.name == armorObject.ArmorName).FirstOrDefault().IsEquipped = true;
+            Equipment.Instance.ArmorParts.Where(a => a.ArmorType == armorObject.ArmorType && a.gameObject.name != armorObject.ArmorName).ToList().ForEach(a1 => a1.IsEquipped = false);
+        }
+        else
+        {
+            Equipment.Instance.ArmorParts.Where(a => a.gameObject.name == armorObject.ArmorName).FirstOrDefault().gameObject.SetActive(false);
+            Equipment.Instance.ArmorParts.Where(a => a.gameObject.name == armorObject.ArmorName).FirstOrDefault().IsEquipped = false;
+        }
+    }
 }
