@@ -29,15 +29,15 @@ RectTransform:
   m_GameObject: {fileID: 975163018868993145}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.40389, y: 2.1542, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.58249015, y: 3.1067872, z: 1.4422}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 941213924619370438}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -6.15329, y: 0.48773193}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8188446449773901184
@@ -134,6 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e71b35814c11e6841997a74795cd0cbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ArmorName: 
 --- !u!1 &4478435237222735226
 GameObject:
   m_ObjectHideFlags: 0
