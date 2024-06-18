@@ -10,13 +10,19 @@ public class QuestStep : MonoBehaviour
     public Transform QuestStepPlace;
     public List<string> Dialogue = new List<string>();
     public List<GameObject> TargetEnemies = new List<GameObject>();
-    public List<GameObject> QuestObject = new List<GameObject>();
+    public List<QuestItem> QuestItems = new List<QuestItem>();
     public bool QuestStepIsActive;
 
     public bool DialogueIsDone;
     private bool DialogueIsStarted;
 
     public bool EnemiesAreDone;
+    private bool EnemiesAreStarted;
+
+    public bool QuestItemsAreDone;
+    private bool QuestItemsAreStarted;
+
+    private GameObject CurrentKeyWindow;
 
     private Transform PlayerTransfomr;
 
@@ -33,7 +39,12 @@ public class QuestStep : MonoBehaviour
             {
                 if (!DialogueIsStarted && Dialogue.Count > 0 && Vector3.Distance(PlayerTransfomr.position, QuestStepPlace.position) < 8)
                 {
-                    UIManager.Instance._KeySuggestionMenu.gameObject.SetActive(true);
+                    if(CurrentKeyWindow == null)
+                    {
+                        CurrentKeyWindow = Instantiate(UIManager.Instance._KeySuggestionMenu.gameObject, UIManager.Instance._KeySuggestionMenu.transform.parent);
+                        CurrentKeyWindow.SetActive(true);
+                    }
+                    
 
                     if (Input.GetKeyDown((KeyCode)InputManager.Instance.GetInputActionFromControlInput(EControls.Collect)))
                     {
@@ -44,7 +55,7 @@ public class QuestStep : MonoBehaviour
                 }
                 else
                 {
-                    UIManager.Instance._KeySuggestionMenu.gameObject.SetActive(false);
+                    Destroy(CurrentKeyWindow);
                 }
             }
             else
@@ -52,15 +63,42 @@ public class QuestStep : MonoBehaviour
                 DialogueIsDone = true;
             }
 
-            if(TargetEnemies.Count > 0)
+            if(!EnemiesAreStarted && TargetEnemies.Count > 0)
             {
+                EnemiesAreStarted = true;
                 StartCoroutine(WaitForEnemiesAreDead());
             }
-            else
+            else if(TargetEnemies.Count == 0)
             {
                 EnemiesAreDone = true;
             }
+
+            if(QuestItems.Count > 0)
+            {
+                WaitForQuetItemsAreCollected();
+            }
+            else
+            {
+                QuestItemsAreDone = true;
+            }
         }  
+    }
+
+    private void WaitForQuetItemsAreCollected()
+    {
+        bool AllAreTrue = true;
+        foreach (var qo in QuestItems)
+        {
+            if(!InventoryManager.Instance.QuestItems.Select(o => o.QuestItemID).ToList().Contains(qo.QuestItemID))
+            {
+                AllAreTrue = false;
+            }
+        }
+
+        if (AllAreTrue)
+        {
+            QuestItemsAreDone = true;
+        }
     }
 
     private IEnumerator WaitForEnemiesAreDead()

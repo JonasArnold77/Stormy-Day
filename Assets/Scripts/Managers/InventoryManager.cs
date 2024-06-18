@@ -11,6 +11,7 @@ public class InventoryManager : MonoBehaviour
 
     public List<AttackItem> AllSkills = new List<AttackItem>();
     public List<ArmorLootObject> AllArmors = new List<ArmorLootObject>();
+    public List<QuestItem> QuestItems = new List<QuestItem>();
 
     public static InventoryManager Instance;
 
@@ -22,6 +23,11 @@ public class InventoryManager : MonoBehaviour
     public UnityAction GetInputFromControlAction()
     {
         return null;
+    }
+
+    private void Update()
+    {
+        var x = QuestItems;
     }
 
     public void SetArmor(ArmorLootObject armorObject)

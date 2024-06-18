@@ -8,6 +8,8 @@ public class CollectItem : MonoBehaviour
     private List<GameObject> ListOfCollectableItems = new List<GameObject>();
     public Transform playerTransform; // Der Transform des Spielers
 
+    public GameObject CurrentKeyWindow;
+
     public GameObject NearestObject;
 
     private void Update()
@@ -43,20 +45,29 @@ public class CollectItem : MonoBehaviour
                     InventoryManager.Instance.AllArmors.Add(pivotElement.GetComponent<ArmorLootObject>());
                     ListOfCollectableItems.Remove(pivotElement);
                     Destroy(pivotElement);
+                }else if (pivotElement.GetComponent<QuestItem>())
+                {
+                    InventoryManager.Instance.QuestItems.Add(pivotElement.GetComponent<QuestItem>());
+                    ListOfCollectableItems.Remove(pivotElement);
+                    Destroy(pivotElement);
                 }
             }
 
-            UIManager.Instance._KeySuggestionMenu.gameObject.SetActive(true);
+            if(CurrentKeyWindow == null)
+            {
+                CurrentKeyWindow = Instantiate(UIManager.Instance._KeySuggestionMenu.gameObject, UIManager.Instance._KeySuggestionMenu.transform.parent);
+                CurrentKeyWindow.SetActive(true);
+            }
         }
         else
         {
-            UIManager.Instance._KeySuggestionMenu.gameObject.SetActive(false);
+            Destroy(CurrentKeyWindow);
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if ((other.GetComponent<AbilityLootObject>() || other.GetComponent<ArmorLootObject>()) && !ListOfCollectableItems.Contains(other.gameObject))
+        if ((other.GetComponent<AbilityLootObject>() || other.GetComponent<ArmorLootObject>() || other.GetComponent<QuestItem>()) && !ListOfCollectableItems.Contains(other.gameObject))
         {
             ListOfCollectableItems.Add(other.gameObject);
         }

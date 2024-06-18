@@ -14,7 +14,7 @@ public class QuestObject : MonoBehaviour
 
     private void Update()
     {
-        if(QuestStepIndex < QuestSteps.Count - 1 && QuestSteps[QuestStepIndex].DialogueIsDone && QuestSteps[QuestStepIndex].EnemiesAreDone)
+        if(QuestStepIndex < QuestSteps.Count - 1 && QuestSteps[QuestStepIndex].DialogueIsDone && QuestSteps[QuestStepIndex].EnemiesAreDone && QuestSteps[QuestStepIndex].QuestItemsAreDone)
         {
             QuestSteps[QuestStepIndex].QuestStepIsActive = false;
             QuestStepIndex++;
