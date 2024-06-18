@@ -92,6 +92,7 @@ public class Sword : MonoBehaviour
             if(collision.gameObject.GetComponent<EnemyHealth>().Health <= 0)
             {
                 StartCoroutine(collision.gameObject.GetComponent<EnemyAnimation>().KillExecution());
+                collision.gameObject.GetComponent<EnemyAnimation>().IsDead = true;
             }
 
             collision.gameObject.GetComponent<EnemyAnimation>().ActivateEffect(FindObjectOfType<StatusEffects>().ActualHitEffect);

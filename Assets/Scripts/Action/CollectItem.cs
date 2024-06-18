@@ -46,11 +46,11 @@ public class CollectItem : MonoBehaviour
                 }
             }
 
-            KeySuggestionMenu.Instance.SetVisiabilityState(true);
+            UIManager.Instance._KeySuggestionMenu.gameObject.SetActive(true);
         }
         else
         {
-            KeySuggestionMenu.Instance.SetVisiabilityState(false);
+            UIManager.Instance._KeySuggestionMenu.gameObject.SetActive(false);
         }
     }
 

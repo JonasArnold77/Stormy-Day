@@ -19,6 +19,8 @@ public class EnemyAnimation : MonoBehaviour
 {
     public AnimationClip Hit;
 
+    public bool IsDead;
+
     private Animator _Animator;
 
     public Vector3 StartPointOfHit;

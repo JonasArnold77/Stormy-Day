@@ -9,6 +9,8 @@ public class UIManager : MonoBehaviour
     public ComboPanel _ComboPanel;
     public InventoryPanel _InventoryPanel;
     public EnemyStatusPanel _EnemyStatusPanel;
+    public DialogueWindow _DialogueMenu;
+    public KeySuggestionMenu _KeySuggestionMenu;
     
     public static UIManager Instance;
 
@@ -19,7 +21,11 @@ public class UIManager : MonoBehaviour
         _ComboPanel = ComboPanel.Instance;
         _InventoryPanel = InventoryPanel.Instance;
         _EnemyStatusPanel = EnemyStatusPanel.Instance;
+        _DialogueMenu = DialogueWindow.Instance;
+        _KeySuggestionMenu = KeySuggestionMenu.Instance;
 
+        _KeySuggestionMenu.gameObject.SetActive(false);
+        _DialogueMenu.gameObject.SetActive(false);
         _MainMenu.gameObject.SetActive(false);
         _AttackPoolMenu.gameObject.SetActive(false);
         //_ComboPanel.gameObject.SetActive(false);
