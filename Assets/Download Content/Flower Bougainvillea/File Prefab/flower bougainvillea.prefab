@@ -1,0 +1,300 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3466964129281423259
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4275870072421444897}
+  m_Layer: 0
+  m_Name: flower bougainvillea
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 4294967295
+  m_IsActive: 1
+--- !u!4 &4275870072421444897
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3466964129281423259}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1164980069406601144}
+  - {fileID: 6687301589483742465}
+  - {fileID: 8333317307207689144}
+  - {fileID: 719343199777792941}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &921703307290055848
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4275870072421444897}
+    m_Modifications:
+    - target: {fileID: 5765906162906493353, guid: 5bf83c54787125e44a56537706d4d76e, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5765906162906493353, guid: 5bf83c54787125e44a56537706d4d76e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.889
+      objectReference: {fileID: 0}
+    - target: {fileID: 5765906162906493353, guid: 5bf83c54787125e44a56537706d4d76e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5765906162906493353, guid: 5bf83c54787125e44a56537706d4d76e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5765906162906493353, guid: 5bf83c54787125e44a56537706d4d76e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5765906162906493353, guid: 5bf83c54787125e44a56537706d4d76e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.000000021855694
+      objectReference: {fileID: 0}
+    - target: {fileID: 5765906162906493353, guid: 5bf83c54787125e44a56537706d4d76e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5765906162906493353, guid: 5bf83c54787125e44a56537706d4d76e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5765906162906493353, guid: 5bf83c54787125e44a56537706d4d76e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5765906162906493353, guid: 5bf83c54787125e44a56537706d4d76e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5765906162906493353, guid: 5bf83c54787125e44a56537706d4d76e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7396379603025993994, guid: 5bf83c54787125e44a56537706d4d76e, type: 3}
+      propertyPath: m_Name
+      value: flower bougainvillea1 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7396379603025993994, guid: 5bf83c54787125e44a56537706d4d76e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5bf83c54787125e44a56537706d4d76e, type: 3}
+--- !u!4 &6687301589483742465 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5765906162906493353, guid: 5bf83c54787125e44a56537706d4d76e, type: 3}
+  m_PrefabInstance: {fileID: 921703307290055848}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &3907928197482935393
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4275870072421444897}
+    m_Modifications:
+    - target: {fileID: 4593708082662135756, guid: c3a60018a524fc241b633a91b52eb27e, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4593708082662135756, guid: c3a60018a524fc241b633a91b52eb27e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.221
+      objectReference: {fileID: 0}
+    - target: {fileID: 4593708082662135756, guid: c3a60018a524fc241b633a91b52eb27e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4593708082662135756, guid: c3a60018a524fc241b633a91b52eb27e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4593708082662135756, guid: c3a60018a524fc241b633a91b52eb27e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4593708082662135756, guid: c3a60018a524fc241b633a91b52eb27e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.000000021855694
+      objectReference: {fileID: 0}
+    - target: {fileID: 4593708082662135756, guid: c3a60018a524fc241b633a91b52eb27e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4593708082662135756, guid: c3a60018a524fc241b633a91b52eb27e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4593708082662135756, guid: c3a60018a524fc241b633a91b52eb27e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4593708082662135756, guid: c3a60018a524fc241b633a91b52eb27e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4593708082662135756, guid: c3a60018a524fc241b633a91b52eb27e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5939367597529057054, guid: c3a60018a524fc241b633a91b52eb27e, type: 3}
+      propertyPath: m_Name
+      value: flower bougainvillea1 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5939367597529057054, guid: c3a60018a524fc241b633a91b52eb27e, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c3a60018a524fc241b633a91b52eb27e, type: 3}
+--- !u!4 &719343199777792941 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4593708082662135756, guid: c3a60018a524fc241b633a91b52eb27e, type: 3}
+  m_PrefabInstance: {fileID: 3907928197482935393}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &7056220459582857633
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4275870072421444897}
+    m_Modifications:
+    - target: {fileID: 1317682150425559577, guid: 59edf08efd54be244be0ba9d14738ceb, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1317682150425559577, guid: 59edf08efd54be244be0ba9d14738ceb, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1317682150425559577, guid: 59edf08efd54be244be0ba9d14738ceb, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1317682150425559577, guid: 59edf08efd54be244be0ba9d14738ceb, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1317682150425559577, guid: 59edf08efd54be244be0ba9d14738ceb, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1317682150425559577, guid: 59edf08efd54be244be0ba9d14738ceb, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.000000021855694
+      objectReference: {fileID: 0}
+    - target: {fileID: 1317682150425559577, guid: 59edf08efd54be244be0ba9d14738ceb, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1317682150425559577, guid: 59edf08efd54be244be0ba9d14738ceb, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1317682150425559577, guid: 59edf08efd54be244be0ba9d14738ceb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1317682150425559577, guid: 59edf08efd54be244be0ba9d14738ceb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1317682150425559577, guid: 59edf08efd54be244be0ba9d14738ceb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8901803566279869274, guid: 59edf08efd54be244be0ba9d14738ceb, type: 3}
+      propertyPath: m_Name
+      value: flower bougainvillea1 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8901803566279869274, guid: 59edf08efd54be244be0ba9d14738ceb, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 59edf08efd54be244be0ba9d14738ceb, type: 3}
+--- !u!4 &8333317307207689144 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1317682150425559577, guid: 59edf08efd54be244be0ba9d14738ceb, type: 3}
+  m_PrefabInstance: {fileID: 7056220459582857633}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &9199483124151742356
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4275870072421444897}
+    m_Modifications:
+    - target: {fileID: 2385927352790474869, guid: 8f19f49fbc3bf4f4fbbe02dd0296ad77, type: 3}
+      propertyPath: m_Name
+      value: flower bougainvillea1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2385927352790474869, guid: 8f19f49fbc3bf4f4fbbe02dd0296ad77, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 8034973803666735148, guid: 8f19f49fbc3bf4f4fbbe02dd0296ad77, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8034973803666735148, guid: 8f19f49fbc3bf4f4fbbe02dd0296ad77, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.51
+      objectReference: {fileID: 0}
+    - target: {fileID: 8034973803666735148, guid: 8f19f49fbc3bf4f4fbbe02dd0296ad77, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8034973803666735148, guid: 8f19f49fbc3bf4f4fbbe02dd0296ad77, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8034973803666735148, guid: 8f19f49fbc3bf4f4fbbe02dd0296ad77, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8034973803666735148, guid: 8f19f49fbc3bf4f4fbbe02dd0296ad77, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.000000021855694
+      objectReference: {fileID: 0}
+    - target: {fileID: 8034973803666735148, guid: 8f19f49fbc3bf4f4fbbe02dd0296ad77, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8034973803666735148, guid: 8f19f49fbc3bf4f4fbbe02dd0296ad77, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8034973803666735148, guid: 8f19f49fbc3bf4f4fbbe02dd0296ad77, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8034973803666735148, guid: 8f19f49fbc3bf4f4fbbe02dd0296ad77, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8034973803666735148, guid: 8f19f49fbc3bf4f4fbbe02dd0296ad77, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8f19f49fbc3bf4f4fbbe02dd0296ad77, type: 3}
+--- !u!4 &1164980069406601144 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8034973803666735148, guid: 8f19f49fbc3bf4f4fbbe02dd0296ad77, type: 3}
+  m_PrefabInstance: {fileID: 9199483124151742356}
+  m_PrefabAsset: {fileID: 0}
