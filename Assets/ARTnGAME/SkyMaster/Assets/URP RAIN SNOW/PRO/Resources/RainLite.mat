@@ -64,7 +64,7 @@ Material:
     - _SnowTexScale: -0.23
     - _TileNumCausticRotMin: 1
     - _TopThreshold: -0.87
-    - _Weight: 0.3672
+    - _Weight: 0.80135995
     - _erasePower: 1
     - _maskPower: 1
     - _rainContrast: 0.1

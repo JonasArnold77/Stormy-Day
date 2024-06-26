@@ -355,6 +355,64 @@ MonoBehaviour:
   gain:
     m_OverrideState: 1
     m_Value: {x: 0.98933625, y: 1, z: 0.9633783, w: 0.14988346}
+--- !u!114 &-1848057667978067737
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f90c156cdb87c694e92218e2a543cd84, type: 3}
+  m_Name: PainterlyVolFxVol
+  m_EditorClassIdentifier: 
+  active: 1
+  KawaharaType:
+    m_OverrideState: 0
+    m_Value: 0
+  kernelSizeKAWAHARA:
+    m_OverrideState: 0
+    m_Value: 1
+  animateKernelSize:
+    m_OverrideState: 0
+    m_Value: 0
+  minKernelSize:
+    m_OverrideState: 0
+    m_Value: 1
+  sizeAnimationSpeed:
+    m_OverrideState: 0
+    m_Value: 1
+  noiseFrequency:
+    m_OverrideState: 0
+    m_Value: 10
+  animateKernelOrigin:
+    m_OverrideState: 0
+    m_Value: 0
+  passes:
+    m_OverrideState: 0
+    m_Value: 1
+  sharpness:
+    m_OverrideState: 0
+    m_Value: 8
+  hardness:
+    m_OverrideState: 0
+    m_Value: 8
+  zeroCrossing:
+    m_OverrideState: 0
+    m_Value: 0.58
+  useZeta:
+    m_OverrideState: 0
+    m_Value: 0
+  zeta:
+    m_OverrideState: 0
+    m_Value: 1
+  alpha:
+    m_OverrideState: 0
+    m_Value: 1
+  m_Intencity:
+    m_OverrideState: 0
+    m_Value: 0
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -377,6 +435,7 @@ MonoBehaviour:
   - {fileID: 4375477723816884236}
   - {fileID: -8203117183945608399}
   - {fileID: 7404902650256420698}
+  - {fileID: -1848057667978067737}
 --- !u!114 &3648923415876889903
 MonoBehaviour:
   m_ObjectHideFlags: 3
