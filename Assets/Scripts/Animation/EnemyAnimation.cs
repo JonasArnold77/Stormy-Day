@@ -51,6 +51,14 @@ public class EnemyAnimation : MonoBehaviour
 
     public List<string> AttackNames = new List<string>();
 
+    public int MinTimeToNextAttack;
+    public int MaxTimeToNextAttack;
+    public float AttackDistance;
+
+    public bool FirstAttack;
+
+    public float speed;
+
 
     private void Start()
     {
@@ -90,14 +98,19 @@ public class EnemyAnimation : MonoBehaviour
             bouncy.position = Hips.position;
         }
 
-        if (_Animator.GetCurrentAnimatorStateInfo(0).IsTag("Walking"))
+        if (_Animator.GetCurrentAnimatorStateInfo(0).IsTag("Walking") && !GetComponent<EnemyAnimation>().MagioEffect.magioObjects.Where(m => m.effectClass == EffectClass.Ice).FirstOrDefault().enabled)
         {
-            Agent.speed = 3;
+            Agent.speed = speed;
         }
 
         if (!_Animator.GetCurrentAnimatorStateInfo(0).IsTag("Attack"))
         {
-            //GetComponent<EnemyAttack>().IsDoingAttack = false;
+            GetComponent<EnemyAttack>().IsDoingAttack = false;
+        }
+
+        if (!_Animator.GetCurrentAnimatorStateInfo(0).IsTag("Interrupt"))
+        {
+            _Animator.SetBool("InterruptHit", false);
         }
 
         AnimatorClipInfo[] currentClipInfo = _Animator.GetCurrentAnimatorClipInfo(0);
@@ -120,12 +133,29 @@ public class EnemyAnimation : MonoBehaviour
         var distance = Vector3.Distance(transform.position, FindObjectOfType<ThirdPersonController>().transform.position);
         var check = !FindObjectsOfType<EnemyAttack>().ToList().Any(ea => ea.IsDoingAttack);
 
+        if(Vector3.Distance(transform.position, FindObjectOfType<ThirdPersonController>().transform.position) > AttackDistance)
+        {
+            FirstAttack = true;
+        }
+
         var enemiesss = FindObjectsOfType<EnemyAttack>().ToList();
 
-        if (Vector3.Distance(transform.position, FindObjectOfType<ThirdPersonController>().transform.position) < 25 && !GetComponent<EnemyAttack>().IsDoingAttack /*&& !FindObjectsOfType<EnemyAttack>().ToList().Any(ea => ea.IsDoingAttack)*/)
+        if (Vector3.Distance(transform.position, FindObjectOfType<ThirdPersonController>().transform.position) < AttackDistance && !GetComponent<EnemyAttack>().IsDoingAttack /*&& !FindObjectsOfType<EnemyAttack>().ToList().Any(ea => ea.IsDoingAttack)*/)
         {
             GetComponent<EnemyAttack>().IsDoingAttack = true;
-            yield return new WaitForSeconds(Random.Range(3f, 4f));
+
+            if (FirstAttack)
+            {
+                yield return new WaitForSeconds(Random.Range(0, 0));
+            }
+            else
+            {
+                yield return new WaitForSeconds(Random.Range(MinTimeToNextAttack, MaxTimeToNextAttack));
+            }
+
+            FirstAttack = false;
+
+
             _Animator.SetBool("Walk", false);
 
             var attackName = AttackNames[Random.Range(0, AttackNames.Count)];
@@ -244,6 +274,12 @@ public class EnemyAnimation : MonoBehaviour
                 if (_Animator.GetBool("Hit") || _Animator.GetCurrentAnimatorStateInfo(0).IsTag("Attack") || _Animator.GetCurrentAnimatorStateInfo(0).IsTag("Walking"))
                 {
                     _Animator.SetBool("InterruptHit", true);
+                    if (!GetComponent<EnemyAnimation>().MagioEffect.magioObjects.Where(m => m.effectClass == EffectClass.Ice).FirstOrDefault().enabled)
+                    {
+                        Agent.speed = speed;
+                    }
+                    
+                    GetComponent<EnemyAttack>().IsDoingAttack = false;
                 }
 
                 _Animator.SetBool("Hit", true);
@@ -263,13 +299,14 @@ public class EnemyAnimation : MonoBehaviour
             //StartCoroutine(EffectCoroutine(0));
             
 
-            GetComponent<EnemyStatusEffect>().IncreaseFireAmount(10);
+         GetComponent<EnemyStatusEffect>().IncreaseFireAmount(10);
         }
         else if (effect == EStatusEffects.Ice)
         {
-            MagioEffect.magioObjects.Where(m => m.effectClass == EffectClass.Ice).FirstOrDefault().enabled = true;
-            MagioEffect.magioObjects.Where(m => m.effectClass == EffectClass.Flame).FirstOrDefault().enabled = false;
-            //StartCoroutine(EffectCoroutine(1));
+            GetComponent<EnemyStatusEffect>().IncreaseIceAmount(10);
+            //MagioEffect.magioObjects.Where(m => m.effectClass == EffectClass.Ice).FirstOrDefault().enabled = true;
+            //MagioEffect.magioObjects.Where(m => m.effectClass == EffectClass.Flame).FirstOrDefault().enabled = false;
+            ////StartCoroutine(EffectCoroutine(1));
         }
     }
 
@@ -373,7 +410,9 @@ public class EnemyAnimation : MonoBehaviour
                 }
                 rigidbody.isKinematic = false;
                 //rigidbody.AddForce(-transform.up * 75, ForceMode.Impulse);
-                rigidbody.AddForce(hitDirection.normalized * 30, ForceMode.Impulse);
+
+                //rigidbody.AddForce(hitDirection.normalized * 30, ForceMode.Impulse);
+
                 //rigidbody.AddTorque(new Vector3(1, 1, 1) * 1000, ForceMode.Impulse);
 
             }

@@ -19,6 +19,9 @@ public class Defence : MonoBehaviour
     public bool IsInterupted;
 
     public bool InterruptAim;
+
+    public ParticleSystem ScratchParticleSystem;
+
     private void Start()
     {
         _Animator = GetComponent<Animator>();

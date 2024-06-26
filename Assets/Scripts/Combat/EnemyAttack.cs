@@ -1,3 +1,4 @@
+using Magio;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,19 +12,22 @@ public class EnemyAttack : MonoBehaviour
 
     public List<EnemyWeapon> Weapons = new List<EnemyWeapon>();
 
+    public EnemyAnimation _EnemyAnimation;
+
     private void Start()
     {
         Agent = GetComponent<NavMeshAgent>();
         Weapons.ForEach(w => w.GetComponent<Collider>().enabled = false);
+        _EnemyAnimation = GetComponent<EnemyAnimation>();
     }
 
     private void Update()
     {
-       
+        if (!IsDoingAttack && !GetComponent<EnemyAnimation>().MagioEffect.magioObjects.Where(m => m.effectClass == EffectClass.Ice).FirstOrDefault().enabled)
+        {
+            Agent.speed = _EnemyAnimation.speed;
+        }
     }
-
-    
-
 
     public void ActivateWeaponCollider(EHitType type)
     {

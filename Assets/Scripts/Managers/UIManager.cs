@@ -20,7 +20,6 @@ public class UIManager : MonoBehaviour
         _AttackPoolMenu = AttackPoolMenu.Instance;
         _ComboPanel = ComboPanel.Instance;
         _InventoryPanel = InventoryPanel.Instance;
-        _EnemyStatusPanel = EnemyStatusPanel.Instance;
         _DialogueMenu = DialogueWindow.Instance;
         _KeySuggestionMenu = KeySuggestionMenu.Instance;
 
@@ -30,7 +29,7 @@ public class UIManager : MonoBehaviour
         _AttackPoolMenu.gameObject.SetActive(false);
         //_ComboPanel.gameObject.SetActive(false);
         _InventoryPanel.gameObject.SetActive(false);
-
+        _EnemyStatusPanel.gameObject.SetActive(false);
     }
 
     private void Awake()

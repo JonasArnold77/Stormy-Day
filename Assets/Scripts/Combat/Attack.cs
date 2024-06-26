@@ -342,7 +342,7 @@ public class Attack : MonoBehaviour
         }
 
         _ComboCoroutineIsRunning = true;
-        if (Input.GetKeyDown((KeyCode)InputManager.Instance.GetInputActionFromControlInput(EControls.LightHit)) && !CheckIfPossibleToAttack())
+        if (Input.GetKeyDown((KeyCode)InputManager.Instance.GetInputActionFromControlInput(EControls.LightHit)) && !CheckIfPossibleToAttack() && GetComponent<PlayerStatus>().ActualEndurance > 0)
         {
             ComboManager.Instance.ResetAllComboCountersInsteadOfSelected(EControls.LightHit);
             if (_WaitForResettingCoroutineIsActive)

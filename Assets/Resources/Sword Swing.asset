@@ -19,7 +19,7 @@ MonoBehaviour:
   WeaponType: 0
   StatusEffect: 1
   Damage: 10
-  EnduranceCost: 10
+  EnduranceCost: 30
   Name: Swing Attack
   Description: A normal Sword Attack
   Image: {fileID: 21300000, guid: e5ec30c0d0f787f47b9cace9af25501c, type: 3}

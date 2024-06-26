@@ -89,11 +89,11 @@ public class Sword : MonoBehaviour
             SliceSFX.Play();
             collision.gameObject.GetComponent<EnemyHealth>().Health -= Damage;
 
-            if(collision.gameObject.GetComponent<EnemyHealth>().Health <= 0)
-            {
-                StartCoroutine(collision.gameObject.GetComponent<EnemyAnimation>().KillExecution());
-                collision.gameObject.GetComponent<EnemyAnimation>().IsDead = true;
-            }
+            //if(collision.gameObject.GetComponent<EnemyHealth>().Health <= 0)
+            //{
+            //    StartCoroutine(collision.gameObject.GetComponent<EnemyAnimation>().KillExecution());
+            //    collision.gameObject.GetComponent<EnemyAnimation>().IsDead = true;
+            //}
 
             collision.gameObject.GetComponent<EnemyAnimation>().ActivateEffect(FindObjectOfType<StatusEffects>().ActualHitEffect);
 

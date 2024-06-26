@@ -28,8 +28,10 @@ public class EnemyWeapon : MonoBehaviour
                 SliceSFX.pitch = Random.Range(0.9f, 1.1f);
 
                 //StartCoroutine(Camera.main.GetComponent<CameraShake>().Shake(0.2f,0.3f));
-                SliceSFX.Stop();
+               SliceSFX.Stop();
                 SliceSFX.Play();
+
+                FindObjectOfType<Defence>().ScratchParticleSystem.Play();
 
                 FindObjectOfType<PlayerStatus>().ChangeHealth(-Damage);
 

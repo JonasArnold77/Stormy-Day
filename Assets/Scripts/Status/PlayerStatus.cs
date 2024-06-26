@@ -21,8 +21,9 @@ public class PlayerStatus : MonoBehaviour
 
         while(ActualEndurance <= TotalEndurance)
         {
-            yield return new WaitForSeconds(2f);
-            ChangeEndurance(10);
+            yield return new WaitUntil(() => !GetComponent<Attack>().isDoingAttack);
+            yield return new WaitForSeconds(0.25f);
+            ChangeEndurance(4);
         }
 
         ActualEndurance = TotalEndurance;

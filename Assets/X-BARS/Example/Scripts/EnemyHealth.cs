@@ -12,13 +12,13 @@ public class EnemyHealth : MonoBehaviour {
         //anim = GetComponent<Animation>();
     }
 
-	void Update () {
-        //if (Health <= 0)
-        //{
-        //    anim.Play("Death");
-        //}
-        //else
-        //    anim.Play("Idle");
+	void Update () 
+    {
+        if(Health <= 0)
+        {
+            StartCoroutine(GetComponent<EnemyAnimation>().KillExecution());
+            GetComponent<EnemyAnimation>().IsDead = true;
+        }
 	}
 
 
