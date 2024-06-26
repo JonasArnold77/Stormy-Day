@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class AttackItem : ScriptableObject
 {
     public AnimationClip _Animation;
+    public Transform AnimationObject;
     public EControls Control;
     public EHitEffect Effect;
     public EHitType Type;

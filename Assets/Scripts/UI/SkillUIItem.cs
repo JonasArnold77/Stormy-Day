@@ -1,3 +1,4 @@
+using Kamgam.UGUIWorldImage;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -7,7 +8,7 @@ using UnityEngine.UI;
 public class SkillUIItem : MonoBehaviour
 {
     public AttackItem _AttackItem;
-    public Image Image;
+    public Image _Image;
     public bool IsInPool;
 
     private void Start()
@@ -36,8 +37,9 @@ public class SkillUIItem : MonoBehaviour
     public void SetAttackItem(AttackItem item)
     {
         _AttackItem = item;
-        Image.sprite = _AttackItem.Image;
-        GetComponentInChildren<TMP_Text>().text = _AttackItem.name;
-
+        _Image.gameObject.SetActive(false);
+        GetComponent<WorldImage>().m_worldObjects.Clear();
+        GetComponent<WorldImage>().m_worldObjects.Add(item.AnimationObject);
+        GetComponentInChildren<TMP_Text>().text = "";
     }
 }

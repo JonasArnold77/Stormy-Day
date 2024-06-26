@@ -12,6 +12,8 @@ public class CollectItem : MonoBehaviour
 
     public GameObject NearestObject;
 
+    private int AnimationObjectOffset = 4;
+
     private void Update()
     {
         CheckForCollectableItems();
@@ -37,10 +39,18 @@ public class CollectItem : MonoBehaviour
             {
                 if (pivotElement.GetComponent<AbilityLootObject>())
                 {
+                    pivotElement.GetComponent<AbilityLootObject>()._AttackItem.AnimationObject = pivotElement.GetComponent<AbilityLootObject>().AnimationObject;
+
                     InventoryManager.Instance.AllSkills.Add(pivotElement.GetComponent<AbilityLootObject>()._AttackItem);
+
                     ListOfCollectableItems.Remove(pivotElement);
-                    Destroy(pivotElement);
-                }else if (pivotElement.GetComponent<ArmorLootObject>())
+                    pivotElement.transform.position = new Vector3(AnimationObjectOffset, 0,0);
+
+                    pivotElement.GetComponentsInChildren<ParticleSystem>().ToList().ForEach(p => p.gameObject.SetActive(false));
+
+                    AnimationObjectOffset = AnimationObjectOffset + 4;
+                }
+                else if (pivotElement.GetComponent<ArmorLootObject>())
                 {
                     InventoryManager.Instance.AllArmors.Add(pivotElement.GetComponent<ArmorLootObject>());
                     ListOfCollectableItems.Remove(pivotElement);

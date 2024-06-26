@@ -8,6 +8,8 @@ public class AbilityLootObject : LootObject
     public AttackItem _AttackItem;
     private Animator _animator;
 
+    public Transform AnimationObject;
+
     public AnimatorController Controller;
 
     public void Start()

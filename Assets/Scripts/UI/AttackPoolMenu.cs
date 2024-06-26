@@ -1,3 +1,4 @@
+using Kamgam.UGUIWorldImage;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,9 +44,10 @@ public class AttackPoolMenu : MonoBehaviour
             if(s.Type == type)
             {
                 var item = Instantiate(AttackPoolItem, Content);
-                item.GetComponentInChildren<TMP_Text>().text = s.Name;
+                item.GetComponentInChildren<TMP_Text>().text = "";
                 //item.GetComponent<Image>().sprite = s.Image;
                 item.GetComponent<Button>().onClick.AddListener(() => SetComboAttackItem(s));
+                item.GetComponent<WorldImage>().m_worldObjects.Add(s.AnimationObject);
             }
         }
     }
