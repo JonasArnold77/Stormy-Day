@@ -409,9 +409,9 @@ public class EnemyAnimation : MonoBehaviour
                     GetComponent<NavMeshAgent>().enabled = false;
                 }
                 rigidbody.isKinematic = false;
-                //rigidbody.AddForce(-transform.up * 75, ForceMode.Impulse);
+                rigidbody.AddForce(-transform.up * 0.8f, ForceMode.Impulse);
 
-                //rigidbody.AddForce(hitDirection.normalized * 30, ForceMode.Impulse);
+                rigidbody.AddForce(hitDirection.normalized * 2, ForceMode.Impulse);
 
                 //rigidbody.AddTorque(new Vector3(1, 1, 1) * 1000, ForceMode.Impulse);
 
