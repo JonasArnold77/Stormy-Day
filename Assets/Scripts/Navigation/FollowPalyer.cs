@@ -8,20 +8,28 @@ public class FollowPalyer : MonoBehaviour
     private Transform player;
     private NavMeshAgent agent;
 
+    private Vector3 OriginalPosition;
+
     // Start is called before the first frame update
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        agent.destination = transform.position;
+        OriginalPosition = transform.position;
     }
 
 
     void Update()
     {
-        //if (Vector3.Distance(player.position, transform.position) < 15)
-        //{
+        if (Vector3.Distance(player.position, transform.position) < 30)
+        {
             agent.destination = player.position;
-        //}
+        }
+        else
+        {
+            agent.destination = OriginalPosition;
+        }
     }
 
     public void Stop()
