@@ -44,6 +44,8 @@ public class Attack : MonoBehaviour
     public int AimIndex;
     public bool FixedAim;
 
+    public AudioSource SwingSound;
+
     [Serializable]
     public struct TypeAndEffect
     {
@@ -64,7 +66,7 @@ public class Attack : MonoBehaviour
         //InventoryManager.Instance.ActualWeapon.GetComponent<Collider>().enabled = false;
         _Animator = GetComponent<Animator>();
 
-
+        SwingSound.loop = false;
     }
 
     private void Update()
@@ -402,6 +404,11 @@ public class Attack : MonoBehaviour
         StopCoroutine(WalkingCoroutine);
     }
 
+    public void PlaySwingSound()
+    {
+        SwingSound.Play();
+    }
+
     private IEnumerator WalkingRoutine()
     {
         if (ActualEnemy != null)
@@ -428,6 +435,7 @@ public class Attack : MonoBehaviour
         //WeaponManager.Instance.GetWeaponComponent(typeandEffect.type).GetComponent<Sword>().hitEffect = typeandEffect.effect;
         WeaponManager.Instance.GetWeaponComponent(type).GetComponent<Collider>().enabled = true;
         IsInAttackingTimeWindow = true;
+        PlaySwingSound();
     }
 
     public void SetColliderInactive(EHitType type)

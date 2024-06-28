@@ -20,7 +20,9 @@ public class Sword : MonoBehaviour
 
     public GameObject BloodEffectObject;
 
-    public AudioSource SliceSFX;
+    public AudioSource _AudioSource;
+
+    public List<AudioClip> ÁudioClips = new List<AudioClip>();
 
     public int Damage;
     
@@ -32,7 +34,7 @@ public class Sword : MonoBehaviour
         //TipOfTheSword = gameObject.transform.GetChild(0);
         BloodEffectObject.SetActive(true);
         BloodEffectObject.GetComponentInChildren<TrailRenderer>().emitting = false;
-        SliceSFX = GetComponent<AudioSource>();
+        _AudioSource = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -79,14 +81,17 @@ public class Sword : MonoBehaviour
 
             BloodEffectObject = Instantiate(PrefabManager.Instance.DarkBloodEffect, position: collision.contacts[0].point, Quaternion.identity);
 
-            SliceSFX.pitch = Random.Range(0.9f, 1.1f);
+
 
             //StartCoroutine(Camera.main.GetComponent<CameraShake>().Shake(0.2f,0.3f));
 
 
+            //_AudioSource.pitch = Random.Range(0.9f, 1.1f);
+            //_AudioSource.Stop();
+            //_AudioSource.Play();
 
-            SliceSFX.Stop();
-            SliceSFX.Play();
+            PlayRandomSound();
+
             collision.gameObject.GetComponent<EnemyHealth>().Health -= Damage;
 
             //if(collision.gameObject.GetComponent<EnemyHealth>().Health <= 0)
@@ -114,6 +119,13 @@ public class Sword : MonoBehaviour
 
     //StartCoroutine(collision.gameObject.GetComponent<EnemyAnimation>().KillExecution());
         } 
+    }
+
+    public void PlayRandomSound()
+    {
+        _AudioSource.Stop();
+        _AudioSource.clip = ÁudioClips[Random.Range(0, ÁudioClips.Count)];
+        _AudioSource.Play();
     }
 
     private IEnumerator StopTimeCoroutine(float duration)
