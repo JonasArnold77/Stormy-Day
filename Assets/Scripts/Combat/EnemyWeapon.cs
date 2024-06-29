@@ -11,10 +11,14 @@ public class EnemyWeapon : MonoBehaviour
 
     public int Damage;
 
+    private AudioSource _AudioSource;
+    public List<AudioClip> ÁudioClips = new List<AudioClip>();
+
     private void Start()
     {
         SliceSFX = GetComponent<AudioSource>();
         var x = FindObjectOfType<Defence>();
+        _AudioSource = GetComponent<AudioSource>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -25,11 +29,13 @@ public class EnemyWeapon : MonoBehaviour
             {
                 FindObjectOfType<PlayerAnimation>().PlayHitAnimation();
 
-                SliceSFX.pitch = Random.Range(0.9f, 1.1f);
+                // SliceSFX.pitch = Random.Range(0.9f, 1.1f);
 
-                //StartCoroutine(Camera.main.GetComponent<CameraShake>().Shake(0.2f,0.3f));
-               SliceSFX.Stop();
-                SliceSFX.Play();
+                // //StartCoroutine(Camera.main.GetComponent<CameraShake>().Shake(0.2f,0.3f));
+                //SliceSFX.Stop();
+                // SliceSFX.Play();
+
+                PlayRandomSound();
 
                 FindObjectOfType<Defence>().ScratchParticleSystem.Play();
 
@@ -38,6 +44,13 @@ public class EnemyWeapon : MonoBehaviour
                 StartCoroutine(PlayerHitStun());
             } 
         }
+    }
+
+    public void PlayRandomSound()
+    {
+        _AudioSource.Stop();
+        _AudioSource.clip = ÁudioClips[Random.Range(0, ÁudioClips.Count)];
+        _AudioSource.Play();
     }
 
     private IEnumerator PlayerHitStun()

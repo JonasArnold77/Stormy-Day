@@ -14,11 +14,16 @@ public class EnemyAttack : MonoBehaviour
 
     public EnemyAnimation _EnemyAnimation;
 
+    public AudioSource _AudioSource;
+    public AudioClip SwingAudioClip;
+
     private void Start()
     {
         Agent = GetComponent<NavMeshAgent>();
         Weapons.ForEach(w => w.GetComponent<Collider>().enabled = false);
         _EnemyAnimation = GetComponent<EnemyAnimation>();
+        _AudioSource = GetComponent<AudioSource>();
+        _AudioSource.loop = false;
     }
 
     private void Update()
@@ -32,6 +37,9 @@ public class EnemyAttack : MonoBehaviour
     public void ActivateWeaponCollider(EHitType type)
     {
         Weapons.Where(w => w.WeaponType == type).ToList().ForEach(w2 => w2.GetComponent<Collider>().enabled = true);
+        _AudioSource.Stop();
+        _AudioSource.clip = SwingAudioClip;
+        _AudioSource.Play();
     }
 
     public void DeactivateAllWeaponColliders()

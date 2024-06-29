@@ -16,15 +16,25 @@ public class PlayerAnimation : MonoBehaviour
 
     public static PlayerAnimation Instance;
 
+    public AudioSource _AudioSource;
+
+    public AudioClip Running;
+    public AudioClip RunningInWater;
+
+    public bool StartRunning;
+    public bool IsInWater;
+
     private void Awake()
     {
         Instance = this;
+        _AudioSource.loop = true;
     }
 
     // Start is called before the first frame update
     void Start()
     {
         _Animator = GetComponent<Animator>();
+        _AudioSource.clip = Running;
     }
 
    
@@ -35,9 +45,24 @@ public class PlayerAnimation : MonoBehaviour
         if(Input.GetAxis("Horizontal") > 0.01f || Input.GetAxis("Horizontal") < -0.01f || Input.GetAxis("Vertical") > 0.01f || Input.GetAxis("Vertical") < -0.01f)
         {
             _Animator.SetBool("Run", true);
+
+            if (!StartRunning)
+            {
+                _AudioSource.Stop();
+                StartRunning = true;
+                
+                _AudioSource.Play();
+            }
+            
+
         }
         else
         {
+            if (StartRunning)
+            {
+                StartRunning = false;
+                _AudioSource.Stop();
+            }
             _Animator.SetBool("Run", false);
         }
 
@@ -128,4 +153,6 @@ public class PlayerAnimation : MonoBehaviour
             }
         }
     }
+
+    
 }
