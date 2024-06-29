@@ -22,6 +22,12 @@ public class Defence : MonoBehaviour
 
     public ParticleSystem ScratchParticleSystem;
 
+    public bool FixHeight;
+
+    private float desiredDistance = 1f; // Desired distance from the ground
+    public LayerMask groundLayer;      // Layer of the ground
+
+
     private void Start()
     {
         _Animator = GetComponent<Animator>();
@@ -36,6 +42,11 @@ public class Defence : MonoBehaviour
         }
 
         CheckIfDash("Dash");
+
+        //if (FixHeight)
+        //{
+        //    KeepDistance();
+        //}
     }
 
     public bool CheckIfDash(string tag, int layer = 1)
@@ -43,10 +54,10 @@ public class Defence : MonoBehaviour
         AnimatorStateInfo animState = _Animator.GetCurrentAnimatorStateInfo(layer);
         if (animState.IsTag(tag))
         {
-            //if (animState.normalizedTime > animState.length * 0.9f)
+            //if (animState.normalizedTime > animState.length * 1f)
             //{
-            //    _IsPlayingAttack = false;
-            //    return false;
+            //    FixHeight = false;
+            //    SetOnGround();
             //}
             IsDoingDash = true;
             IsInterupted = false;
@@ -65,11 +76,41 @@ public class Defence : MonoBehaviour
         }
     }
 
+    public void SetOnGround()
+    {
+        RaycastHit hit;
 
+        // Cast a ray downwards from the player's position
+        if (Physics.Raycast(transform.position, Vector3.down, out hit, 3, groundLayer) || Physics.Raycast(transform.position, Vector3.up, out hit, 3, groundLayer))
+        {
+            // Set the player's position to the ground level
+            Vector3 targetPosition = hit.point;
+            transform.position = new Vector3(transform.position.x, targetPosition.y, transform.position.z);
+        }
+    }
+
+    public void KeepDistance()
+    {
+        RaycastHit hit;
+
+        // Cast a ray downwards from the object's position
+        if (Physics.Raycast(playerTransform.position, Vector3.down, out hit, Mathf.Infinity, groundLayer))
+        {
+            // Calculate the current distance from the ground
+            float currentDistance = hit.distance;
+
+            // Calculate the difference needed to maintain the desired distance
+            float distanceDifference = desiredDistance - currentDistance;
+
+            // Adjust the object's position
+            playerTransform.position += Vector3.up * distanceDifference;
+        }
+    }
 
     public void SetDashTrue() 
     {
         IsDoingDash = true;
+        FixHeight = true;
     }
 
     public void SetDashFalse()
@@ -93,47 +134,41 @@ public class Defence : MonoBehaviour
 
     public IEnumerator Dash(float speed)
     {
-        FindObjectOfType<ThirdPersonController>().MoveSpeed = 0f;
-        FindObjectOfType<ThirdPersonController>().enabled = false;
+        var controller = FindObjectOfType<ThirdPersonController>();
+        controller.MoveSpeed = 0f;
+        controller.enabled = false;
 
         InterruptAim = true;
 
-
-        // Calculate dash distance based on speed and time
-        float dashDistance = speed * Time.deltaTime;
-
-        // Save the current position
-        Vector3 startPos = PlayerTransform.position;
-
-        // Erstellen des Richtungsvektors
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
-        Vector3 direction = new Vector3(moveHorizontal, 0.0f, moveVertical);
-        direction.Normalize();
+        Vector3 direction = new Vector3(moveHorizontal, 0.0f, moveVertical).normalized;
 
-        // Calculate target position based on forward direction and dash distance
-        Vector3 targetPos = PlayerTransform.position + direction * 100;
+        RaycastHit hit;
+        float dashDistance = 100f; // Fixed dash distance
+        Vector3 targetPos = PlayerTransform.position + direction * dashDistance;
+
+        // Perform a raycast to detect obstacles
+        if (Physics.Raycast(PlayerTransform.position, direction, out hit, dashDistance))
+        {
+            targetPos = hit.point; // Set target position to hit point
+        }
 
         LookAt(targetPos);
 
-        // Perform the dash
-        while (PlayerTransform.position != targetPos)
+        while (Vector3.Distance(PlayerTransform.position, targetPos) > 0.1f)
         {
             if (IsInterupted)
             {
                 yield break;
             }
 
-            LookAt(targetPos);
-
-            // Move towards the target position
             PlayerTransform.position = Vector3.MoveTowards(PlayerTransform.position, targetPos, speed * Time.deltaTime);
             yield return null;
         }
 
-
-        // Ensure that the object ends exactly at the target position
         PlayerTransform.position = targetPos;
+        controller.enabled = true;
     }
 
     private void LookAt(Vector3 targetPoint)
