@@ -1,3 +1,4 @@
+using FMCOLOR;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,8 @@ public class PostProcessingManager : MonoBehaviour
 {
     public Volume World;
     public Volume Bar;
+    public FMColor _FMColor;
+    public List<GameObject> LightGameObjects = new List<GameObject>();
 
     public static PostProcessingManager Instance;
 

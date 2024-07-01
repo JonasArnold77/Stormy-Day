@@ -1,3 +1,4 @@
+using FMCOLOR;
 using StarterAssets;
 using System.Collections;
 using System.Collections.Generic;
@@ -9,7 +10,8 @@ public class Teleporter : MonoBehaviour
 {
     public int KeyId;
     public bool IsDone;
-
+    public List<GameObject> LightGameObjects = new List<GameObject>();
+   
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player" && InventoryManager.Instance.QuestItems.Select(q => q.QuestItemID).Contains(KeyId) && IsDone == false)
@@ -33,7 +35,10 @@ public class Teleporter : MonoBehaviour
             yield return new WaitForSeconds(0.015f);
         }
 
+
         UIManager.Instance._DarknessPanel.GetComponent<Image>().color = new Color(UIManager.Instance._DarknessPanel.GetComponent<Image>().color.r, UIManager.Instance._DarknessPanel.GetComponent<Image>().color.g, UIManager.Instance._DarknessPanel.GetComponent<Image>().color.b, 1f);
+
+        yield return new WaitForSeconds(1f);
 
         FindObjectOfType<Attack>().playerTransform.position = new Vector3(445.929993f, 148.039993f, -250.720001f);
         FindObjectOfType<CameraFollow>().SetPosition();

@@ -229,8 +229,8 @@ MonoBehaviour:
           inWeight: 0
           outWeight: 0
         - serializedVersion: 3
-          time: 0.23868851
-          value: 0.5
+          time: 0.2764363
+          value: 0.6781821
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -238,8 +238,8 @@ MonoBehaviour:
           inWeight: 0
           outWeight: 0
         - serializedVersion: 3
-          time: 0.72918034
-          value: 0.51971865
+          time: 0.7260616
+          value: 0.78000045
           inSlope: -0.051754404
           outSlope: -0.051754404
           tangentMode: 0
@@ -292,7 +292,7 @@ MonoBehaviour:
     m_Value: {x: 0.5, y: 0.5}
   intensity:
     m_OverrideState: 1
-    m_Value: 0.335
+    m_Value: 0.18
   smoothness:
     m_OverrideState: 1
     m_Value: 0.608
@@ -348,13 +348,13 @@ MonoBehaviour:
   active: 1
   lift:
     m_OverrideState: 1
-    m_Value: {x: 1, y: 0.950538, z: 0.8479222, w: 0}
+    m_Value: {x: 1, y: 0.89860743, z: 0.8711048, w: 0}
   gamma:
     m_OverrideState: 1
-    m_Value: {x: 1, y: 0.9123815, z: 0.9222482, w: 0.037470516}
+    m_Value: {x: 1, y: 0.9855036, z: 0.8115339, w: 0.037470516}
   gain:
     m_OverrideState: 1
-    m_Value: {x: 1, y: 0.93152064, z: 0.7457545, w: 0.14988346}
+    m_Value: {x: 1, y: 0.9195604, z: 0.7521409, w: 0.14988346}
 --- !u!114 &-1848057667978067737
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -455,7 +455,7 @@ MonoBehaviour:
     m_Value: 0
   contrast:
     m_OverrideState: 1
-    m_Value: 14
+    m_Value: -2
   colorFilter:
     m_OverrideState: 0
     m_Value: {r: 1, g: 1, b: 1, a: 1}
@@ -464,7 +464,7 @@ MonoBehaviour:
     m_Value: 0
   saturation:
     m_OverrideState: 1
-    m_Value: 25
+    m_Value: 26
 --- !u!114 &4375477723816884236
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -480,10 +480,10 @@ MonoBehaviour:
   active: 1
   temperature:
     m_OverrideState: 1
-    m_Value: 68
+    m_Value: 75
   tint:
     m_OverrideState: 1
-    m_Value: 69
+    m_Value: 100
 --- !u!114 &5207722841520477261
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -496,7 +496,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97c23e3b12dc18c42a140437e53d3951, type: 3}
   m_Name: Tonemapping
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   mode:
     m_OverrideState: 1
     m_Value: 2
@@ -627,7 +627,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b2db86121404754db890f4c8dfe81b2, type: 3}
   m_Name: Bloom
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   skipIterations:
     m_OverrideState: 1
     m_Value: 1
