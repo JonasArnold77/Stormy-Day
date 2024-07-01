@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class UIManager : MonoBehaviour
     public EnemyStatusPanel _EnemyStatusPanel;
     public DialogueWindow _DialogueMenu;
     public KeySuggestionMenu _KeySuggestionMenu;
+    public DarknessPanel _DarknessPanel;
     
     public static UIManager Instance;
 
@@ -22,6 +24,9 @@ public class UIManager : MonoBehaviour
         _InventoryPanel = InventoryPanel.Instance;
         _DialogueMenu = DialogueWindow.Instance;
         _KeySuggestionMenu = KeySuggestionMenu.Instance;
+
+        _DarknessPanel.gameObject.SetActive(false);
+
 
         _KeySuggestionMenu.gameObject.SetActive(false);
         _DialogueMenu.gameObject.SetActive(false);
