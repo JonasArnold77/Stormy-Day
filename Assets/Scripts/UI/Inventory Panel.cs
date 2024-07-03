@@ -10,6 +10,7 @@ public class InventoryPanel : MonoBehaviour
     private CanvasGroup _canvasGroup;
     public RectTransform BreastArmorContent;
     public RectTransform LegArmorContent;
+    public RectTransform WeaponArmorContent;
 
     public Color EquippedColor;
     public Color NotEquippedColor;
@@ -66,6 +67,10 @@ public class InventoryPanel : MonoBehaviour
         {
             Destroy(child.gameObject);
         }
+        foreach (Transform child in WeaponArmorContent)
+        {
+            Destroy(child.gameObject);
+        }
     }
 
     private void LoadAllItems()
@@ -82,7 +87,11 @@ public class InventoryPanel : MonoBehaviour
             {
                 button = Instantiate(PrefabManager.Instance.ArmorUiItem, LegArmorContent);
             }
-            
+            else if (a.ArmorType == EArmorType.Sword)
+            {
+                button = Instantiate(PrefabManager.Instance.ArmorUiItem, WeaponArmorContent);
+            }
+
             button.GetComponentInChildren<TMP_Text>().text = a.ArmorName;
             button.GetComponent<Image>().sprite = a._Image;
 

@@ -6,5 +6,6 @@ public enum EArmorType
 {
     Head,
     Body,
-    Legs
+    Legs,
+    Sword
 }
