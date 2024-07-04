@@ -25,13 +25,11 @@ Material:
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
-  - N_F_EAL_ON
   - N_F_O_ON
   - N_F_RDC_ON
   - N_F_RELGI_ON
   - N_F_SS_ON
   - N_F_TRANSAFFSHA_ON
-  - N_F_TRANS_ON
   m_InvalidKeywords:
   - N_F_TRANSAFFSHA
   - _CUSTOMLIGHTDIRECTIONFOLLOWOBJECTROTATION_OFF
@@ -60,9 +58,9 @@ Material:
   m_LightmapFlags: 0
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 3000
+  m_CustomRenderQueue: -1
   stringTagMap:
-    RenderType: Transparent
+    RenderType: Opaque
   disabledShaderPasses: []
   m_LockedProperties: 
   m_SavedProperties:
@@ -185,8 +183,8 @@ Material:
     - _AlphaBaseCutout: 1
     - _AlphaClip: 0
     - _AlphaToMask: 0
-    - _BleModDest: 10
-    - _BleModSour: 5
+    - _BleModDest: 0
+    - _BleModSour: 1
     - _Blend: 0
     - _BlendModePreserveSpecular: 1
     - _BumpScale: 1
@@ -246,7 +244,7 @@ Material:
     - _N_F_COEDGL: 0
     - _N_F_DCS: 0
     - _N_F_DDMD: 0
-    - _N_F_EAL: 1
+    - _N_F_EAL: 0
     - _N_F_ESSAO: 0
     - _N_F_FR: 0
     - _N_F_GLO: 0
@@ -331,7 +329,7 @@ Material:
     - _SrcBlendAlpha: 1
     - _Surface: 0
     - _TEXMCOLINT: 1
-    - _TRANSMODE: 1
+    - _TRANSMODE: 0
     - _TexturePatternStyle: 0
     - _TransAffSha: 1
     - _TransparentThreshold: 0

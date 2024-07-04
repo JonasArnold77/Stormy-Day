@@ -11,6 +11,9 @@ public class QuestStep : MonoBehaviour
     public List<string> Dialogue = new List<string>();
     public List<GameObject> TargetEnemies = new List<GameObject>();
     public List<QuestItem> QuestItems = new List<QuestItem>();
+    public List<GameObject> ActivateAfterDoneObjects = new List<GameObject>();
+    public List<GameObject> DeactivateAfterDoneObjects = new List<GameObject>();
+    public List<QuestItem> QuestItemsAfterDialogue = new List<QuestItem>();
     public bool QuestStepIsActive;
 
     public bool DialogueIsDone;
@@ -29,6 +32,9 @@ public class QuestStep : MonoBehaviour
     private void Start()
     {
         PlayerTransfomr = FindObjectOfType<ThirdPersonController>().transform;
+
+        //ActivateAfterDoneObjects.ForEach(a => a.SetActive(false));
+        //DeactivateAfterDoneObjects.ForEach(a => a.SetActive(true));
     }
 
     private void Update()
@@ -80,6 +86,12 @@ public class QuestStep : MonoBehaviour
             else
             {
                 QuestItemsAreDone = true;
+            }
+
+            if(DialogueIsDone && EnemiesAreDone && QuestItemsAreDone)
+            {
+                ActivateAfterDoneObjects.ForEach(a => a.SetActive(true));
+                DeactivateAfterDoneObjects.ForEach(a => a.SetActive(false));
             }
         }  
     }
@@ -136,6 +148,9 @@ public class QuestStep : MonoBehaviour
 
         PlayerTransfomr.GetComponent<ThirdPersonController>().MoveSpeed = 6;
         UIManager.Instance._DialogueMenu.gameObject.SetActive(false);
+
+        InventoryManager.Instance.QuestItems.AddRange(QuestItemsAfterDialogue);
+
         DialogueIsDone = true;
     }
 }
