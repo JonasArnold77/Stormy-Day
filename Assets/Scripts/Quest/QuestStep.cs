@@ -10,10 +10,10 @@ public class QuestStep : MonoBehaviour
     public Transform QuestStepPlace;
     public List<string> Dialogue = new List<string>();
     public List<GameObject> TargetEnemies = new List<GameObject>();
-    public List<QuestItem> QuestItems = new List<QuestItem>();
+    public List<GameObject> QuestItems = new List<GameObject>();
     public List<GameObject> ActivateAfterDoneObjects = new List<GameObject>();
     public List<GameObject> DeactivateAfterDoneObjects = new List<GameObject>();
-    public List<QuestItem> QuestItemsAfterDialogue = new List<QuestItem>();
+    public List<GameObject> QuestItemsAfterDialogue = new List<GameObject>();
     public bool QuestStepIsActive;
 
     public bool DialogueIsDone;
@@ -101,13 +101,13 @@ public class QuestStep : MonoBehaviour
         bool AllAreTrue = true;
         foreach (var qo in QuestItems)
         {
-            if(!InventoryManager.Instance.QuestItems.Select(o => o.QuestItemID).ToList().Contains(qo.QuestItemID))
+            if(!InventoryManager.Instance.QuestItems.Contains(qo) && !InventoryManager.Instance.AllArmors.Select(q => q.gameObject).Contains(qo) && !InventoryManager.Instance.AllSkills.Contains(qo))
             {
                 AllAreTrue = false;
             }
         }
 
-        if (AllAreTrue)
+        if (AllAreTrue /*|| !QuestItems.Any(q => q != null)*/)
         {
             QuestItemsAreDone = true;
         }

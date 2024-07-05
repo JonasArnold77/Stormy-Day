@@ -30,7 +30,7 @@ public class AttackPoolMenu : MonoBehaviour
 
     public void InitializeMenu(EHitType type)
     {
-        List<AttackItem> myScriptableObjects = InventoryManager.Instance.AllSkills;
+        List<AttackItem> myScriptableObjects = InventoryManager.Instance.AllSkills.Select(s => s.GetComponent<AbilityLootObject>()._AttackItem).ToList();
         //List<AttackItem> myScriptableObjects = GetScriptableObjectsOfType<AttackItem>();
 
         foreach (Transform child in Content)

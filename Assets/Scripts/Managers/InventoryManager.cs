@@ -9,9 +9,9 @@ public class InventoryManager : MonoBehaviour
 {
     public GameObject ActualWeapon;
 
-    public List<AttackItem> AllSkills = new List<AttackItem>();
+    public List<GameObject> AllSkills = new List<GameObject>();
     public List<ArmorLootObject> AllArmors = new List<ArmorLootObject>();
-    public List<QuestItem> QuestItems = new List<QuestItem>();
+    public List<GameObject> QuestItems = new List<GameObject>();
 
     public static InventoryManager Instance;
 

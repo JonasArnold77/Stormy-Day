@@ -14,7 +14,7 @@ public class Teleporter : MonoBehaviour
    
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player" && InventoryManager.Instance.QuestItems.Select(q => q.QuestItemID).Contains(KeyId) && IsDone == false)
+        if (other.tag == "Player" && InventoryManager.Instance.QuestItems.Select(q => q.GetComponent<QuestItem>().QuestItemID).Contains(KeyId) && IsDone == false)
         {
             IsDone = true;
             StartCoroutine(TeleportCoroutine());

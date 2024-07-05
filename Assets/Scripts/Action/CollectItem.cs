@@ -41,7 +41,7 @@ public class CollectItem : MonoBehaviour
                 {
                     pivotElement.GetComponent<AbilityLootObject>()._AttackItem.AnimationObject = pivotElement.GetComponent<AbilityLootObject>().AnimationObject;
 
-                    InventoryManager.Instance.AllSkills.Add(pivotElement.GetComponent<AbilityLootObject>()._AttackItem);
+                    InventoryManager.Instance.AllSkills.Add(pivotElement);
 
                     ListOfCollectableItems.Remove(pivotElement);
                     pivotElement.transform.position = new Vector3(AnimationObjectOffset, 0,0);
@@ -54,12 +54,15 @@ public class CollectItem : MonoBehaviour
                 {
                     InventoryManager.Instance.AllArmors.Add(pivotElement.GetComponent<ArmorLootObject>());
                     ListOfCollectableItems.Remove(pivotElement);
-                    Destroy(pivotElement);
-                }else if (pivotElement.GetComponent<QuestItem>())
+                    pivotElement.SetActive(false);
+                    //Destroy(pivotElement);
+                }
+                else if (pivotElement.GetComponent<QuestItem>())
                 {
-                    InventoryManager.Instance.QuestItems.Add(pivotElement.GetComponent<QuestItem>());
+                    InventoryManager.Instance.QuestItems.Add(pivotElement);
                     ListOfCollectableItems.Remove(pivotElement);
-                    Destroy(pivotElement);
+                    pivotElement.SetActive(false);
+                    //Destroy(pivotElement);
                 }
             }
 

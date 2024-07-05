@@ -25,7 +25,7 @@ public class DoorOpen : MonoBehaviour
     {
         if(other.tag == "Player")
         {
-            if(InventoryManager.Instance.QuestItems.Select(q => q.QuestItemID).Contains(QuestItemKeyID))
+            if(InventoryManager.Instance.QuestItems.Select(q => q.GetComponent<QuestItem>().QuestItemID).Contains(QuestItemKeyID))
             {
                 //StartCoroutine(RotateOverTime(-90f, 2f, LeftDoor));
                 //StartCoroutine(RotateOverTime(90f, 2f, RightDoor));
