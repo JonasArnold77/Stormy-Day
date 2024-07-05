@@ -8,6 +8,8 @@ public class PlayerStatus : MonoBehaviour
     public int ActualHealth;
     public int TotalEndurance;
     public int ActualEndurance;
+    public int ActualMana;
+    public int TotalMana;
 
     private void Start()
     {
@@ -41,5 +43,15 @@ public class PlayerStatus : MonoBehaviour
     {
         ActualEndurance = ActualEndurance + amount;
         HealthAndEndurancePanel.Instance.SetActualEndurance((float)((float)ActualEndurance / (float)TotalEndurance));
+    }
+
+    public void ChangeMana(int amount)
+    {
+        ActualMana = ActualMana + amount;
+        if(ActualMana + amount > TotalMana)
+        {
+            ActualMana = TotalMana;
+        }
+        HealthAndEndurancePanel.Instance.SetActualMana((float)((float)ActualMana / (float)TotalMana));
     }
 }

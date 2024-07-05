@@ -17,7 +17,7 @@ public class StatusEffects : MonoBehaviour
 
     private void Update()
     {
-        if (!EffectIsActive)
+        if (!EffectIsActive && GetComponent<PlayerStatus>().ActualMana > 0)
         {
             if (Input.GetKeyDown((KeyCode)InputManager.Instance.GetInputActionFromControlInput(EControls.Effect1)))
             {
@@ -57,7 +57,13 @@ public class StatusEffects : MonoBehaviour
             WeaponManager.Instance.ActualWeapon.IceEffect.SetActive(true);
         }
 
-        yield return new WaitForSeconds(4);
+        while (GetComponent<PlayerStatus>().ActualMana >= 0)
+        {
+            GetComponent<PlayerStatus>().ChangeMana(-10);
+            yield return new WaitForSeconds(0.5f);
+        }
+
+        //yield return new WaitForSeconds(4);
 
         DeactivateEffect();
     }

@@ -7,6 +7,7 @@ public class HealthAndEndurancePanel : MonoBehaviour
 {
     public Image HealthBar;
     public Image EnduranceBar;
+    public Image ManaBar;
 
     public static HealthAndEndurancePanel Instance;
 
@@ -23,5 +24,10 @@ public class HealthAndEndurancePanel : MonoBehaviour
     public void SetActualEndurance(float value)
     {
         EnduranceBar.fillAmount = value;
+    }
+
+    public void SetActualMana(float value)
+    {
+        ManaBar.fillAmount = value;
     }
 }

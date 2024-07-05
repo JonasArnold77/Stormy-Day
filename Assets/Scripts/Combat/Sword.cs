@@ -81,7 +81,26 @@ public class Sword : MonoBehaviour
 
             BloodEffectObject = Instantiate(PrefabManager.Instance.DarkBloodEffect, position: collision.contacts[0].point, Quaternion.identity);
 
-
+            if(ComboManager.Instance.Combos.FirstOrDefault().Counter == 0)
+            {
+                FindObjectOfType<PlayerStatus>().ChangeMana(50);
+            }
+            else if (ComboManager.Instance.Combos.FirstOrDefault().Counter == 1)
+            {
+                FindObjectOfType<PlayerStatus>().ChangeMana(75);
+            }
+            else if (ComboManager.Instance.Combos.FirstOrDefault().Counter == 2)
+            {
+                FindObjectOfType<PlayerStatus>().ChangeMana(100);
+            }
+            else if (ComboManager.Instance.Combos.FirstOrDefault().Counter == 3)
+            {
+                FindObjectOfType<PlayerStatus>().ChangeMana(125);
+            }
+            else if (ComboManager.Instance.Combos.FirstOrDefault().Counter == 4)
+            {
+                FindObjectOfType<PlayerStatus>().ChangeMana(150);
+            }
 
             //StartCoroutine(Camera.main.GetComponent<CameraShake>().Shake(0.2f,0.3f));
 
