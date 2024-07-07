@@ -76,7 +76,7 @@ public class Attack : MonoBehaviour
             StartCoroutine(CalculateCombo());
         }
 
-        if (isDoingAttack && ActualEnemy != null && !FixedAim)
+        if (isDoingAttack && ActualEnemy != null && !FixedAim && !GetComponent<Defence>().IsDoingDash)
         {
             LookAt(ActualEnemy);
         }
