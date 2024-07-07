@@ -8,6 +8,8 @@ public class StatusEffects : MonoBehaviour
     public float StatusEffectDuration = 4;
     private bool EffectIsActive;
 
+    private Coroutine EffectCoroutine;
+
     public EStatusEffects ActualHitEffect;
 
     private void Start()
@@ -21,14 +23,27 @@ public class StatusEffects : MonoBehaviour
         {
             if (Input.GetKeyDown((KeyCode)InputManager.Instance.GetInputActionFromControlInput(EControls.Effect1)))
             {
-                StartCoroutine(DoEffectOverTime(EStatusEffects.Fire));
+                EffectCoroutine = StartCoroutine(DoEffectOverTime(EStatusEffects.Fire));
                 ActualHitEffect = EStatusEffects.Fire;
             }
             else if (Input.GetKeyDown((KeyCode)InputManager.Instance.GetInputActionFromControlInput(EControls.Effect2)))
             {
-                StartCoroutine(DoEffectOverTime(EStatusEffects.Ice));
+                EffectCoroutine = StartCoroutine(DoEffectOverTime(EStatusEffects.Ice));
                 ActualHitEffect = EStatusEffects.Ice;
             }
+
+            return;
+        }
+
+        if(EffectIsActive && WeaponManager.Instance.ActualWeapon.FireEffect.activeSelf && Input.GetKeyDown((KeyCode)InputManager.Instance.GetInputActionFromControlInput(EControls.Effect1)))
+        {
+            StopCoroutine(EffectCoroutine);
+            DeactivateEffect();
+        }
+        else if (WeaponManager.Instance.ActualWeapon.IceEffect.activeSelf && Input.GetKeyDown((KeyCode)InputManager.Instance.GetInputActionFromControlInput(EControls.Effect2)))
+        {
+            StopCoroutine(EffectCoroutine);
+            DeactivateEffect();
         }
     }
 
