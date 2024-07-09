@@ -115,7 +115,9 @@ public class Sword : MonoBehaviour
 
             PlayRandomSound();
 
-            collision.gameObject.GetComponent<EnemyHealth>().Health -= Damage;
+            var TotalDamage = Damage + FindObjectOfType<PlayerAnimation>().ActualAttackItem.Damage;
+
+            collision.gameObject.GetComponent<EnemyHealth>().Health -= TotalDamage;
 
             //if(collision.gameObject.GetComponent<EnemyHealth>().Health <= 0)
             //{
