@@ -35,6 +35,7 @@ public class StatusEffects : MonoBehaviour
             return;
         }
 
+        //Stop Effect
         if(EffectIsActive && WeaponManager.Instance.ActualWeapon.FireEffect.activeSelf && Input.GetKeyDown((KeyCode)InputManager.Instance.GetInputActionFromControlInput(EControls.Effect1)))
         {
             StopCoroutine(EffectCoroutine);
@@ -44,6 +45,22 @@ public class StatusEffects : MonoBehaviour
         {
             StopCoroutine(EffectCoroutine);
             DeactivateEffect();
+        }
+
+        //Switch Effect
+        if (EffectIsActive && WeaponManager.Instance.ActualWeapon.FireEffect.activeSelf && Input.GetKeyDown((KeyCode)InputManager.Instance.GetInputActionFromControlInput(EControls.Effect2)))
+        {
+            StopCoroutine(EffectCoroutine);
+            DeactivateEffect();
+            EffectCoroutine = StartCoroutine(DoEffectOverTime(EStatusEffects.Ice));
+            ActualHitEffect = EStatusEffects.Ice;
+        }
+        else if (WeaponManager.Instance.ActualWeapon.IceEffect.activeSelf && Input.GetKeyDown((KeyCode)InputManager.Instance.GetInputActionFromControlInput(EControls.Effect1)))
+        {
+            StopCoroutine(EffectCoroutine);
+            DeactivateEffect();
+            EffectCoroutine = StartCoroutine(DoEffectOverTime(EStatusEffects.Fire));
+            ActualHitEffect = EStatusEffects.Fire;
         }
     }
 
