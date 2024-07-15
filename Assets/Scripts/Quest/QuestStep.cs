@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class QuestStep : MonoBehaviour
 {
@@ -90,10 +91,35 @@ public class QuestStep : MonoBehaviour
 
             if(DialogueIsDone && EnemiesAreDone && QuestItemsAreDone)
             {
+                if (ActivateAfterDoneObjects.Count > 0 || DeactivateAfterDoneObjects.Count > 0)
+                {
+                    StartCoroutine(BlackScreenFade());
+                }
+                
+
                 ActivateAfterDoneObjects.ForEach(a => a.SetActive(true));
                 DeactivateAfterDoneObjects.ForEach(a => a.SetActive(false));
             }
         }  
+    }
+
+    public IEnumerator BlackScreenFade()
+    {
+        UIManager.Instance._DarknessPanel.gameObject.SetActive(true);
+        UIManager.Instance._DarknessPanel.GetComponent<Image>().color = new Color(UIManager.Instance._DarknessPanel.GetComponent<Image>().color.r, UIManager.Instance._DarknessPanel.GetComponent<Image>().color.g, UIManager.Instance._DarknessPanel.GetComponent<Image>().color.b, 1f);
+
+        FindObjectOfType<ThirdPersonController>().MoveSpeed = 0;
+
+        while (UIManager.Instance._DarknessPanel.GetComponent<Image>().color.a > 0.2f)
+        {
+            UIManager.Instance._DarknessPanel.GetComponent<Image>().color = new Color(UIManager.Instance._DarknessPanel.GetComponent<Image>().color.r, UIManager.Instance._DarknessPanel.GetComponent<Image>().color.g, UIManager.Instance._DarknessPanel.GetComponent<Image>().color.b, UIManager.Instance._DarknessPanel.GetComponent<Image>().color.a - 0.01f);
+            yield return new WaitForSeconds(0.015f);
+        }
+
+        FindObjectOfType<ThirdPersonController>().MoveSpeed = 6;
+
+        UIManager.Instance._DarknessPanel.GetComponent<Image>().color = new Color(UIManager.Instance._DarknessPanel.GetComponent<Image>().color.r, UIManager.Instance._DarknessPanel.GetComponent<Image>().color.g, UIManager.Instance._DarknessPanel.GetComponent<Image>().color.b, 0f);
+        UIManager.Instance._DarknessPanel.gameObject.SetActive(false);
     }
 
     private void WaitForQuetItemsAreCollected()
@@ -153,4 +179,6 @@ public class QuestStep : MonoBehaviour
 
         DialogueIsDone = true;
     }
+
+
 }

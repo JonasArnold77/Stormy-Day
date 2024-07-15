@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dca22b303aabf94592c818dc85b3eac, type: 3}
+  m_Name: Slice 1
+  m_EditorClassIdentifier: 
+  _Animation: {fileID: 7400000, guid: 7bdc3ac4db7b72d41a972e01420eb28a, type: 2}
+  AnimationObject: {fileID: 0}
+  Control: 1
+  Effect: 0
+  Type: 10
+  WeaponType: 0
+  StatusEffect: 0
+  Damage: 15
+  EnduranceCost: 25
+  Name: Fire Sword Attack
+  Description: A normal Sword Attack
+  Image: {fileID: 21300000, guid: 86b9cf2eae27db74e9046ab2e7b69f87, type: 3}
+  Level: 2
