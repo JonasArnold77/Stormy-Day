@@ -110,7 +110,7 @@ public class Attack : MonoBehaviour
 
         Vector3 direction = new Vector3();
 
-        if(ActualEnemy != null)
+        if(ActualEnemy != null && !ActualEnemy.GetComponent<EnemyAnimation>().IsDead)
         {
             direction = ActualEnemy.position - playerTransform.position;
 

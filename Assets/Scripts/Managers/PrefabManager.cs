@@ -6,6 +6,7 @@ public class PrefabManager : MonoBehaviour
 {
     public GameObject DarkBloodEffect;
     public RectTransform ArmorUiItem;
+    public GameObject QuestMarker;
 
     public static PrefabManager Instance;
 

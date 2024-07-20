@@ -9,6 +9,8 @@ using UnityEngine.UI;
 public class QuestStep : MonoBehaviour
 {
     public Transform QuestStepPlace;
+    public string QuestGiverName;
+
     public List<string> Dialogue = new List<string>();
     public List<GameObject> TargetEnemies = new List<GameObject>();
     public List<GameObject> QuestItems = new List<GameObject>();
@@ -30,6 +32,9 @@ public class QuestStep : MonoBehaviour
 
     private Transform PlayerTransfomr;
 
+    public GameObject QuestMarker;
+    public bool IsStarted;
+
     private void Start()
     {
         PlayerTransfomr = FindObjectOfType<ThirdPersonController>().transform;
@@ -40,6 +45,15 @@ public class QuestStep : MonoBehaviour
 
     private void Update()
     {
+        if (QuestStepIsActive && QuestStepPlace != null && !IsStarted)
+        {
+            QuestMarker = Instantiate(PrefabManager.Instance.QuestMarker, new Vector3(QuestStepPlace.position.x, QuestStepPlace.position.y + 2, QuestStepPlace.position.z), Quaternion.identity);
+            IsStarted = true;
+        }else if (!QuestStepIsActive && IsStarted)
+        {
+            Destroy(QuestMarker);
+        }
+
         if (QuestStepIsActive)
         {
             if (QuestStepPlace != null)
@@ -56,6 +70,7 @@ public class QuestStep : MonoBehaviour
                     if (Input.GetKeyDown((KeyCode)InputManager.Instance.GetInputActionFromControlInput(EControls.Collect)))
                     {
                         StartCoroutine(DoDialogueCoroutine());
+                        UIManager.Instance._DialogueMenu.NameText.text = QuestGiverName;
                         PlayerTransfomr.GetComponent<ThirdPersonController>().MoveSpeed = 0;
                         UIManager.Instance._DialogueMenu.gameObject.SetActive(true);
                     }
@@ -161,6 +176,7 @@ public class QuestStep : MonoBehaviour
         KeySuggestionMenu.Instance.gameObject.SetActive(false);
 
         DialogueIsStarted = true;
+
         for (int i = 0; i<Dialogue.Count; i++)
         {
             //DialogueWindow.Instance.Text.text = Dialogue[i];
