@@ -79,6 +79,10 @@ public class Sword : MonoBehaviour
 
             //BloodEffectObject.SetActive(true);
 
+            
+            FindObjectOfType<StressReceiver>().InduceStress(0.4f);
+         
+
             BloodEffectObject = Instantiate(PrefabManager.Instance.DarkBloodEffect, position: collision.contacts[0].point, Quaternion.identity);
 
             if (!FireEffect.activeSelf && !IceEffect.activeSelf)
