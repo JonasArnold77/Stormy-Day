@@ -129,6 +129,8 @@ public class Defence : MonoBehaviour
         FindObjectOfType<ThirdPersonController>().MoveSpeed = 6f;
         FindObjectOfType<ThirdPersonController>().enabled = true;
 
+        WeaponManager.Instance.GetWeaponComponent(EHitType.Sword).GetComponent<Collider>().enabled = false;
+
         InterruptAim = false;
     }
 
@@ -166,6 +168,8 @@ public class Defence : MonoBehaviour
             PlayerTransform.position = Vector3.MoveTowards(PlayerTransform.position, targetPos, speed * Time.deltaTime);
             yield return null;
         }
+
+        WeaponManager.Instance.GetWeaponComponent(EHitType.Sword).GetComponent<Collider>().enabled = false;
 
         PlayerTransform.position = targetPos;
         controller.enabled = true;
