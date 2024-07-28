@@ -73,6 +73,10 @@ public class PlayerAnimation : MonoBehaviour
 
     public IEnumerator PlayNextAttack(EControls control)
     {
+        if(UIManager.Instance._ComboPanel.isActiveAndEnabled == true || UIManager.Instance._AttackPoolMenu.isActiveAndEnabled)
+        {
+            yield break;
+        }
         //if (CheckIfAttackIsPlaying())
         //{
             yield return new WaitUntil(() => !_IsPlayingAttack);
@@ -80,7 +84,7 @@ public class PlayerAnimation : MonoBehaviour
         var combo = ComboManager.Instance.Combos.Where(c => c.InputType == control && c.WeaponType == WeaponManager.Instance.ActualWeaponType).FirstOrDefault();
         if (combo.ComboList != null && combo.ComboList.Count > 0)
         {
-            _Animator.Play(combo.ComboList[combo.Counter]._Animation.name);
+            _Animator.Play(combo.ComboList[combo.Counter]._Animation.name);     
 
             StartCoroutine(WaitForEndOfAnimation(combo.ComboList[combo.Counter]));
 
