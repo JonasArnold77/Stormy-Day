@@ -81,7 +81,7 @@ namespace PixelCrushers.QuestMachine
                 if (image == null)
                 {
                     image = new Texture2D(1, 1);
-                    Debug.LogError("Quest Machine: The file Assets/Editor Default Resources/" + imagePath + " is missing.");
+                    //Debug.LogError("Quest Machine: The file Assets/Editor Default Resources/" + imagePath + " is missing.");
                 }
             }
             return image;

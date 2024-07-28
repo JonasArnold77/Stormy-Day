@@ -11,6 +11,8 @@ public class QuestStep : MonoBehaviour
     public Transform QuestStepPlace;
     public string QuestGiverName;
 
+    public AudioClip DialogueClip;
+
     public List<string> Dialogue = new List<string>();
     public List<GameObject> TargetEnemies = new List<GameObject>();
     public List<GameObject> QuestItems = new List<GameObject>();
@@ -176,6 +178,7 @@ public class QuestStep : MonoBehaviour
         KeySuggestionMenu.Instance.gameObject.SetActive(false);
 
         DialogueIsStarted = true;
+        SoundManager.Instance.PlaySound(DialogueClip);
 
         for (int i = 0; i<Dialogue.Count; i++)
         {
@@ -193,6 +196,7 @@ public class QuestStep : MonoBehaviour
 
         InventoryManager.Instance.QuestItems.AddRange(QuestItemsAfterDialogue);
 
+        SoundManager.Instance.StopSound();
         DialogueIsDone = true;
     }
 

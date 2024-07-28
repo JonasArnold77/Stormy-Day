@@ -68,23 +68,23 @@ public class AttackPoolMenu : MonoBehaviour
         }
     }
 
-    public List<T> GetScriptableObjectsOfType<T>() where T : ScriptableObject
-    {
-        List<T> scriptableObjects = new List<T>();
+    //public List<T> GetScriptableObjectsOfType<T>() where T : ScriptableObject
+    //{
+    //    List<T> scriptableObjects = new List<T>();
 
-        // Suche nach allen Scriptable Objects im Projekt
-        string[] guids = AssetDatabase.FindAssets("t:" + typeof(T).Name);
+    //    // Suche nach allen Scriptable Objects im Projekt
+    //    string[] guids = AssetDatabase.FindAssets("t:" + typeof(T).Name);
 
-        foreach (string guid in guids)
-        {
-            string path = AssetDatabase.GUIDToAssetPath(guid);
-            T scriptableObject = AssetDatabase.LoadAssetAtPath<T>(path);
-            if (scriptableObject != null)
-            {
-                scriptableObjects.Add(scriptableObject);
-            }
-        }
+    //    foreach (string guid in guids)
+    //    {
+    //        string path = AssetDatabase.GUIDToAssetPath(guid);
+    //        T scriptableObject = AssetDatabase.LoadAssetAtPath<T>(path);
+    //        if (scriptableObject != null)
+    //        {
+    //            scriptableObjects.Add(scriptableObject);
+    //        }
+    //    }
 
-        return scriptableObjects;
-    }
+    //    return scriptableObjects;
+    //}
 }

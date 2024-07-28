@@ -10,11 +10,11 @@ public class CheckForWall : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter(Collision collision)
-    {
-        //if (FindObjectOfType<Defence>().IsDoingDash)
-        //{
-            StopCoroutine(FindObjectOfType<Defence>().DashCoroutine);
-        //}
-    }
+    //private void OnTriggerEnter(Collision collision)
+    //{
+    //    //if (FindObjectOfType<Defence>().IsDoingDash)
+    //    //{
+    //        StopCoroutine(FindObjectOfType<Defence>().DashCoroutine);
+    //    //}
+    //}
 }

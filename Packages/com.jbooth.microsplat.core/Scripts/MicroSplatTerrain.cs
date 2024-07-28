@@ -12,8 +12,8 @@ using System;
 
 namespace JBooth.MicroSplat
 {
-   [ExecuteInEditMode]
-   [DisallowMultipleComponent]
+    //[ExecuteInEditMode]
+    [DisallowMultipleComponent]
    public class MicroSplatTerrain : MicroSplatObject
    {
       public delegate void MaterialSyncAll();

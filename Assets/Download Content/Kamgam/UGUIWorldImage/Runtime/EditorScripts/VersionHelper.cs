@@ -75,6 +75,7 @@ namespace Kamgam.UGUIWorldImage
 
         public static void SetInstalledVersion(Version version)
         {
+            return;
             if (version == null)
                 return;
 
@@ -118,7 +119,7 @@ namespace Kamgam.UGUIWorldImage
             // fix empty dir path
             if (string.IsNullOrEmpty(dir))
             {
-                dir = "Assets/";
+                dir = "Assets/Download Content/";
             }
 
             // Fix missing ending slash
