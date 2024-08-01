@@ -19,6 +19,22 @@ public class StatusEffects : MonoBehaviour
 
     private void Update()
     {
+        if (WeaponManager.Instance.ActualWeapon.FireEffect.activeSelf)
+        {
+            HealthAndEndurancePanel.Instance.FireSymbol.color = Color.yellow;
+            HealthAndEndurancePanel.Instance.IceSymbol.color = Color.white;
+        }
+        else if (WeaponManager.Instance.ActualWeapon.IceEffect.activeSelf)
+        {
+            HealthAndEndurancePanel.Instance.FireSymbol.color = Color.white;
+            HealthAndEndurancePanel.Instance.IceSymbol.color = Color.yellow;
+        }
+        else
+        {
+            HealthAndEndurancePanel.Instance.FireSymbol.color = Color.white;
+            HealthAndEndurancePanel.Instance.IceSymbol.color = Color.white;
+        }
+
         if (!EffectIsActive && GetComponent<PlayerStatus>().ActualMana > 0)
         {
             if (Input.GetKeyDown((KeyCode)InputManager.Instance.GetInputActionFromControlInput(EControls.Effect1)))

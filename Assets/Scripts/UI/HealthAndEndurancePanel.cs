@@ -9,6 +9,9 @@ public class HealthAndEndurancePanel : MonoBehaviour
     public Image EnduranceBar;
     public Image ManaBar;
 
+    public Image FireSymbol;
+    public Image IceSymbol;
+
     public static HealthAndEndurancePanel Instance;
 
     private void Start()
