@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [Serializable]
@@ -14,7 +15,7 @@ public class Combo
     {
         if(Counter == ComboList.Count - 1)
         {
-            Counter = 0;
+            Counter = 0; 
         }
         else
         {

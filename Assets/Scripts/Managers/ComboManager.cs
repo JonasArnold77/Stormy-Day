@@ -29,6 +29,17 @@ public class ComboManager : MonoBehaviour
         ComboCounter = 0;
     }
 
+    private void Update()
+    {
+        foreach (var c in Combos.FirstOrDefault().ComboList.ToList())
+        {
+            if (c == null)
+            {
+                Combos.FirstOrDefault().ComboList.Remove(c);
+            }
+        }
+    }
+
     public void CheckForSuperCombo(EControls control)
     {
         actualSuperCombosInRace = SuperCombos.Where(s => s.InputList[s.Counter] == control).ToList();
