@@ -1,6 +1,9 @@
+using StarterAssets;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerStatus : MonoBehaviour
 {
@@ -36,6 +39,12 @@ public class PlayerStatus : MonoBehaviour
     public void ChangeHealth(int amount)
     {
         ActualHealth = ActualHealth + amount;
+
+        if (ActualHealth <= 0)
+        {
+            StartCoroutine(DoDeathOfPlayer());
+        }
+
         HealthAndEndurancePanel.Instance.SetActualHealth((float)((float)ActualHealth/(float)TotalHealth));
     }
 
@@ -53,5 +62,33 @@ public class PlayerStatus : MonoBehaviour
             ActualMana = TotalMana;
         }
         HealthAndEndurancePanel.Instance.SetActualMana((float)((float)ActualMana / (float)TotalMana));
+    }
+
+    private IEnumerator DoDeathOfPlayer()
+    {
+        GetComponent<Attack>().playerTransform.position = new Vector3(382.720001f, 149.660004f, -211.759995f);
+        FindObjectsOfType<FollowPalyer>().ToList().ForEach(e => e.transform.position = e.OriginalPosition);
+
+        var o = FindObjectsOfType<FollowPalyer>().ToList();
+
+        ActualHealth = TotalHealth;
+        ActualEndurance = TotalEndurance;
+        ActualMana = TotalMana;
+
+        UIManager.Instance._DarknessPanel.gameObject.SetActive(true);
+        UIManager.Instance._DarknessPanel.GetComponent<Image>().color = new Color(UIManager.Instance._DarknessPanel.GetComponent<Image>().color.r, UIManager.Instance._DarknessPanel.GetComponent<Image>().color.g, UIManager.Instance._DarknessPanel.GetComponent<Image>().color.b, 1f);
+
+        FindObjectOfType<ThirdPersonController>().MoveSpeed = 0;
+
+        while (UIManager.Instance._DarknessPanel.GetComponent<Image>().color.a > 0.2f)
+        {
+            UIManager.Instance._DarknessPanel.GetComponent<Image>().color = new Color(UIManager.Instance._DarknessPanel.GetComponent<Image>().color.r, UIManager.Instance._DarknessPanel.GetComponent<Image>().color.g, UIManager.Instance._DarknessPanel.GetComponent<Image>().color.b, UIManager.Instance._DarknessPanel.GetComponent<Image>().color.a - 0.01f);
+            yield return new WaitForSeconds(0.015f);
+        }
+
+        FindObjectOfType<ThirdPersonController>().MoveSpeed = 6;
+
+        UIManager.Instance._DarknessPanel.GetComponent<Image>().color = new Color(UIManager.Instance._DarknessPanel.GetComponent<Image>().color.r, UIManager.Instance._DarknessPanel.GetComponent<Image>().color.g, UIManager.Instance._DarknessPanel.GetComponent<Image>().color.b, 0f);
+        UIManager.Instance._DarknessPanel.gameObject.SetActive(false);
     }
 }

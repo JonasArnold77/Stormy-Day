@@ -8,7 +8,7 @@ public class FollowPalyer : MonoBehaviour
     private Transform player;
     private NavMeshAgent agent;
 
-    private Vector3 OriginalPosition;
+    public Vector3 OriginalPosition;
 
     // Start is called before the first frame update
     void Start()
