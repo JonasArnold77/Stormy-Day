@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8dca22b303aabf94592c818dc85b3eac, type: 3}
   m_Name: Spinning Sword 3
   m_EditorClassIdentifier: 
-  _Animation: {fileID: 7400000, guid: 9b7d96b623008a14ba4f74c08fe78dce, type: 2}
+  _Animation: {fileID: 7400000, guid: 5b811ef7bfce6be47b7e94f00aefbaa3, type: 2}
+  AnimationObject: {fileID: 0}
   Control: 1
   Effect: 0
   Type: 10

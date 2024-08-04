@@ -8,7 +8,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Sword Attack 1
-  m_Speed: 1.4
+  m_Speed: 1.23
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 2903464084259956959}
@@ -157,7 +157,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Spinning Sword Attack
-  m_Speed: 1.4
+  m_Speed: 1.23
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 8046805702881366813}
@@ -312,7 +312,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Spinning Sword Attack 2
-  m_Speed: 1.4
+  m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -2948906850168751994}
@@ -407,7 +407,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Slice 2
-  m_Speed: 1.4
+  m_Speed: 1.23
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -2656506417607960029}
@@ -557,7 +557,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Sword Hit From Above
-  m_Speed: 1.4
+  m_Speed: 1.23
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 4450870636531102434}
@@ -1098,7 +1098,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Slice 1
-  m_Speed: 1.4
+  m_Speed: 1.23
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 612334505729116288}
@@ -1247,7 +1247,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Spinning Sword 3
-  m_Speed: 1.4
+  m_Speed: 1.23
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -6168007543481545560}
