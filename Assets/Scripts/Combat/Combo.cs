@@ -23,6 +23,8 @@ public class Combo
         }
     }
 
+    
+
     public void ResetCounter()
     {
         Counter = 0;
