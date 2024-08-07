@@ -43,6 +43,7 @@ public class PlayerStatus : MonoBehaviour
         if (ActualHealth <= 0)
         {
             StartCoroutine(DoDeathOfPlayer());
+            GetComponent<Attack>().playerTransform.position = new Vector3(382f, 149f, -211f);
         }
 
         HealthAndEndurancePanel.Instance.SetActualHealth((float)((float)ActualHealth/(float)TotalHealth));
@@ -66,7 +67,7 @@ public class PlayerStatus : MonoBehaviour
 
     private IEnumerator DoDeathOfPlayer()
     {
-        GetComponent<Attack>().playerTransform.position = new Vector3(382.720001f, 149.660004f, -211.759995f);
+        
         FindObjectsOfType<FollowPalyer>().ToList().ForEach(e => e.transform.position = e.OriginalPosition);
 
         var o = FindObjectsOfType<FollowPalyer>().ToList();
@@ -80,15 +81,14 @@ public class PlayerStatus : MonoBehaviour
 
         FindObjectOfType<ThirdPersonController>().MoveSpeed = 0;
 
-        while (UIManager.Instance._DarknessPanel.GetComponent<Image>().color.a > 0.2f)
-        {
-            UIManager.Instance._DarknessPanel.GetComponent<Image>().color = new Color(UIManager.Instance._DarknessPanel.GetComponent<Image>().color.r, UIManager.Instance._DarknessPanel.GetComponent<Image>().color.g, UIManager.Instance._DarknessPanel.GetComponent<Image>().color.b, UIManager.Instance._DarknessPanel.GetComponent<Image>().color.a - 0.01f);
-            yield return new WaitForSeconds(0.015f);
-        }
+        yield return new WaitForSeconds(3);
 
         FindObjectOfType<ThirdPersonController>().MoveSpeed = 6;
 
         UIManager.Instance._DarknessPanel.GetComponent<Image>().color = new Color(UIManager.Instance._DarknessPanel.GetComponent<Image>().color.r, UIManager.Instance._DarknessPanel.GetComponent<Image>().color.g, UIManager.Instance._DarknessPanel.GetComponent<Image>().color.b, 0f);
         UIManager.Instance._DarknessPanel.gameObject.SetActive(false);
+
+        GetComponent<Attack>().playerTransform.position = new Vector3(382f, 149f, -211f);
+        FindObjectOfType<CameraFollow>().SetPosition();
     }
 }
