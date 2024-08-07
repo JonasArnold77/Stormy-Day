@@ -10,7 +10,6 @@ public class Teleporter : MonoBehaviour
 {
     public int KeyId;
     public bool IsDone;
-    public List<GameObject> LightGameObjects = new List<GameObject>();
    
     private void OnTriggerEnter(Collider other)
     {
@@ -56,7 +55,10 @@ public class Teleporter : MonoBehaviour
 
         FindObjectOfType<ThirdPersonController>().MoveSpeed = 6;
 
-        
+        PostProcessingManager.Instance.LightGameObjects.ForEach(l => l.SetActive(false));
+        PostProcessingManager.Instance._FMColor.enabled = false;
+        StartCoroutine(PostProcessingManager.Instance.ActivateVolume(PostProcessingManager.Instance.Bar, 0.83f));
+        StartCoroutine(PostProcessingManager.Instance.DeactivateVolume(PostProcessingManager.Instance.World));
 
         UIManager.Instance._DarknessPanel.GetComponent<Image>().color = new Color(UIManager.Instance._DarknessPanel.GetComponent<Image>().color.r, UIManager.Instance._DarknessPanel.GetComponent<Image>().color.g, UIManager.Instance._DarknessPanel.GetComponent<Image>().color.b, 0f);
         UIManager.Instance._DarknessPanel.gameObject.SetActive(false);
