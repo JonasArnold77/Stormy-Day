@@ -10,7 +10,15 @@ public class Teleporter : MonoBehaviour
 {
     public int KeyId;
     public bool IsDone;
-   
+
+    private void Start()
+    {
+        PostProcessingManager.Instance.LightGameObjects.ForEach(l => l.SetActive(false));
+        PostProcessingManager.Instance._FMColor.enabled = false;
+        StartCoroutine(PostProcessingManager.Instance.ActivateVolume(PostProcessingManager.Instance.Bar, 0.83f));
+        StartCoroutine(PostProcessingManager.Instance.DeactivateVolume(PostProcessingManager.Instance.World));
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player" && InventoryManager.Instance.QuestItems.Select(q => q.GetComponent<QuestItem>().QuestItemID).Contains(KeyId) && IsDone == false)
@@ -43,7 +51,8 @@ public class Teleporter : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
 
-        
+        PostProcessingManager.Instance.LightGameObjects.ForEach(l => l.SetActive(true));
+        PostProcessingManager.Instance._FMColor.enabled = true;
         StartCoroutine(PostProcessingManager.Instance.ActivateVolume(PostProcessingManager.Instance.World, 0.83f));
         StartCoroutine(PostProcessingManager.Instance.DeactivateVolume(PostProcessingManager.Instance.Bar));
 
@@ -55,10 +64,7 @@ public class Teleporter : MonoBehaviour
 
         FindObjectOfType<ThirdPersonController>().MoveSpeed = 6;
 
-        PostProcessingManager.Instance.LightGameObjects.ForEach(l => l.SetActive(false));
-        PostProcessingManager.Instance._FMColor.enabled = false;
-        StartCoroutine(PostProcessingManager.Instance.ActivateVolume(PostProcessingManager.Instance.Bar, 0.83f));
-        StartCoroutine(PostProcessingManager.Instance.DeactivateVolume(PostProcessingManager.Instance.World));
+        
 
         UIManager.Instance._DarknessPanel.GetComponent<Image>().color = new Color(UIManager.Instance._DarknessPanel.GetComponent<Image>().color.r, UIManager.Instance._DarknessPanel.GetComponent<Image>().color.g, UIManager.Instance._DarknessPanel.GetComponent<Image>().color.b, 0f);
         UIManager.Instance._DarknessPanel.gameObject.SetActive(false);

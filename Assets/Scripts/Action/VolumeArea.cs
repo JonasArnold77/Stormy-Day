@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class VolumeArea : MonoBehaviour
 {
-    
-
     private void OnTriggerEnter(Collider other)
     {
         if(other.tag == "Player")
