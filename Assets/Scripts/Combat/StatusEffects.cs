@@ -8,6 +8,8 @@ public class StatusEffects : MonoBehaviour
     public float StatusEffectDuration = 4;
     private bool EffectIsActive;
 
+    public bool IsDoingAttackItemEffect;
+
     private Coroutine EffectCoroutine;
 
     public EStatusEffects ActualHitEffect;
@@ -19,6 +21,31 @@ public class StatusEffects : MonoBehaviour
 
     private void Update()
     {
+        if (!EffectIsActive && FindObjectOfType<PlayerAnimation>().ActualAttackItem != null && FindObjectOfType<PlayerAnimation>().ActualAttackItem.StatusEffect == EStatusEffects.Fire)
+        {
+            WeaponManager.Instance.ActualWeapon.FireEffect.SetActive(true);
+            WeaponManager.Instance.ActualWeapon.IceEffect.SetActive(false);
+            ActualHitEffect = EStatusEffects.Fire;
+            IsDoingAttackItemEffect = true;
+            EffectIsActive = true;
+        }
+        else if (!EffectIsActive && FindObjectOfType<PlayerAnimation>().ActualAttackItem != null && FindObjectOfType<PlayerAnimation>().ActualAttackItem.StatusEffect == EStatusEffects.Ice)
+        {
+            WeaponManager.Instance.ActualWeapon.FireEffect.SetActive(false);
+            WeaponManager.Instance.ActualWeapon.IceEffect.SetActive(true);
+            ActualHitEffect = EStatusEffects.Ice;
+            IsDoingAttackItemEffect = true;
+            EffectIsActive = true;
+        }
+        else if (IsDoingAttackItemEffect && FindObjectOfType<PlayerAnimation>().ActualAttackItem == null || FindObjectOfType<PlayerAnimation>().ActualAttackItem?.StatusEffect == EStatusEffects.None)
+        {
+            WeaponManager.Instance.ActualWeapon.FireEffect.SetActive(false);
+            WeaponManager.Instance.ActualWeapon.IceEffect.SetActive(false);
+            ActualHitEffect = EStatusEffects.None;
+            IsDoingAttackItemEffect = false;
+            EffectIsActive = false;
+        }
+
         if (WeaponManager.Instance.ActualWeapon.FireEffect.activeSelf)
         {
             HealthAndEndurancePanel.Instance.FireSymbol.color = Color.yellow;
@@ -33,6 +60,7 @@ public class StatusEffects : MonoBehaviour
         {
             HealthAndEndurancePanel.Instance.FireSymbol.color = Color.white;
             HealthAndEndurancePanel.Instance.IceSymbol.color = Color.white;
+            EffectIsActive = false;
         }
 
         if (!EffectIsActive && GetComponent<PlayerStatus>().ActualMana > 0)
@@ -52,19 +80,19 @@ public class StatusEffects : MonoBehaviour
         }
 
         //Stop Effect
-        if(EffectIsActive && WeaponManager.Instance.ActualWeapon.FireEffect.activeSelf && Input.GetKeyDown((KeyCode)InputManager.Instance.GetInputActionFromControlInput(EControls.Effect1)))
+        if(EffectCoroutine != null && EffectIsActive && WeaponManager.Instance.ActualWeapon.FireEffect.activeSelf && Input.GetKeyDown((KeyCode)InputManager.Instance.GetInputActionFromControlInput(EControls.Effect1)))
         {
             StopCoroutine(EffectCoroutine);
             DeactivateEffect();
         }
-        else if (WeaponManager.Instance.ActualWeapon.IceEffect.activeSelf && Input.GetKeyDown((KeyCode)InputManager.Instance.GetInputActionFromControlInput(EControls.Effect2)))
+        else if (EffectCoroutine != null && EffectIsActive && WeaponManager.Instance.ActualWeapon.IceEffect.activeSelf && Input.GetKeyDown((KeyCode)InputManager.Instance.GetInputActionFromControlInput(EControls.Effect2)))
         {
             StopCoroutine(EffectCoroutine);
             DeactivateEffect();
         }
 
         //Switch Effect
-        if (EffectIsActive && WeaponManager.Instance.ActualWeapon.FireEffect.activeSelf && Input.GetKeyDown((KeyCode)InputManager.Instance.GetInputActionFromControlInput(EControls.Effect2)))
+        if (EffectIsActive && !IsDoingAttackItemEffect && WeaponManager.Instance.ActualWeapon.FireEffect.activeSelf && Input.GetKeyDown((KeyCode)InputManager.Instance.GetInputActionFromControlInput(EControls.Effect2)))
         {
             StopCoroutine(EffectCoroutine);
             DeactivateEffect();
@@ -86,10 +114,16 @@ public class StatusEffects : MonoBehaviour
         if (effect == EStatusEffects.Fire)
         {
             WeaponManager.Instance.ActualWeapon.FireEffect.SetActive(true);
+            WeaponManager.Instance.ActualWeapon.IceEffect.SetActive(false);
+            ActualHitEffect = EStatusEffects.Fire;
+            EffectIsActive = true;
         }
         else if (effect == EStatusEffects.Ice)
         {
+            WeaponManager.Instance.ActualWeapon.FireEffect.SetActive(false);
             WeaponManager.Instance.ActualWeapon.IceEffect.SetActive(true);
+            ActualHitEffect = EStatusEffects.Ice;
+            EffectIsActive = true;
         }
     }
 
@@ -107,6 +141,20 @@ public class StatusEffects : MonoBehaviour
 
         while (GetComponent<PlayerStatus>().ActualMana >= 0)
         {
+            //if (IsDoingAttackItemEffect)
+            //{
+                yield return new WaitUntil(() => !IsDoingAttackItemEffect);
+                if (effect == EStatusEffects.Fire)
+                {
+                    WeaponManager.Instance.ActualWeapon.FireEffect.SetActive(true);
+                    WeaponManager.Instance.ActualWeapon.IceEffect.SetActive(false);
+                }
+                else if (effect == EStatusEffects.Ice)
+                {
+                    WeaponManager.Instance.ActualWeapon.IceEffect.SetActive(true);
+                    WeaponManager.Instance.ActualWeapon.FireEffect.SetActive(false);
+            }
+            //}
             GetComponent<PlayerStatus>().ChangeMana(-10);
             yield return new WaitForSeconds(0.5f);
         }

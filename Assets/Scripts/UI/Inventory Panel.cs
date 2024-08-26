@@ -75,7 +75,7 @@ public class InventoryPanel : MonoBehaviour
 
     private void LoadAllItems()
     {
-        foreach (var a in InventoryManager.Instance.AllArmors)
+        foreach (var a in InventoryManager.Instance.AllArmors)  
         {
             RectTransform button = new RectTransform();
             

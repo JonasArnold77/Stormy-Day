@@ -85,7 +85,7 @@ public class Sword : MonoBehaviour
 
             BloodEffectObject = Instantiate(PrefabManager.Instance.DarkBloodEffect, position: collision.contacts[0].point, Quaternion.identity);
 
-            if (!FireEffect.activeSelf && !IceEffect.activeSelf)
+            if ((!FireEffect.activeSelf && !IceEffect.activeSelf) || FindObjectOfType<StatusEffects>().IsDoingAttackItemEffect)
             {
                 if (ComboManager.Instance.Combos.FirstOrDefault().Counter == 0)
                 {
