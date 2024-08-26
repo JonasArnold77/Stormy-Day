@@ -46,6 +46,9 @@ public class StatusEffects : MonoBehaviour
             EffectIsActive = false;
         }
 
+        //Remove for unlock Elemental from inventory
+        return;
+
         if (WeaponManager.Instance.ActualWeapon.FireEffect.activeSelf)
         {
             HealthAndEndurancePanel.Instance.FireSymbol.color = Color.yellow;
@@ -143,7 +146,16 @@ public class StatusEffects : MonoBehaviour
         {
             //if (IsDoingAttackItemEffect)
             //{
+
+            if (IsDoingAttackItemEffect)
+            {
                 yield return new WaitUntil(() => !IsDoingAttackItemEffect);
+            }
+
+            yield return new WaitUntil(() => !IsDoingAttackItemEffect);
+
+                
+                
                 if (effect == EStatusEffects.Fire)
                 {
                     WeaponManager.Instance.ActualWeapon.FireEffect.SetActive(true);
