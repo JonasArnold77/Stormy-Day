@@ -30,6 +30,21 @@ public class WeaponManager : MonoBehaviour
         DeactivateAllColliders();
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown((KeyCode)InputManager.Instance.GetInputActionFromControlInput(EControls.SwitchWeapon)))
+        {
+            if (ActualWeaponType == EWeaponType.OneHanded)
+            {
+                ActualWeaponType = EWeaponType.Pistol;
+            }
+            else
+            {
+                ActualWeaponType = EWeaponType.OneHanded;
+            }
+        }
+    }
+
     private void DeactivateAllColliders()
     {
         RightFist.GetComponent<Collider>().enabled = false;

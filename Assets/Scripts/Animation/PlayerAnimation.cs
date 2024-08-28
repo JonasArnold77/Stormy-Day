@@ -18,6 +18,8 @@ public class PlayerAnimation : MonoBehaviour
 
     public AudioSource _AudioSource;
 
+    public Transform PlayerTransform;
+
     public AudioClip Running;
     public AudioClip RunningInWater;
 
@@ -42,33 +44,81 @@ public class PlayerAnimation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetAxis("Horizontal") > 0.01f || Input.GetAxis("Horizontal") < -0.01f || Input.GetAxis("Vertical") > 0.01f || Input.GetAxis("Vertical") < -0.01f)
+        if(WeaponManager.Instance.ActualWeaponType == EWeaponType.OneHanded)
         {
-            _Animator.SetBool("Run", true);
-
-            if (!StartRunning)
+            if (Input.GetAxis("Horizontal") > 0.01f || Input.GetAxis("Horizontal") < -0.01f || Input.GetAxis("Vertical") > 0.01f || Input.GetAxis("Vertical") < -0.01f)
             {
-                _AudioSource.Stop();
-                StartRunning = true;
-                
-                _AudioSource.Play();
-            }
-            
+                _Animator.SetBool("Run", true);
 
+                if (!StartRunning)
+                {
+                    _AudioSource.Stop();
+                    StartRunning = true;
+
+                    _AudioSource.Play();
+                }
+
+
+            }
+            else
+            {
+                if (StartRunning)
+                {
+                    StartRunning = false;
+                    _AudioSource.Stop();
+                }
+                _Animator.SetBool("Run", false);
+            }
         }
-        else
+        else if (WeaponManager.Instance.ActualWeaponType == EWeaponType.Pistol)
         {
-            if (StartRunning)
+            LookAtMousePosition();
+
+            if (Input.GetAxis("Horizontal") > 0.01f || Input.GetAxis("Horizontal") < -0.01f || Input.GetAxis("Vertical") > 0.01f || Input.GetAxis("Vertical") < -0.01f)
             {
-                StartRunning = false;
-                _AudioSource.Stop();
+                _Animator.SetBool("PistolRun", true);
+
+                if (!StartRunning)
+                {
+                    _AudioSource.Stop();
+                    StartRunning = true;
+
+                    _AudioSource.Play();
+                }
+
+
             }
-            _Animator.SetBool("Run", false);
+            else
+            {
+                if (StartRunning)
+                {
+                    StartRunning = false;
+                    _AudioSource.Stop();
+                }
+                _Animator.SetBool("PistolRun", false);
+            }
         }
+        
 
         CheckIfAttackIsPlaying();
         StopPlayerWhileDoingAttack();
 
+    }
+
+    public void LookAtMousePosition()
+    {
+        // 1. Hole die Mausposition in der Welt
+        Vector3 mousePosition = Input.mousePosition;
+        mousePosition.z = Camera.main.WorldToScreenPoint(PlayerTransform.position).z; // Tiefe setzen
+        Vector3 worldMousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
+
+        var flatMousePosition = new Vector3(worldMousePosition.x, PlayerTransform.position.y, worldMousePosition.z);
+
+        // 2. Lass das Objekt zur Maus schauen
+        PlayerTransform.LookAt(flatMousePosition);
+
+        // 3. Optional: Wenn du möchtest, dass das Objekt sich nur um eine Achse dreht (z.B. nur um die Y-Achse)
+        //PlayerTransform.rotation = Quaternion.Euler(0, PlayerTransform.eulerAngles.y, 0);
     }
 
     public IEnumerator PlayNextAttack(EControls control)

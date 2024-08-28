@@ -11,5 +11,6 @@ public enum EControls
     Effect2,
     Effect3,
     Dash,
-    Collect
+    Collect,
+    SwitchWeapon
 }

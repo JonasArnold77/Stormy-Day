@@ -47,6 +47,10 @@ public class InputManager : MonoBehaviour
         {
             return KeyCode.E;
         }
+        if (control == EControls.SwitchWeapon)
+        {
+            return KeyCode.Tab;
+        }
         return null;
     }
 

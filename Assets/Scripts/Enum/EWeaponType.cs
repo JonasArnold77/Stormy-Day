@@ -4,6 +4,7 @@ using UnityEngine;
 
 public enum EWeaponType
 {
+    Pistol,
     OneHanded,
     TwoHanded,
     Magic
