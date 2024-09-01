@@ -7,6 +7,7 @@ public class WeaponManager : MonoBehaviour
     public static WeaponManager Instance;
     public EWeaponType ActualWeaponType;
     public Sword ActualWeapon;
+    public Pistol Pistol;
 
     public Transform RightFist;
     public Transform LeftFist;
@@ -28,6 +29,7 @@ public class WeaponManager : MonoBehaviour
     private void Start()
     {
         DeactivateAllColliders();
+        Pistol = FindObjectOfType<Pistol>();
     }
 
     private void Update()
@@ -37,10 +39,12 @@ public class WeaponManager : MonoBehaviour
             if (ActualWeaponType == EWeaponType.OneHanded)
             {
                 ActualWeaponType = EWeaponType.Pistol;
+                Pistol.gameObject.SetActive(true);
             }
             else
             {
                 ActualWeaponType = EWeaponType.OneHanded;
+                Pistol.gameObject.SetActive(false);
             }
         }
     }

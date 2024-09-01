@@ -46,6 +46,8 @@ public class PlayerAnimation : MonoBehaviour
     {
         if(WeaponManager.Instance.ActualWeaponType == EWeaponType.OneHanded)
         {
+            _Animator.SetBool("PistolRun", false);
+
             if (Input.GetAxis("Horizontal") > 0.01f || Input.GetAxis("Horizontal") < -0.01f || Input.GetAxis("Vertical") > 0.01f || Input.GetAxis("Vertical") < -0.01f)
             {
                 _Animator.SetBool("Run", true);
@@ -73,6 +75,8 @@ public class PlayerAnimation : MonoBehaviour
         else if (WeaponManager.Instance.ActualWeaponType == EWeaponType.Pistol)
         {
             LookAtMousePosition();
+
+            _Animator.SetBool("Run", false);
 
             if (Input.GetAxis("Horizontal") > 0.01f || Input.GetAxis("Horizontal") < -0.01f || Input.GetAxis("Vertical") > 0.01f || Input.GetAxis("Vertical") < -0.01f)
             {
@@ -103,6 +107,49 @@ public class PlayerAnimation : MonoBehaviour
         CheckIfAttackIsPlaying();
         StopPlayerWhileDoingAttack();
 
+    }
+
+    public bool IsAnimationPlaying(string animationName)
+    {
+        // Prüft, ob der Animator und der AnimatorStateInfo gültig sind
+        if (_Animator == null) return false;
+
+        // Holt den aktuellen AnimatorStateInfo aus dem Base Layer (Layer 0)
+        AnimatorStateInfo stateInfo = _Animator.GetCurrentAnimatorStateInfo(0);
+
+        // Überprüft, ob der Name der aktuellen Animation mit dem angegebenen Namen übereinstimmt
+        return stateInfo.IsName(animationName);
+    }
+
+    public string GetMovementDirection()
+    {
+        float horizontal = Input.GetAxis("Horizontal");
+        float vertical = Input.GetAxis("Vertical");
+
+        if (Mathf.Abs(horizontal) > Mathf.Abs(vertical))
+        {
+            if (horizontal > 0)
+            {
+                return "rechts";
+            }
+            else if (horizontal < 0)
+            {
+                return "links";
+            }
+        }
+        else
+        {
+            if (vertical > 0)
+            {
+                return "vorwärts";
+            }
+            else if (vertical < 0)
+            {
+                return "rückwärts";
+            }
+        }
+
+        return "keine Bewegung";
     }
 
     public void LookAtMousePosition()
