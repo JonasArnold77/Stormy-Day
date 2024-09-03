@@ -16,6 +16,9 @@ public class AttackPoolMenu : MonoBehaviour
 
     public Button CloseButton;
 
+    public List<GameObject> allButtons = new List<GameObject>();
+    public Button ActualButton;
+
     public static AttackPoolMenu Instance;
 
     private void Awake()
@@ -25,7 +28,7 @@ public class AttackPoolMenu : MonoBehaviour
 
     public void Start()
     {
-       
+        
     }
 
     public void InitializeMenu(EHitType type)
@@ -44,12 +47,27 @@ public class AttackPoolMenu : MonoBehaviour
             if(s.Type == type)
             {
                 var item = Instantiate(AttackPoolItem, Content);
+                allButtons.Add(item);
+
+                item.GetComponent<SkillUIItem>().IsSelected = false;
+                item.GetComponent<SkillUIItem>().OutlineGO.SetActive(false);
+
                 item.GetComponentInChildren<TMP_Text>().text = "";
                 //item.GetComponent<Image>().sprite = s.Image;
-                item.GetComponent<Button>().onClick.AddListener(() => SetComboAttackItem(s));
+                item.GetComponent<Button>().onClick.AddListener(() => ChooseButton(item.GetComponent<Button>(), item));
                 item.GetComponent<WorldImage>().m_worldObjects.Add(s.AnimationObject);
             }
         }
+    }
+
+    public void ChooseButton(Button button, GameObject item)
+    {
+        ActualButton = button;
+        ActualButton.GetComponent<SkillUIItem>().IsSelected = true;
+        ActualButton.GetComponent<SkillUIItem>().OutlineGO.SetActive(true);
+
+        allButtons.Where(b => !item.Equals(b)).ToList().ForEach(b1 => b1.GetComponent<SkillUIItem>().IsSelected = false);
+        allButtons.Where(b => !item.Equals(b)).ToList().ForEach(b1 => b1.GetComponent<SkillUIItem>().OutlineGO.SetActive(false));
     }
 
     public void SetComboAttackItem(AttackItem item)

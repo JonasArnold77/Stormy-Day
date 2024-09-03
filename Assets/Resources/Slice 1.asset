@@ -17,7 +17,7 @@ MonoBehaviour:
   Control: 1
   Effect: 0
   Type: 10
-  WeaponType: 0
+  WeaponType: 1
   StatusEffect: 0
   Damage: 15
   EnduranceCost: 25

@@ -17,8 +17,8 @@ MonoBehaviour:
   Control: 1
   Effect: 0
   Type: 10
-  WeaponType: 0
-  StatusEffect: 1
+  WeaponType: 1
+  StatusEffect: 0
   Damage: 10
   EnduranceCost: 30
   Name: Spinning Attack 2

@@ -11,6 +11,9 @@ public class SkillUIItem : MonoBehaviour
     public Image _Image;
     public bool IsInPool;
 
+    public bool IsSelected;
+    public GameObject OutlineGO;
+
     private void Start()
     {
         if (!IsInPool)

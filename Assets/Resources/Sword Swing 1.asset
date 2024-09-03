@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: Sword Swing 1
   m_EditorClassIdentifier: 
   _Animation: {fileID: 7400000, guid: b20de0d679864454eb269331e3a270db, type: 2}
+  AnimationObject: {fileID: 0}
   Control: 1
   Effect: 0
   Type: 10
-  WeaponType: 0
+  WeaponType: 1
   StatusEffect: 0
   Damage: 10
   EnduranceCost: 30
