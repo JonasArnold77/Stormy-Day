@@ -12,9 +12,14 @@ public class AttackPoolMenu : MonoBehaviour
     public GameObject AttackPoolItem;
     public Transform Content;
 
+    public GameObject _AttackItemGO;
+
     public SkillUIItem AttackComboItem;
 
     public Button CloseButton;
+
+    public Transform DetailInfoPanel;
+    public Button ApplyButton;
 
     public List<GameObject> allButtons = new List<GameObject>();
     public Button ActualButton;
@@ -28,7 +33,7 @@ public class AttackPoolMenu : MonoBehaviour
 
     public void Start()
     {
-        
+        DetailInfoPanel.gameObject.SetActive(false);
     }
 
     public void InitializeMenu(EHitType type)
@@ -66,8 +71,16 @@ public class AttackPoolMenu : MonoBehaviour
         ActualButton.GetComponent<SkillUIItem>().IsSelected = true;
         ActualButton.GetComponent<SkillUIItem>().OutlineGO.SetActive(true);
 
+        _AttackItemGO = item;
+        DetailInfoPanel.gameObject.SetActive(true);
+
         allButtons.Where(b => !item.Equals(b)).ToList().ForEach(b1 => b1.GetComponent<SkillUIItem>().IsSelected = false);
         allButtons.Where(b => !item.Equals(b)).ToList().ForEach(b1 => b1.GetComponent<SkillUIItem>().OutlineGO.SetActive(false));
+    }
+
+    public void SetComboItem()
+    {
+        SetComboAttackItem(_AttackItemGO.GetComponent<SkillUIItem>()._AttackItem);
     }
 
     public void SetComboAttackItem(AttackItem item)
