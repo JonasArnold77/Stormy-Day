@@ -12,7 +12,7 @@ public class AttackPoolMenu : MonoBehaviour
     public GameObject AttackPoolItem;
     public Transform Content;
 
-    public GameObject _AttackItemGO;
+    public AttackItem _AttackItem;
 
     public SkillUIItem AttackComboItem;
 
@@ -41,6 +41,10 @@ public class AttackPoolMenu : MonoBehaviour
         List<AttackItem> myScriptableObjects = InventoryManager.Instance.AllSkills.Select(s => s.GetComponent<AbilityLootObject>()._AttackItem).ToList();
         //List<AttackItem> myScriptableObjects = GetScriptableObjectsOfType<AttackItem>();
 
+        allButtons.Clear();
+        _AttackItem = null;
+        DetailInfoPanel.gameObject.SetActive(false);
+
         foreach (Transform child in Content)
         {
             // Zerstöre das Kind-GameObject
@@ -59,19 +63,19 @@ public class AttackPoolMenu : MonoBehaviour
 
                 item.GetComponentInChildren<TMP_Text>().text = "";
                 //item.GetComponent<Image>().sprite = s.Image;
-                item.GetComponent<Button>().onClick.AddListener(() => ChooseButton(item.GetComponent<Button>(), item));
+                item.GetComponent<Button>().onClick.AddListener(() => ChooseButton(item.GetComponent<Button>(), item, s));
                 item.GetComponent<WorldImage>().m_worldObjects.Add(s.AnimationObject);
             }
         }
     }
 
-    public void ChooseButton(Button button, GameObject item)
+    public void ChooseButton(Button button, GameObject item, AttackItem aitem)
     {
         ActualButton = button;
         ActualButton.GetComponent<SkillUIItem>().IsSelected = true;
         ActualButton.GetComponent<SkillUIItem>().OutlineGO.SetActive(true);
 
-        _AttackItemGO = item;
+        _AttackItem = aitem;
         DetailInfoPanel.gameObject.SetActive(true);
 
         allButtons.Where(b => !item.Equals(b)).ToList().ForEach(b1 => b1.GetComponent<SkillUIItem>().IsSelected = false);
@@ -80,7 +84,7 @@ public class AttackPoolMenu : MonoBehaviour
 
     public void SetComboItem()
     {
-        SetComboAttackItem(_AttackItemGO.GetComponent<SkillUIItem>()._AttackItem);
+        SetComboAttackItem(_AttackItem);
     }
 
     public void SetComboAttackItem(AttackItem item)
