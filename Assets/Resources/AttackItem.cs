@@ -14,6 +14,7 @@ public class AttackItem : ScriptableObject
     public EWeaponType WeaponType;
     public EStatusEffects StatusEffect;
     public int Damage;
+    public float Speed;
     public int EnduranceCost;
     public string Name;
     public string Description;

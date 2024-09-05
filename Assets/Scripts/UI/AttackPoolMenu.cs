@@ -24,6 +24,12 @@ public class AttackPoolMenu : MonoBehaviour
     public List<GameObject> allButtons = new List<GameObject>();
     public Button ActualButton;
 
+    public TMP_Text nameText;
+    public TMP_Text subscriptionText;
+    public TMP_Text damageText;
+    public TMP_Text speedText;
+    public TMP_Text effectText;
+
     public static AttackPoolMenu Instance;
 
     private void Awake()
@@ -78,8 +84,34 @@ public class AttackPoolMenu : MonoBehaviour
         _AttackItem = aitem;
         DetailInfoPanel.gameObject.SetActive(true);
 
+        SetValuesInDetailwindow(aitem);
+
         allButtons.Where(b => !item.Equals(b)).ToList().ForEach(b1 => b1.GetComponent<SkillUIItem>().IsSelected = false);
         allButtons.Where(b => !item.Equals(b)).ToList().ForEach(b1 => b1.GetComponent<SkillUIItem>().OutlineGO.SetActive(false));
+    }
+
+    private void SetValuesInDetailwindow(AttackItem aitem)
+    {
+        nameText.text = aitem.Name;
+        subscriptionText.text = aitem.Description;
+        damageText.text = aitem.Damage.ToString();
+        speedText.text = aitem.Speed.ToString();
+
+        if(aitem.StatusEffect == EStatusEffects.Fire)
+        {
+            effectText.color = Color.red;
+            effectText.text = aitem.StatusEffect.ToString();
+        }
+        else if (aitem.StatusEffect == EStatusEffects.Ice) 
+        {
+            effectText.color = Color.cyan;
+            effectText.text = aitem.StatusEffect.ToString();
+        }
+        else if (aitem.StatusEffect == EStatusEffects.None)
+        {
+            effectText.color = Color.black;
+            effectText.text = aitem.StatusEffect.ToString();
+        }
     }
 
     public void SetComboItem()
