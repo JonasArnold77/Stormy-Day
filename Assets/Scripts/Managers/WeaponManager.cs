@@ -1,3 +1,4 @@
+using StarterAssets;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -40,11 +41,15 @@ public class WeaponManager : MonoBehaviour
             {
                 ActualWeaponType = EWeaponType.Pistol;
                 Pistol.gameObject.SetActive(true);
+                FindObjectOfType<ThirdPersonController>().enabled = false;
+                FindObjectOfType<PistolWalk>().enabled = true;
             }
             else
             {
                 ActualWeaponType = EWeaponType.OneHanded;
                 Pistol.gameObject.SetActive(false);
+                FindObjectOfType<ThirdPersonController>().enabled = true;
+                FindObjectOfType<PistolWalk>().enabled = false;
             }
         }
     }
