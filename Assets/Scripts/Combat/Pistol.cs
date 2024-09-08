@@ -7,6 +7,9 @@ public class Pistol : MonoBehaviour
     public Vector3 hitPoint;
     public LineRenderer _LineRenderer;
 
+    public GameObject MuzzleFlashGO;
+    public GameObject HitImpactGO;
+
     public GameObject laserCube;
 
     public LayerMask layerMask;
@@ -14,12 +17,18 @@ public class Pistol : MonoBehaviour
     public Vector3 Point1;
     public Vector3 Point2;
 
+    public List<AudioClip> ÁudioClips = new List<AudioClip>();
+    public AudioSource _AudioSource;
+
+    public bool IsShooting;
+
     private PlayerAnimation playerAnimation;
 
     private void Start()
     {
         playerAnimation = FindObjectOfType<PlayerAnimation>();
         _LineRenderer = GetComponent<LineRenderer>();
+        MuzzleFlashGO.SetActive(false);
     }
 
     private void Update()
@@ -35,12 +44,34 @@ public class Pistol : MonoBehaviour
 
     }
 
+    public void DoImpact(Vector3 HitPoint)
+    {
+        Instantiate(HitImpactGO, HitPoint, Quaternion.identity);
+    }
+
+    public IEnumerator DoMuzzleFlash()
+    {
+        MuzzleFlashGO.SetActive(true);
+        IsShooting = true;
+        yield return new WaitForSeconds(0.7f);
+        IsShooting = false;
+        MuzzleFlashGO.SetActive(false);
+    }
+
     public void DoShot()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.Mouse0) && !IsShooting)
         {
-
+            PlayRandomSound();
+            StartCoroutine(DoMuzzleFlash());
         }
+    }
+
+    public void PlayRandomSound()
+    {
+        _AudioSource.Stop();
+        _AudioSource.clip = ÁudioClips[Random.Range(0, ÁudioClips.Count)];
+        _AudioSource.Play();
     }
 
     public void DoLaser()
@@ -58,6 +89,12 @@ public class Pistol : MonoBehaviour
             Point2 = hitPoint;
             Strech2(laserCube, Point1, hitPoint, false);
             //_LineRenderer.SetPosition(1, hitPoint);
+
+            if (IsShooting)
+            {
+                DoImpact(hitPoint);
+            }
+            
             return;
         }
 
@@ -78,8 +115,8 @@ public class Pistol : MonoBehaviour
         direction = Vector3.Normalize(direction);
         _sprite.transform.right = direction;
         if (_mirrorZ) _sprite.transform.right *= -1f;
-        Vector3 scale = new Vector3(0.1f, 0.1f, 0.1f);
-        scale.x = Vector3.Distance(_initialPosition, _finalPosition);
+        Vector3 scale = new Vector3(0.001f, 0.001f, 0.001f);
+        scale.x = Vector3.Distance(_initialPosition, _finalPosition)/100;
         _sprite.transform.localScale = scale;
     }
 
