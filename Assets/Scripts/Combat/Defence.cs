@@ -35,7 +35,7 @@ public class Defence : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown((KeyCode)InputManager.Instance.GetInputActionFromControlInput(EControls.Dash)))
+        if (Input.GetKeyDown((KeyCode)InputManager.Instance.GetInputActionFromControlInput(EControls.Dash)) && WeaponManager.Instance.ActualWeaponType != EWeaponType.Pistol)
         {
             _Animator.Play(ComboManager.Instance.DashClip.name);
             //MoveToLastFramePosition(ComboManager.Instance.DashClip.name);

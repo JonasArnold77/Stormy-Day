@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-5201369766432926811
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 7
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: BloodLessNoise_Mat
+  m_Shader: {fileID: -6465566751694194690, guid: 4bf5d96ac92c2b9419965e34ee78a7c6, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - Texture2D_01731c56120643ceaa87bebf8b3af844:
+        m_Texture: {fileID: 2800000, guid: 1446645f33f23e14ebca8957286b598f, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - Vector1_1fae7880973446cb997bfee0da3553e3: 0
+    - Vector1_27257c1942374db1bde4d912066747b5: -0.4
+    - Vector1_29b8392978eb4ef59c5cc3d495d60c89: 0
+    - Vector1_7b95999fbf0e493d916ab37a844d56cf: 0
+    - Vector1_9f6dde3b217949a49577b7d260c3dc73: 2.5
+    - Vector1_9fba26e8bacc4aa4b3bb95d05a58fe7a: 5
+    - Vector1_bed42cdf5d65420eafbe8ac2e958dfee: 1.1
+    - Vector1_e57d5fd9f7a74ee3a198c0cdfe690ce5: 8
+    - _QueueControl: 0
+    - _QueueOffset: 0
+    m_Colors:
+    - Color_b0f38ce3093b416c88f1d471c5c699c5: {r: 4, g: 4, b: 4, a: 1}
+  m_BuildTextureStacks: []

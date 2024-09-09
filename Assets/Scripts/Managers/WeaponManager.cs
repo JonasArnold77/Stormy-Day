@@ -9,6 +9,7 @@ public class WeaponManager : MonoBehaviour
     public EWeaponType ActualWeaponType;
     public Sword ActualWeapon;
     public Pistol Pistol;
+    public GameObject Laser;
 
     public Transform RightFist;
     public Transform LeftFist;
@@ -41,6 +42,7 @@ public class WeaponManager : MonoBehaviour
             {
                 ActualWeaponType = EWeaponType.Pistol;
                 Pistol.gameObject.SetActive(true);
+                Laser.gameObject.SetActive(true);
                 FindObjectOfType<ThirdPersonController>().enabled = false;
                 FindObjectOfType<PistolWalk>().enabled = true;
             }
@@ -48,6 +50,7 @@ public class WeaponManager : MonoBehaviour
             {
                 ActualWeaponType = EWeaponType.OneHanded;
                 Pistol.gameObject.SetActive(false);
+                Laser.gameObject.SetActive(false);
                 FindObjectOfType<ThirdPersonController>().enabled = true;
                 FindObjectOfType<PistolWalk>().enabled = false;
             }
