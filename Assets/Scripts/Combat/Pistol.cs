@@ -21,6 +21,7 @@ public class Pistol : MonoBehaviour
     public AudioSource _AudioSource;
 
     public bool IsShooting;
+    public bool ShootingIsDone;
 
     private PlayerAnimation playerAnimation;
 
@@ -55,6 +56,7 @@ public class Pistol : MonoBehaviour
         IsShooting = true;
         yield return new WaitForSeconds(0.7f);
         IsShooting = false;
+        ShootingIsDone = false;
         MuzzleFlashGO.SetActive(false);
     }
 
@@ -90,8 +92,9 @@ public class Pistol : MonoBehaviour
             Strech2(laserCube, Point1, hitPoint, false);
             //_LineRenderer.SetPosition(1, hitPoint);
 
-            if (IsShooting)
+            if (IsShooting && !ShootingIsDone)
             {
+                ShootingIsDone = true;
                 DoImpact(hitPoint);
             }
             

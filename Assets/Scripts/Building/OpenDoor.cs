@@ -11,6 +11,7 @@ public class OpenDoor : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        return;
         UnselectObjects.ForEach(o => o.SetActive(false));
         SelectObjects.ForEach(o => o.SetActive(true));
 
