@@ -48,6 +48,13 @@ public class Pistol : MonoBehaviour
     public void DoImpact(Vector3 HitPoint)
     {
         Instantiate(HitImpactGO, HitPoint, Quaternion.identity);
+
+        var amount = Random.Range(4, 7);
+
+        for (int i = 0; i < amount; i++)
+        {
+            Instantiate(PrefabManager.Instance.HealthItem, position: HitPoint + new Vector3(Random.Range(0.2f,3f),0, Random.Range(0.2f, 3f)),Quaternion.identity);
+        }
     }
 
     public IEnumerator DoMuzzleFlash()
@@ -92,7 +99,7 @@ public class Pistol : MonoBehaviour
             Strech2(laserCube, Point1, hitPoint, false);
             //_LineRenderer.SetPosition(1, hitPoint);
 
-            if (IsShooting && !ShootingIsDone)
+            if (IsShooting && !ShootingIsDone && hit.transform.tag == "Enemy")
             {
                 ShootingIsDone = true;
                 DoImpact(hitPoint);

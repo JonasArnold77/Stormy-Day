@@ -71,10 +71,10 @@ public class Attack : MonoBehaviour
 
     private void Update()
     {
-        if (!_ComboCoroutineIsRunning)
-        {
+        //if (!_ComboCoroutineIsRunning)
+        //{
             StartCoroutine(CalculateCombo());
-        }
+        //}
 
         if (isDoingAttack && ActualEnemy != null && !FixedAim && !GetComponent<Defence>().IsDoingDash)
         {
