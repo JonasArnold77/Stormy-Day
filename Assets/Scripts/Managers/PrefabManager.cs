@@ -8,6 +8,7 @@ public class PrefabManager : MonoBehaviour
     public RectTransform ArmorUiItem;
     public GameObject QuestMarker;
     public GameObject HealthItem;
+    public RectTransform HealthItem2D;
 
     public static PrefabManager Instance;
 

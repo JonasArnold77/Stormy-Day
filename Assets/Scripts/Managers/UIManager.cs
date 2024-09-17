@@ -13,6 +13,7 @@ public class UIManager : MonoBehaviour
     public DialogueWindow _DialogueMenu;
     public KeySuggestionMenu _KeySuggestionMenu;
     public DarknessPanel _DarknessPanel;
+    public HealthAndEndurancePanel _HealthPanel;
     
     public static UIManager Instance;
 
