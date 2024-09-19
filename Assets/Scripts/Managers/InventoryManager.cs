@@ -9,12 +9,13 @@ public class InventoryManager : MonoBehaviour
 {
     public GameObject ActualWeapon;
 
+    public List<GameObject> AllMagicSkills = new List<GameObject>();
     public List<GameObject> AllSkills = new List<GameObject>();
     public List<ArmorLootObject> AllArmors = new List<ArmorLootObject>();
     public List<GameObject> QuestItems = new List<GameObject>();
 
     public static InventoryManager Instance;
-
+    
     private void Awake()
     {
         Instance = this;
