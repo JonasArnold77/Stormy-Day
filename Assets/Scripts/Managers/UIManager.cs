@@ -14,6 +14,7 @@ public class UIManager : MonoBehaviour
     public KeySuggestionMenu _KeySuggestionMenu;
     public DarknessPanel _DarknessPanel;
     public HealthAndEndurancePanel _HealthPanel;
+    public MagicPoolMenu _MagicPool;
     
     public static UIManager Instance;
 
@@ -36,6 +37,7 @@ public class UIManager : MonoBehaviour
         //_ComboPanel.gameObject.SetActive(false);
         _InventoryPanel.gameObject.SetActive(false);
         _EnemyStatusPanel.gameObject.SetActive(false);
+        _MagicPool.gameObject.SetActive(true);
     }
 
     private void Awake()

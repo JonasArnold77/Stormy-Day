@@ -170,6 +170,11 @@ public class PlayerAnimation : MonoBehaviour
 
     public IEnumerator PlayNextAttack(EControls control)
     {
+        if(WeaponManager.Instance.ActualWeaponType == EWeaponType.Pistol)
+        {
+            yield break;
+        }
+
         if(UIManager.Instance._ComboPanel.isActiveAndEnabled == true || UIManager.Instance._AttackPoolMenu.isActiveAndEnabled)
         {
             yield break;

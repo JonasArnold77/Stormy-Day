@@ -8,6 +8,7 @@ using UnityEngine;
 public class Combo
 {
     public List<AttackItem> ComboList;
+    public List<MagicItem> MagicList = new List<MagicItem>();
     public int Counter;
     public EControls InputType;
     public EWeaponType WeaponType;

@@ -8,6 +8,7 @@ public class ComboPanel : MonoBehaviour
 {
     public Button AddNewAttackItemButton;
     public List<GameObject> AtackItemPanel = new List<GameObject>();
+    public List<GameObject> MagicItemPanel = new List<GameObject>();
 
     public float distanceBetweenPanels;
 

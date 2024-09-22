@@ -50,6 +50,13 @@ public class CollectItem : MonoBehaviour
 
                     AnimationObjectOffset = AnimationObjectOffset + 4;
                 }
+                else if (pivotElement.GetComponent<MagicLootObject>())
+                {
+                    InventoryManager.Instance.AllMagicSkills.Add(pivotElement);
+
+                    ListOfCollectableItems.Remove(pivotElement);
+                    pivotElement.SetActive(false);
+                }
                 else if (pivotElement.GetComponent<ArmorLootObject>())
                 {
                     InventoryManager.Instance.AllArmors.Add(pivotElement.GetComponent<ArmorLootObject>());
