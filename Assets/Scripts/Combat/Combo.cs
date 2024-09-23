@@ -12,6 +12,7 @@ public class Combo
     public int Counter;
     public EControls InputType;
     public EWeaponType WeaponType;
+
     public void IncreaseCounter()
     {
         if(Counter == ComboList.Count - 1)
@@ -23,8 +24,6 @@ public class Combo
             Counter++;
         }
     }
-
-    
 
     public void ResetCounter()
     {

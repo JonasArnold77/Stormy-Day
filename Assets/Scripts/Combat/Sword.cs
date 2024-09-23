@@ -119,6 +119,13 @@ public class Sword : MonoBehaviour
 
             PlayRandomSound();
 
+
+            if(FindObjectOfType<PlayerAnimation>().ActualMagicItem != null)
+            {
+                StartCoroutine(DoMagicStuff(FindObjectOfType<PlayerAnimation>().ActualMagicItem, collision.transform.position));
+            }
+            
+
             if (FindObjectOfType<PlayerAnimation>().ActualAttackItem != null)
             {
                 var TotalDamage = Damage + FindObjectOfType<PlayerAnimation>().ActualAttackItem.Damage;
@@ -158,6 +165,15 @@ public class Sword : MonoBehaviour
 
     //StartCoroutine(collision.gameObject.GetComponent<EnemyAnimation>().KillExecution());
         } 
+    }
+
+    public IEnumerator DoMagicStuff(MagicItem item, Vector3 position)
+    {
+        if (item.Type == EMagicTypes.Explosion)
+        {
+            yield return new WaitForSeconds(0f);
+            Instantiate(item.EffectGameObject, position: position, Quaternion.identity);
+        }
     }
 
     public void PlayRandomSound()

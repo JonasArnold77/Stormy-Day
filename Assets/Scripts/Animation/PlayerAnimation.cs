@@ -13,6 +13,7 @@ public class PlayerAnimation : MonoBehaviour
     private Coroutine _IsPlayingAttackCoroutine;
 
     public AttackItem ActualAttackItem;
+    public MagicItem ActualMagicItem;
 
     public static PlayerAnimation Instance;
 
@@ -189,8 +190,22 @@ public class PlayerAnimation : MonoBehaviour
             _Animator.Play(combo.ComboList[combo.Counter]._Animation.name);     
 
             StartCoroutine(WaitForEndOfAnimation(combo.ComboList[combo.Counter]));
+            ActualMagicItem = combo.MagicList[combo.Counter];
+
+            //Do Magic Spell
+            StartCoroutine(DoMagicStuff(combo.MagicList[combo.Counter]));
+
 
             combo.IncreaseCounter();
+        }
+    }
+
+    public IEnumerator DoMagicStuff(MagicItem item)
+    {
+        if (item.Type == EMagicTypes.Explosion)
+        {
+            yield return new WaitForSeconds(1f);
+            //Instantiate(item.EffectGameObject, position: PlayerTransform.position, Quaternion.identity);
         }
     }
 
@@ -214,6 +229,7 @@ public class PlayerAnimation : MonoBehaviour
         }
         GetComponent<StatusEffects>().DeactivateEffect();
         ActualAttackItem = null;
+        ActualMagicItem = null;
     }
 
     bool AnimationFinished(string animationName)
