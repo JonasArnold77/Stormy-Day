@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ec7bd501b032f74ea775749e0666dae, type: 3}
   m_Name: FireExplosion
   m_EditorClassIdentifier: 
-  EffectGameObject: {fileID: 0}
+  EffectGameObject: {fileID: 8646388708225908332, guid: 97c650d10aca8824cbbb66e848c62918, type: 3}
   Type: 0
   DamagePerSecond: 14
   TimeOfAttack: 5
