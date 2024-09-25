@@ -207,6 +207,17 @@ public class PlayerAnimation : MonoBehaviour
             yield return new WaitForSeconds(1f);
             //Instantiate(item.EffectGameObject, position: PlayerTransform.position, Quaternion.identity);
         }
+        else if (item.Type == EMagicTypes.Aura)
+        {
+            var obj = Instantiate(item.EffectGameObject, PlayerTransform.position, Quaternion.identity, parent: PlayerTransform);
+            StartCoroutine(WaitForEndOfMagicStuff(obj, 4));
+        }
+    }
+
+    public IEnumerator WaitForEndOfMagicStuff(GameObject obj, int duration)
+    {
+        yield return new WaitForSeconds(duration);
+        Destroy(obj);
     }
 
     public void PlayHitAnimation()

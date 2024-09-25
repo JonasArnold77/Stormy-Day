@@ -36,9 +36,9 @@ public class HealthItem : MonoBehaviour
 
         if (Vector3.Distance(transform.position, Player.transform.position) < 2 && !isCollected)
         {
-            //Destroy(gameObject);
+            Destroy(gameObject);
             isCollected = true;
-            StartCoroutine(MoveToUIElement());
+            //StartCoroutine(MoveToUIElement());
 
             //var object2d = Instantiate(PrefabManager.Instance.HealthItem2D, position: GetScreenPosition(), Quaternion.identity, parent: UIManager.Instance._HealthPanel.transform);
             //StartCoroutine(MoveToTarget(object2d));

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public enum EMagicTypes
 {
+    Aura,
     Explosion,
     Rain,
     Ball
