@@ -38,6 +38,7 @@ public class HealthItem : MonoBehaviour
         {
             Destroy(gameObject);
             isCollected = true;
+
             //StartCoroutine(MoveToUIElement());
 
             //var object2d = Instantiate(PrefabManager.Instance.HealthItem2D, position: GetScreenPosition(), Quaternion.identity, parent: UIManager.Instance._HealthPanel.transform);
