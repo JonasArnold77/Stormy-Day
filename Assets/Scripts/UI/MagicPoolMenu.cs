@@ -9,6 +9,10 @@ public class MagicPoolMenu : MonoBehaviour
 {
     public MagicUiItem MagicItem;
 
+    public TMP_Text NameTextField;
+    public TMP_Text TypeTextField;
+    public TMP_Text SpellFormTextField;
+
     public GameObject MagicPoolItem;
     public Transform Content;
 
@@ -98,7 +102,9 @@ public class MagicPoolMenu : MonoBehaviour
 
     private void SetValuesInDetailwindow(MagicItem aitem)
     {
-        //nameText.text = aitem.Name;
+        NameTextField.text = aitem.SpellName;
+        SpellFormTextField.text = aitem.Type.ToString();
+        TypeTextField.text = aitem.effect.ToString();
         //subscriptionText.text = aitem.Description;
         //damageText.text = aitem.Damage.ToString();
         //speedText.text = aitem.Speed.ToString();

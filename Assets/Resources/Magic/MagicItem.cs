@@ -6,6 +6,7 @@ using UnityEngine;
 public class MagicItem : ScriptableObject
 {
     public GameObject EffectGameObject;
+    public string SpellName;
     public EMagicTypes Type;
     public float DamagePerSecond;
     public int TimeOfAttack;
