@@ -202,6 +202,7 @@ public class PlayerAnimation : MonoBehaviour
 
     public IEnumerator DoMagicStuff(MagicItem item)
     {
+        yield break;
         if (item.Type == EMagicTypes.Explosion)
         {
             yield return new WaitForSeconds(1f);

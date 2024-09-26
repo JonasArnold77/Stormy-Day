@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: IceExplotion
   m_EditorClassIdentifier: 
   EffectGameObject: {fileID: 8646388708225908332, guid: 0091b0a1da398a44cb82d71633900138, type: 3}
-  Type: 0
+  Type: 1
   DamagePerSecond: 14
   TimeOfAttack: 5
   Image: {fileID: 21300000, guid: 0f022ccb79ad7ba4eb84f009735d5f90, type: 3}
+  effect: 1

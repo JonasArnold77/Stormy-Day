@@ -9,5 +9,6 @@ public class MagicItem : ScriptableObject
     public EMagicTypes Type;
     public float DamagePerSecond;
     public int TimeOfAttack;
-    public Sprite Image; 
+    public Sprite Image;
+    public EStatusEffects effect;
 }

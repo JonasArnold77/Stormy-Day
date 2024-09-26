@@ -122,6 +122,7 @@ public class Sword : MonoBehaviour
 
             if(FindObjectOfType<PlayerAnimation>().ActualMagicItem != null)
             {
+                collision.gameObject.GetComponent<EnemyAnimation>().ActivateEffect(FindObjectOfType<PlayerAnimation>().ActualMagicItem.effect);
                 StartCoroutine(DoMagicStuff(FindObjectOfType<PlayerAnimation>().ActualMagicItem, collision.transform.position));
             }
             
@@ -174,6 +175,18 @@ public class Sword : MonoBehaviour
             yield return new WaitForSeconds(0f);
             Instantiate(item.EffectGameObject, position: position, Quaternion.identity);
         }
+        else if (item.Type == EMagicTypes.Aura)
+        {
+            var obj = Instantiate(item.EffectGameObject, FindObjectOfType<PlayerAnimation>().PlayerTransform.position, Quaternion.identity, parent: FindObjectOfType<PlayerAnimation>().PlayerTransform);
+            StartCoroutine(WaitForEndOfMagicStuff(obj, 4, item));
+        }
+    }
+
+    public IEnumerator WaitForEndOfMagicStuff(GameObject obj, int duration, MagicItem item)
+    {
+        obj.GetComponent<MagicExplosion>().statusEffect = item.effect;
+        yield return new WaitForSeconds(duration);
+        Destroy(obj);
     }
 
     public void PlayRandomSound()
