@@ -190,6 +190,7 @@ public class PlayerAnimation : MonoBehaviour
             _Animator.Play(combo.ComboList[combo.Counter]._Animation.name);     
 
             StartCoroutine(WaitForEndOfAnimation(combo.ComboList[combo.Counter]));
+
             ActualMagicItem = combo.MagicList[combo.Counter];
 
             //Do Magic Spell

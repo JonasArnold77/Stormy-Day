@@ -173,7 +173,9 @@ public class Sword : MonoBehaviour
         if (item.Type == EMagicTypes.Explosion)
         {
             yield return new WaitForSeconds(0f);
-            Instantiate(item.EffectGameObject, position: position, Quaternion.identity);
+            var obj = Instantiate(item.EffectGameObject, position: position, Quaternion.identity);
+            obj.GetComponent<MagicExplosion>().statusEffect = item.effect;
+            obj.GetComponent<MagicExplosion>().Damage = (int)item.DamagePerSecond;
         }
         else if (item.Type == EMagicTypes.Aura)
         {
@@ -185,6 +187,7 @@ public class Sword : MonoBehaviour
     public IEnumerator WaitForEndOfMagicStuff(GameObject obj, int duration, MagicItem item)
     {
         obj.GetComponent<MagicExplosion>().statusEffect = item.effect;
+        obj.GetComponent<MagicExplosion>().Damage = (int)item.DamagePerSecond;
         yield return new WaitForSeconds(duration);
         Destroy(obj);
     }

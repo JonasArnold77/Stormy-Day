@@ -6,6 +6,7 @@ public class MagicExplosion : MonoBehaviour
 {
     private bool ColliderIsActive = true;
     public EStatusEffects statusEffect;
+    public int Damage;
 
     private void Start()
     {
@@ -23,7 +24,7 @@ public class MagicExplosion : MonoBehaviour
         if(other.GetComponent<EnemyAnimation>() && ColliderIsActive)
         {
             other.GetComponent<EnemyAnimation>().PlayingHitAnimation(EHitEffect.HeadHit);
-            
+            other.gameObject.GetComponent<EnemyHealth>().Health -= Damage;
         }
     }
 }
