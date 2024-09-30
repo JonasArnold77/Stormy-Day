@@ -26,6 +26,12 @@ public class InventoryPanel : MonoBehaviour
         Instance = this;
     }
 
+    private void Start()
+    {
+        DestroyLastElements();
+        LoadAllItems();
+    }
+
     private void Update()
     {
         if (IsInInventoryMode)
